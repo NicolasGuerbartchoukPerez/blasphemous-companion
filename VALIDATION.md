@@ -12,4 +12,4 @@ Comprobaciones realizadas el 12 de octubre de 2026 en Windows 11 x64.
 
 El lector de memoria reutiliza el código cuya posición de casilla se había contrastado con el movimiento real del personaje en Steam. En la prueba del nuevo lanzador el juego estaba cerrado; se verificó el estado de espera y la integración automática. No se han comprobado todas las versiones del juego, tiendas, mods u ordenadores. Los límites y estados inciertos permanecen explícitos en la interfaz y README.
 
-La compilación en GitHub Actions es una comprobación adicional; el ZIP inicial se construye y valida localmente. El SHA-256 publicado permite comparar exactamente la descarga con ese paquete.
+La release se construye con los mismos scripts en GitHub Actions, además de la validación local del paquete. El SHA-256 publicado corresponde a los archivos de esa compilación y permite comprobar la integridad de la descarga.

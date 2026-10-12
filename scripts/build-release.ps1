@@ -18,6 +18,7 @@ Assert-Exit
 & $Python "$project/scripts/collect-licenses.py" "$release/licenses"
 Assert-Exit
 Copy-Item -LiteralPath README.md -Destination "$release/LEEME.md"
+Copy-Item -LiteralPath VALIDATION.md -Destination $release
 Copy-Item -LiteralPath LICENSE,THIRD_PARTY_LICENSE.txt -Destination $release
 $zip = Join-Path $project "release/Diario-de-Cvstodia-$Version-windows-x64.zip"
 Compress-Archive -LiteralPath $release -DestinationPath $zip

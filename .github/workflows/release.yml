@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install builder
-        run: python -m pip install -r scripts/requirements-build.txt
+        run: python -m pip install -r scripts/requirements-build.lock.txt
       - name: Build and test
         shell: pwsh
         run: |
@@ -25,12 +25,13 @@ jobs:
           if ($env:GITHUB_REF_TYPE -eq 'tag' -and $env:GITHUB_REF_NAME -ne "v$version") { throw 'El tag debe coincidir con package.json.' }
           ./scripts/build-release.ps1 -Version $version
       - name: Publish tagged release
-        if: github.ref_type == 'tag'
+        if: github.event_name == 'workflow_dispatch'
         shell: pwsh
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           $version = (Get-Content package.json | ConvertFrom-Json).version
-          gh release view $env:GITHUB_REF_NAME --json tagName 2>$null
+          $tag = "v$version"
+          gh release view $tag --json tagName 2>$null
           if ($LASTEXITCODE -eq 0) { Write-Output 'La release ya existe; no se sustituyen sus archivos.'; exit 0 }
-          gh release create $env:GITHUB_REF_NAME "release/Diario-de-Cvstodia-$version-windows-x64.zip" release/SHA256SUMS.txt --verify-tag --title "Diario de Cvstodia $version · Windows portátil" --notes-file RELEASE_NOTES.md
+          gh release create $tag "release/Diario-de-Cvstodia-$version-windows-x64.zip" release/SHA256SUMS.txt --target $env:GITHUB_SHA --title "Diario de Cvstodia $version · Windows portátil" --notes-file RELEASE_NOTES.md
