@@ -1,0 +1,145 @@
+<!doctype html>
+
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Analiza tu partida de Blasphemous 1 y sigue las reliquias y coleccionables que te faltan, sin modificar el guardado."><link rel="icon" href="data:,"><title>Diario de Cvstodia · Blasphemous</title><style>/*__CSS__*/</style></head>
+
+<body>
+
+<header class="masthead"><div class="brand"><span class="seal" aria-hidden="true">✥</span><div><p class="eyebrow">BLASPHEMOUS I · HERRAMIENTA NO OFICIAL</p><h1>Diario de Cvstodia</h1></div></div><div class="privacy">Lectura local · tu partida permanece en este navegador</div></header>
+
+<main>
+
+<section class="import-panel" aria-labelledby="import-title"><div><h2 id="import-title">Tu próxima senda empieza en el guardado.</h2><p>Carga tu partida para ver lo que te falta. Activa el seguimiento de los objetos que quieras buscar.</p></div><div class="import-actions"><label class="button primary" for="save-file">Cargar partida <span aria-hidden="true">↑</span></label><input class="file-input" type="file" id="save-file" accept=".save,.save_backup,.json"><button id="live-start">Conectar carpeta en vivo</button><button id="demo" class="text-button">Ver ejemplo</button></div><p class="path-tip">Windows: <code>%USERPROFILE%\AppData\LocalLow\TheGameKitchen\Blasphemous\Savegames\</code><br>Abre la carpeta numérica y selecciona <code>savegame_0.save</code>, <code>1</code> o <code>2</code>. Guarda en el juego para reflejar tus últimos cambios.</p></section>
+
+<div id="drop-target" class="drop-target">También puedes arrastrar aquí tu archivo .save</div>
+
+<p id="message" role="status" class="message" aria-live="polite"></p>
+
+<section class="live-bar" id="live-bar" hidden><div><strong id="live-state">Seguimiento en vivo</strong><p id="live-detail"></p></div><label>Ranura <select id="live-slot" aria-label="Ranura vigilada"></select></label><button id="live-stop">Desconectar</button></section>
+
+<section id="welcome" class="welcome"><div class="ornament" aria-hidden="true">✥</div><h2>Elige qué quieres encontrar.</h2><p>Reliquias para raíces, plataformas, miasma y agua. Huesos y querubines. Cuentas, rezos, corazones y mejoras.</p><p class="muted">El modo en vivo requiere Chrome o Edge y permiso de lectura para la carpeta. Comprueba cambios cada 3 segundos; refleja el último guardado del juego.</p></section>
+
+<div id="results" hidden>
+
+<section class="summary" aria-label="Resumen de partida"><div><p class="eyebrow" id="save-label"></p><h2 id="summary-title"></h2><p id="save-meta" class="muted"></p><p id="access-summary" class="muted" aria-live="polite"></p></div><div class="import-actions"><a class="button" href="#map-panel">Ver mapa</a><button id="export">Exportar informe</button></div></section>
+
+<section class="priority" aria-labelledby="priority-title"><div class="priority-heading"><span class="eyebrow">EXPLORACIÓN · PRIORIDAD</span><h2 id="priority-title">Las raíces: Tres Lenguas Nudosas</h2><p>Convierte las raíces dormidas en pasarelas y superficies escalables.</p><label class="track-label"><input type="checkbox" id="track-root"> Seguir esta reliquia</label></div><div class="priority-body"><p class="eyebrow">SIGUIENTE PASO SEGÚN TU PARTIDA</p><p id="root-next"></p><button id="map-root-step" class="text-button">Ubicar el siguiente paso en el mapa</button><details><summary>Ver la ruta completa</summary><ol><li>Entrega las tres ofrendas a Altasgracias: monedas en Asciende el Quejido, cinta en la tienda de Candelaria del Cementerio de las Cumbres (800 lágrimas) y velo en Aljibe Profanado.</li><li>Recibe el Huevo de la Deformidad de Altasgracias.</li><li>Colócalo en el árbol de Perpetva, en la Serranía del Ocaso Perpetuo. Sal y vuelve para recoger el huevo eclosionado.</li><li>Bendícelo en la fuente de Albero para obtener Tres Lenguas Nudosas; equípala para usar las raíces.</li></ol><a href="https://blasphemous.wiki.gg/wiki/Egg_of_Deformity_quest" target="_blank" rel="noopener noreferrer">Consultar la misión ↗</a></details></div></section>
+
+<section class="collection" aria-labelledby="collection-title"><div class="collection-heading"><h2 id="collection-title">Tu lista de búsqueda</h2><p id="collection-count" class="muted" aria-live="polite"></p></div>
+
+<form id="filters" class="filters"><label class="search">Buscar<input type="search" id="search" placeholder="Nombre, zona, raíces o caídas…"></label><label>Categoría<select id="category"><option value="all">Todas</option></select></label><label>Posesión del objeto<select id="status"><option value="pending">No obtenidos y sin confirmar</option><option value="missing">No obtenidos</option><option value="obtained">Adquiridos</option><option value="unknown">Posesión sin confirmar</option><option value="later">Nueva Partida+</option><option value="all">Todos</option></select></label><label>Acceso al objeto<select id="access-filter"><option value="all">Todos los accesos</option><option value="available">Accesibles</option><option value="blocked">Requisitos pendientes</option><option value="unknown">Por verificar</option></select></label><label class="check-filter"><input type="checkbox" id="tracked-only"> Solo seguidos <span id="tracked-count"></span></label></form>
+
+<div class="list-actions"><button id="clear-filters">Limpiar filtros</button><button id="track-visible">Seguir pendientes de esta vista</button><button id="untrack-visible" class="text-button">Dejar de seguir esta vista</button><label class="check-filter"><input type="checkbox" id="spoilers" checked> Mostrar ubicaciones</label></div>
+
+<details class="state-help"><summary>Cómo interpretar posesión y acceso</summary><p><strong>Posesión</strong> dice si el guardado confirma que tienes o recogiste el objeto. «Posesión sin confirmar» puede ser un objeto ya entregado o transformado.</p><p><strong>Acceso</strong> dice si puedes llegar con tus reliquias, llaves y progreso actuales. «Accesible» puede requerir cambiar equipo o resolver un acertijo. «Por verificar» significa que falta evidencia, no que una reliquia sea necesariamente obligatoria.</p><p>Los pasos del mapa describen un camino concreto; una zona puede tener varias entradas con requisitos diferentes.</p></details><p class="catalog-note">Incluye juego base y DLC gratuitos. Los objetos consumidos o transformados pueden figurar «Sin confirmar»: su ausencia no demuestra que falten. Las variantes de cera y culpa reconocen sus etapas posteriores. Los nombres propios de algunos objetos se mantienen como aparecen en el catálogo comunitario.</p>
+
+<section id="map-panel" class="map-panel" aria-labelledby="map-title">
+
+<div class="map-heading"><div><p class="eyebrow">CVSTODIA · MAPA INTERACTIVO</p><h3 id="map-title">Tu próxima senda</h3></div><label>Vista<select id="map-preset"><option value="custom">Personalizada</option><option value="game">Como en el juego</option><option value="search">Buscar accesibles</option><option value="relics">Reliquias y sus caminos</option><option value="all">Exploración completa</option></select></label></div>
+
+<details id="map-settings" class="map-settings"><summary>Personalizar mapa y vista</summary>
+
+<div class="settings-grid">
+
+<fieldset><legend>Mapa</legend>
+
+<label>Salas visibles<select data-pref="geometry"><option value="full">Mapa completo</option><option value="explored">Solo explorado</option></select></label>
+
+<label class="check-filter"><input type="checkbox" data-pref="art"> Fondo del mapa</label>
+
+<label class="check-filter"><input type="checkbox" data-pref="labels"> Nombres de zonas</label>
+
+<label class="check-filter"><input type="checkbox" data-pref="services"> Altares, portales y servicios</label>
+
+<label class="check-filter"><input type="checkbox" data-pref="showPersonalPins"> Mis marcas del juego</label>
+
+<label class="check-filter"><input type="checkbox" data-pref="specialCells"> Marcar casillas con pasos especiales</label><label class="check-filter"><input type="checkbox" data-pref="specialOnlyUnexplored"> Priorizar casillas sin descubrir</label>
+
+<label class="check-filter"><input type="checkbox" data-pref="showNg"> Salas de Nueva Partida+</label>
+
+<label>Opacidad de salas sin explorar<input type="range" min="10" max="100" step="5" data-pref="unexploredOpacity" aria-label="Opacidad de salas sin explorar"></label>
+
+</fieldset>
+
+<fieldset><legend>Objetos</legend>
+
+<label class="check-filter"><input type="checkbox" data-pref="available"> Accesibles</label>
+
+<label class="check-filter"><input type="checkbox" data-pref="blocked"> Requisitos pendientes</label>
+
+<label class="check-filter"><input type="checkbox" data-pref="unknown"> Por verificar</label>
+
+<label class="check-filter"><input type="checkbox" data-pref="showAcquired"> Adquiridos</label>
+
+<label>Marcadores<select data-pref="markerStyle"><option value="game">Iconos del juego</option><option value="dots">Puntos de color</option></select></label>
+
+<label>Tamaño de marcadores<input type="range" min="4" max="10" step="1" data-pref="markerSize" aria-label="Tamaño de marcadores"></label>
+
+<label>Colores<select data-pref="colors"><option value="standard">Clásicos</option><option value="contrast">Contraste alto</option></select></label>
+
+</fieldset>
+
+<fieldset><legend>Pasos y reliquias</legend>
+
+<label class="check-filter"><input type="checkbox" data-pref="barriers"> Pasos que requieren reliquia</label>
+
+<label class="check-filter"><input type="checkbox" data-pref="itemBarriers"> Requisitos junto a cada objeto</label>
+
+<label class="check-filter"><input type="checkbox" data-pref="barrierOnlyMissing"> Solo rutas con reliquias que me faltan</label>
+
+<label class="check-filter"><input type="checkbox" data-pref="equipmentOnly"> Calcular solo con reliquias equipadas</label>
+
+<p class="settings-note">Desactivado: se calculan las rutas con todas tus reliquias y puedes cambiar las tres equipadas. Activado: también se señalan las que tienes pero debes equipar. No se simulan glitches ni habilidades de mods.</p>
+
+<div class="settings-checks" id="relic-layer-options"></div>
+
+</fieldset>
+
+<fieldset><legend>Categorías y presentación</legend>
+
+<div class="settings-checks" id="category-layer-options"></div>
+
+<label class="check-filter"><input type="checkbox" data-pref="showList"> Mostrar lista de objetos</label>
+
+<label class="check-filter"><input type="checkbox" data-pref="showPriority"> Mostrar guía de las raíces</label>
+
+<label class="check-filter"><input type="checkbox" data-pref="compact"> Lista compacta</label>
+
+<label class="check-filter"><input type="checkbox" data-pref="showIDs"> Mostrar códigos técnicos</label>
+
+</fieldset>
+
+</div><div class="settings-actions"><button id="settings-reset">Restablecer</button><button id="settings-export">Exportar configuración</button><label class="button" for="settings-import">Importar configuración</label><input class="file-input" type="file" id="settings-import" accept=".json"></div></details>
+
+
+
+<section class="position-panel" aria-label="Posición del jugador"><div><strong id="position-state" role="status">Posición sin conectar</strong><p id="position-note" class="muted">El cursor tenue indica el último altar del guardado. Conecta el lector local para ver tu casilla actual.</p></div><div class="position-actions"><button id="position-connect">Conectar posición</button><button id="position-disconnect" hidden>Desconectar posición</button><label class="check-filter"><input type="checkbox" id="follow-position"> Seguir mi posición</label></div><details><summary>Activar la posición en directo</summary><p>Abre <strong>DiarioDeCvstodia.exe</strong> y carga tu guardado real. La posición se conecta automáticamente al lector integrado; abre Blasphemous para que aparezca tu casilla. Puedes desconectarla y volver a pulsar <strong>Conectar posición</strong>.</p><p>El lector solo lee memoria del juego. La posición se actualiza cada 250 ms; inventario y requisitos reflejan el último guardado cargado. Para actualizar estos últimos, conecta la carpeta en vivo y guarda en un altar.</p><p>Para cerrar la aplicación, usa <strong>Salir</strong> en su icono junto al reloj de Windows. Si solo cierras la pestaña, la aplicación sigue abierta.</p></details></section>
+
+<div class="relic-path-toolbar" id="relic-path-toolbar" aria-label="Elegir caminos de reliquia"></div><p id="path-filter-note" class="catalog-note" aria-live="polite"></p><div class="map-toolbar"><div class="map-controls"><button id="map-zoom-in" aria-label="Acercar mapa">+</button><button id="map-zoom-out" aria-label="Alejar mapa">−</button><button id="map-reset">Mapa completo</button><button id="map-undiscovered">Accesos sin descubrir</button><button id="map-fit">Centrar resultados</button><button id="map-here" disabled>Dónde estoy</button><button id="map-altar">Último altar</button><button id="map-fullscreen">Ampliar vista</button></div><label>Zona<select id="map-area"><option value="all">Todo Cvstodia</option></select></label></div>
+
+<p id="map-count" class="muted" role="status"></p><details id="path-list-panel" class="path-list-panel"><summary id="path-list-title">Ver caminos y requisitos por nombre de zona</summary><div id="path-list"></div></details>
+
+<div class="map-layout"><div class="map-canvas"><svg id="world-map" viewBox="0 -70 92 65" tabindex="0" role="group" aria-label="Mapa interactivo de Cvstodia. Arrastra para desplazar. Usa los botones para ampliar o las flechas del teclado para moverte.">
+
+<defs><marker id="route-arrow" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto" markerUnits="strokeWidth"><path d="M 0 0 L 5 2.5 L 0 5 Z" fill="#f2d390"/></marker></defs><g id="map-cells" aria-hidden="true"></g><g id="map-services" aria-hidden="true"></g><g id="map-area-labels" aria-hidden="true"></g><g id="map-cell-highlights" aria-hidden="true"></g><g id="map-route" aria-hidden="true"></g><g id="map-selected-cell" aria-hidden="true"></g><g id="map-barriers"></g><g id="map-markers"></g><g id="map-player" role="img"></g></svg>
+
+<p id="map-no-position" class="map-overlay" hidden></p><div class="map-legend"><span><i class="dot available"></i> Accesible</span><span><i class="dot blocked"></i> Requisito pendiente</span><span><i class="dot unknown"></i> Por verificar</span><span><i class="dot obtained"></i> Obtenido</span><span><i class="barrier-key"></i> ♧ Raíces · ↓ Caída por abismo</span><span><i class="special-cell-key"></i> Casilla con paso especial</span><span><i class="player-key"></i> Posición actual</span><span><i class="dot followed"></i> Siguiendo</span></div><p class="map-gesture">Arrastra · pellizca · Ctrl + rueda: zoom · flechas, + y − · Enter: seleccionar · pulsa una casilla, objeto o paso</p></div>
+
+<aside id="map-detail" class="map-detail" aria-label="Detalles del punto seleccionado"></aside></div>
+
+<p id="map-exploration-note" class="catalog-note"></p>
+
+<details class="map-method"><summary>Fuentes y precisión del mapa</summary><p>Las 993 casillas, salas, puertas, fondo e iconos proceden de tu instalación de Blasphemous 1. Los marcadores de objetos proceden del catálogo comunitario; señalan una casilla, y las recompensas de misiones pueden cambiar de lugar.</p><p>El acceso es una estimación para juego normal: usa tu inventario, habilidades, puertas recorridas y victorias. «Por verificar» conserva condiciones de misión o rutas que no se pueden demostrar con el guardado. Alcanzar una sala no equivale a completar su puzzle. Los pasos con posición aproximada están identificados en su detalle.</p><p><a href="https://github.com/BrandenEK/Blasphemous.Randomizer" target="_blank" rel="noopener noreferrer">Rutas y coordenadas (MIT)</a> · <a href="https://blasphemous.wiki.gg/wiki/Relics" target="_blank" rel="noopener noreferrer">Reliquias y funcionamiento</a> · <a href="https://blasphemous.wiki.gg/wiki/Egg_of_Deformity_quest" target="_blank" rel="noopener noreferrer">Misión de las raíces</a> · <a href="https://blasphemous.wiki.gg/wiki/Anatomy_Books_Puzzle" target="_blank" rel="noopener noreferrer">Puzzle de Biblioteca</a></p><p>Arte original © The Game Kitchen / Team17. Herramienta privada y no oficial para tu partida.</p></details></section>
+
+<div id="item-list" class="item-list"></div><div id="empty" class="empty" hidden><p>No hay objetos que coincidan con los filtros de la lista.</p><button id="empty-clear">Limpiar filtros de la lista</button></div>
+
+</section>
+
+</div>
+
+<details class="help"><summary>Cómo funciona y qué puede detectar</summary><p>Lee el inventario y los eventos de Blasphemous 1 para PC. Acepta guardados Base64 y JSON. No edita la partida ni envía su contenido a un servidor. El seguimiento que elijas se conserva localmente por nombre de archivo y modo de partida.</p><p>En vivo: selecciona la carpeta numérica que contiene tus archivos .save. Puedes cambiar de ranura. La web relee el archivo mientras esté abierta; el navegador puede espaciar las comprobaciones en segundo plano. Tras cerrar la web tendrás que volver a conectar la carpeta.</p><p>El mapa reproduce las salas y gráficos originales y superpone objetos y pasos de reliquia. La accesibilidad estimada incluye requisitos locales y rutas: cuando faltan datos de misión se conserva «Por verificar». Los objetos sin coordenadas verificadas permanecen en la lista. No admite Blasphemous 2, guardados de consola ni ubicaciones modificadas por randomizers.</p><p>Catálogo: reliquias, 44 huesos, 38 querubines, cuentas de rosario, rezos, corazones, recipientes, nudos, mercurio, versos y objetos de misión. No incluye todas las banderas de finales, habilidades, cosméticos ni todas las mejoras de altares y santuarios.</p><p><a href="https://github.com/BrandenEK/Blasphemous.Randomizer" target="_blank" rel="noopener noreferrer">Datos de objetos y ubicaciones: BrandenEK / Blasphemous.Randomizer (MIT)</a> · <a href="https://github.com/CodeSpacePlus/Blasphemous_Save_Editor" target="_blank" rel="noopener noreferrer">Referencia del formato de guardado</a></p><pre id="license">/*__LICENSE__*/</pre></details>
+
+<footer>Diario de Cvstodia · Herramienta de comunidad para Blasphemous de The Game Kitchen.</footer>
+
+</main><script>/*__DATA__*/</script><script>/*__ENGINE__*/</script><script>/*__APP__*/</script>
+
+</body></html>

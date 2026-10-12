@@ -1,0 +1,11 @@
+import fs from 'node:fs';
+import {fileURLToPath} from 'node:url';
+process.chdir(fileURLToPath(new URL('.',import.meta.url)));
+const template = fs.readFileSync('src/index.html','utf8');
+const readData=(file,name)=>'const '+name+' = '+fs.readFileSync(file,'utf8').replace(/</g,'\\u003c')+';';
+const replacements = {CSS:fs.readFileSync('src/style.css','utf8'),DATA:readData('catalog.json','CATALOG')+readData('map-data.json','MAP_DATA')+readData('game-map.json','GAME_MAP')+readData('access-data.json','ACCESS_DATA'),ENGINE:['engine.mjs','map-model.mjs','access-model.mjs','communication-model.mjs','quadrant-model.mjs'].map(p=>fs.readFileSync(p,'utf8').replace(/^import .*;\r?$/gm,'').replace(/^export /gm,'')).join('\n'),APP:fs.readFileSync('src/preferences.js','utf8')+'\n'+fs.readFileSync('src/app.js','utf8')+'\n'+fs.readFileSync('src/map.js','utf8')+'\n'+fs.readFileSync('src/position.js','utf8'),LICENSE:fs.readFileSync('THIRD_PARTY_LICENSE.txt','utf8')};
+let output=template;
+for(const [key,value] of Object.entries(replacements))output=output.replace('/*__'+key+'__*/',()=>value);
+if(/\/\*__\w+__\*\//.test(output))throw new Error('Falta un componente');
+fs.mkdirSync('dist',{recursive:true});fs.writeFileSync('dist/index.html',output);
+console.log('Web autónoma generada en dist/index.html');

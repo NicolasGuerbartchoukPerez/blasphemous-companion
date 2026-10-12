@@ -1,0 +1,2320 @@
+[
+  {
+    "id": "RB01",
+    "name": "Cráneo de Paloma",
+    "englishName": "Dove Skull",
+    "group": "beads",
+    "area": "Albero",
+    "room": "D01Z02S02",
+    "hint": "Tirso's house, top floor",
+    "ngplus": false
+  },
+  {
+    "id": "RB02",
+    "name": "Ascua de la Santa Cremación",
+    "englishName": "Ember of the Holy Cremation",
+    "group": "beads",
+    "area": "Cementerio de las Cumbres",
+    "room": "D02BZ02S01",
+    "hint": "Shop item 3",
+    "ngplus": false
+  },
+  {
+    "id": "RB03",
+    "name": "Uva de Plata",
+    "englishName": "Silver Grape",
+    "group": "beads",
+    "area": "Aljibe Profanado",
+    "room": "D01BZ05S01",
+    "hint": "Shroud puzzle",
+    "ngplus": false
+  },
+  {
+    "id": "RB04",
+    "name": "Úvula de la Proclamación",
+    "englishName": "Uvula of Proclamation",
+    "group": "beads",
+    "area": "Yermo de las Iglesias Enterradas",
+    "room": "D01Z03S01",
+    "hint": "Lower log path",
+    "ngplus": false
+  },
+  {
+    "id": "RB05",
+    "name": "Perla Hueca",
+    "englishName": "Hollow Pearl",
+    "group": "beads",
+    "area": "Albero",
+    "room": "D01BZ02S01",
+    "hint": "Shop item 2",
+    "ngplus": false
+  },
+  {
+    "id": "RB06",
+    "name": "Ovillo de Pelo",
+    "englishName": "Knot of Hair",
+    "group": "beads",
+    "area": "Asciende el Quejido",
+    "room": "D03Z03S10",
+    "hint": "Empty giant egg",
+    "ngplus": false
+  },
+  {
+    "id": "RB07",
+    "name": "Cuenta de Madera Pintada",
+    "englishName": "Painted Wood Bead",
+    "group": "beads",
+    "area": "El Camino Santo",
+    "room": "D01Z01S02",
+    "hint": "Across blood platforms",
+    "ngplus": false
+  },
+  {
+    "id": "RB08",
+    "name": "Fragmento de Máscara Dorada",
+    "englishName": "Piece of a Golden Mask",
+    "group": "beads",
+    "area": "Convento de la Faz Denegrida",
+    "room": "D02Z03S05",
+    "hint": "Center miasma room",
+    "ngplus": false
+  },
+  {
+    "id": "RB09",
+    "name": "Musgo Preservado en Cristal",
+    "englishName": "Moss Preserved in Glass",
+    "group": "beads",
+    "area": "Albero",
+    "room": "D01BZ02S01",
+    "hint": "Shop item 3",
+    "ngplus": false
+  },
+  {
+    "id": "RB10",
+    "name": "Oliva Congelada",
+    "englishName": "Frozen Olive",
+    "group": "beads",
+    "area": "Donde se Marchitan los Olivos",
+    "room": "D02Z01S01",
+    "hint": "Gemino's reward",
+    "ngplus": false
+  },
+  {
+    "id": "RB11",
+    "name": "Cuenta Calcinada de Quirce",
+    "englishName": "Quirce's Scorched Bead",
+    "group": "beads",
+    "area": "Muralla de las Santas Prohibiciones",
+    "room": "D09Z01S02",
+    "hint": "Upper east room, lift puzzle",
+    "ngplus": false
+  },
+  {
+    "id": "RB12",
+    "name": "Nudo de Mimbre",
+    "englishName": "Wicker Knot",
+    "group": "beads",
+    "area": "Lienzos Durmientes",
+    "room": "D05BZ02S01",
+    "hint": "Shop item 1",
+    "ngplus": false
+  },
+  {
+    "id": "RB13",
+    "name": "Protección de Perpetva",
+    "englishName": "Perpetva's Protection",
+    "group": "beads",
+    "area": "Serranía del Ocaso Perpetuo",
+    "room": "D03Z01S06",
+    "hint": "Perpetva",
+    "ngplus": false
+  },
+  {
+    "id": "RB14",
+    "name": "Símbolo Espinado",
+    "englishName": "Thorned Symbol",
+    "group": "beads",
+    "area": "Patio de los Pasos Silenciosos",
+    "room": "D04Z01S02",
+    "hint": "Second area ledge",
+    "ngplus": false
+  },
+  {
+    "id": "RB15",
+    "name": "Fragmento de Lápida",
+    "englishName": "Piece of a Tombstone",
+    "group": "beads",
+    "area": "Cementerio de las Cumbres",
+    "room": "D02Z02S05",
+    "hint": "Center shaft ledge",
+    "ngplus": false
+  },
+  {
+    "id": "RB16",
+    "name": "Esfera del Humo Sagrado",
+    "englishName": "Sphere of the Sacred Smoke",
+    "group": "beads",
+    "area": "Muralla de las Santas Prohibiciones",
+    "room": "D09Z01S09",
+    "hint": "Lower west room, top ledge",
+    "ngplus": false
+  },
+  {
+    "id": "RB20",
+    "name": "Dedo Meñique de Piedra Caliza",
+    "englishName": "Little Toe made of Limestone",
+    "group": "beads",
+    "area": "Yermo de las Iglesias Enterradas",
+    "room": "D01Z03S06",
+    "hint": "3rd meeting with Redento",
+    "ngplus": false
+  },
+  {
+    "id": "RB21",
+    "name": "Dedo Gordo de Piedra Caliza",
+    "englishName": "Big Toe made of Limestone",
+    "group": "beads",
+    "area": "Patio de los Pasos Silenciosos",
+    "room": "D04Z01S04",
+    "hint": "4th meeting with Redento",
+    "ngplus": false
+  },
+  {
+    "id": "RB22",
+    "name": "Cuarto Dedo de Piedra Caliza",
+    "englishName": "Fourth Toe made of Limestone",
+    "group": "beads",
+    "area": "Serranía del Ocaso Perpetuo",
+    "room": "D03Z01S03",
+    "hint": "1st meeting with Redento",
+    "ngplus": false
+  },
+  {
+    "id": "RB28",
+    "name": "Efigie del Pelícano",
+    "englishName": "Pelican Effigy",
+    "group": "beads",
+    "area": "Jondo",
+    "room": "D03Z02S13",
+    "hint": "Upper west tree root",
+    "ngplus": false
+  },
+  {
+    "id": "RB30",
+    "name": "Gota de Tinta Coagulada",
+    "englishName": "Drop of Coagulated Ink",
+    "group": "beads",
+    "area": "Biblioteca de las Palabras Negadas",
+    "room": "D05Z01S11",
+    "hint": "Lowest west center ledge",
+    "ngplus": false
+  },
+  {
+    "id": "RB31",
+    "name": "Ojo de Ámbar",
+    "englishName": "Amber Eye",
+    "group": "beads",
+    "area": "Biblioteca de las Palabras Negadas",
+    "room": "D05Z01S06",
+    "hint": "Miasma hallway chest",
+    "ngplus": false
+  },
+  {
+    "id": "RB32",
+    "name": "Campana Muda",
+    "englishName": "Muted Bell",
+    "group": "beads",
+    "area": "Cementerio de las Cumbres",
+    "room": "D02Z02S04",
+    "hint": "Lower west shaft",
+    "ngplus": false
+  },
+  {
+    "id": "RB33",
+    "name": "Amatista Consagrada",
+    "englishName": "Consecrated Amethyst",
+    "group": "beads",
+    "area": "Madre de Madres",
+    "room": "D04Z02S07",
+    "hint": "Upper east ledge",
+    "ngplus": false
+  },
+  {
+    "id": "RB34",
+    "name": "Ascuas de una Estrella Rota",
+    "englishName": "Embers of a Broken Star",
+    "group": "beads",
+    "area": "Recompensa de Nueva Partida+",
+    "room": "Initial",
+    "hint": "Confessor Dungeon 4 extra",
+    "ngplus": false
+  },
+  {
+    "id": "RB35",
+    "name": "Moneda Escamada",
+    "englishName": "Scaly Coin",
+    "group": "beads",
+    "area": "Recompensa de Nueva Partida+",
+    "room": "Initial",
+    "hint": "Confessor Dungeon 6 extra",
+    "ngplus": false
+  },
+  {
+    "id": "RB36",
+    "name": "Concha de Espiral Invertida",
+    "englishName": "Seashell of the Inverted Spiral",
+    "group": "beads",
+    "area": "Recompensa de Nueva Partida+",
+    "room": "Initial",
+    "hint": "Confessor Dungeon 7 extra",
+    "ngplus": false
+  },
+  {
+    "id": "RB37",
+    "name": "Ojo Calcificado de la Erudición",
+    "englishName": "Calcified Eye of Erudition",
+    "group": "beads",
+    "area": "Cementerio de las Cumbres",
+    "room": "D02BZ02S01",
+    "hint": "Shop item 2",
+    "ngplus": false
+  },
+  {
+    "id": "RB41",
+    "name": "Peso de la Verdadera Culpa",
+    "englishName": "Weight of True Guilt",
+    "group": "beads",
+    "area": "Cementerio de las Cumbres",
+    "room": "D02Z02S06",
+    "hint": "Confessor Dungeon room",
+    "ngplus": false
+  },
+  {
+    "id": "RB101",
+    "name": "Reliquary of the Fervent Heart",
+    "englishName": "Reliquary of the Fervent Heart",
+    "group": "beads",
+    "area": "Consultar guía del objeto",
+    "room": "",
+    "hint": "",
+    "ngplus": true
+  },
+  {
+    "id": "RB102",
+    "name": "Reliquary of the Suffering Heart",
+    "englishName": "Reliquary of the Suffering Heart",
+    "group": "beads",
+    "area": "Consultar guía del objeto",
+    "room": "",
+    "hint": "",
+    "ngplus": true
+  },
+  {
+    "id": "RB103",
+    "name": "Reliquary of the Sorrowful Heart",
+    "englishName": "Reliquary of the Sorrowful Heart",
+    "group": "beads",
+    "area": "Consultar guía del objeto",
+    "room": "",
+    "hint": "",
+    "ngplus": true
+  },
+  {
+    "id": "RB104",
+    "name": "Símbolo de Aprecio",
+    "englishName": "Token of Appreciation",
+    "group": "beads",
+    "area": "Sueños de Misericordia",
+    "room": "D01BZ04S01",
+    "hint": "Donate 5000 Tears",
+    "ngplus": false
+  },
+  {
+    "id": "RB105",
+    "name": "Rubí Enclaustrado",
+    "englishName": "Cloistered Ruby",
+    "group": "beads",
+    "area": "Sueños de Misericordia",
+    "room": "D01BZ04S01",
+    "hint": "Donate 50000 Tears",
+    "ngplus": false
+  },
+  {
+    "id": "RB106",
+    "name": "Cuenta de Hilo Dorado",
+    "englishName": "Bead of Gold Thread",
+    "group": "beads",
+    "area": "Cementerio de las Cumbres",
+    "room": "D02Z02S14",
+    "hint": "East cliffside",
+    "ngplus": false
+  },
+  {
+    "id": "RB107",
+    "name": "Zafiro Enclaustrado",
+    "englishName": "Cloistered Sapphire",
+    "group": "beads",
+    "area": "Convento de la Faz Denegrida",
+    "room": "D02Z03S23",
+    "hint": "Outside pathway",
+    "ngplus": false
+  },
+  {
+    "id": "RB108",
+    "name": "Fuego Encerrado en Esmalte",
+    "englishName": "Fire Enclosed in Enamel",
+    "group": "beads",
+    "area": "Ecos de Sal",
+    "room": "D20Z01S02",
+    "hint": "Lantern jump near MotED",
+    "ngplus": false
+  },
+  {
+    "id": "RB201",
+    "name": "Light of the Lady of the Lamp",
+    "englishName": "Light of the Lady of the Lamp",
+    "group": "beads",
+    "area": "Ecos de Sal",
+    "room": "D20Z02S02",
+    "hint": "Upper east chest",
+    "ngplus": false
+  },
+  {
+    "id": "RB202",
+    "name": "Escama de Alabastro Bruñido",
+    "englishName": "Scale of Burnished Alabaster",
+    "group": "beads",
+    "area": "Ecos de Sal",
+    "room": "D20Z01S09",
+    "hint": "Lantern jump near elevator",
+    "ngplus": false
+  },
+  {
+    "id": "RB203",
+    "name": "Rueda del Joven Albañil",
+    "englishName": "The Young Mason's Wheel",
+    "group": "beads",
+    "area": "Biblioteca de las Palabras Negadas",
+    "room": "D05Z01S11",
+    "hint": "Silence for Diosdado",
+    "ngplus": false
+  },
+  {
+    "id": "RB204",
+    "name": "Corona de Hierro Roído",
+    "englishName": "Crown of Gnawed Iron",
+    "group": "beads",
+    "area": "Hermandad del Lamento Mudo",
+    "room": "D17Z01S01",
+    "hint": "Starting room ledge",
+    "ngplus": false
+  },
+  {
+    "id": "RB301",
+    "name": "Corazón Carmesí de un Miura",
+    "englishName": "Crimson Heart of a Miura",
+    "group": "beads",
+    "area": "Biblioteca de las Palabras Negadas",
+    "room": "D05BZ01S01",
+    "hint": "Twisted wood hidden wall",
+    "ngplus": false
+  },
+  {
+    "id": "PR01",
+    "name": "Seguiriya a tus Ojos como Estrellas",
+    "englishName": "Seguiriya to your Eyes like Stars",
+    "group": "prayers",
+    "area": "Sueños de Misericordia",
+    "room": "D01Z04S07",
+    "hint": "Second area trapped chest",
+    "ngplus": false
+  },
+  {
+    "id": "PR03",
+    "name": "Debla de las Luces",
+    "englishName": "Debla of the Lights",
+    "group": "prayers",
+    "area": "Albero",
+    "room": "D01Z02S03",
+    "hint": "Lvdovico's 3rd reward",
+    "ngplus": false
+  },
+  {
+    "id": "PR04",
+    "name": "Saeta Dolorosa",
+    "englishName": "Saeta Dolorosa",
+    "group": "prayers",
+    "area": "Donde se Marchitan los Olivos",
+    "room": "D02Z01S08",
+    "hint": "Underground tomb",
+    "ngplus": false
+  },
+  {
+    "id": "PR05",
+    "name": "Campanillero a los Hijos de la Aurora",
+    "englishName": "Campanillero to the Sons of the Aurora",
+    "group": "prayers",
+    "area": "Lienzos Durmientes",
+    "room": "D05Z02S10",
+    "hint": "Jocinero's final reward",
+    "ngplus": false
+  },
+  {
+    "id": "PR07",
+    "name": "Lorquiana",
+    "englishName": "Lorquiana",
+    "group": "prayers",
+    "area": "Biblioteca de las Palabras Negadas",
+    "room": "D05Z01S10",
+    "hint": "Platform puzzle chest",
+    "ngplus": false
+  },
+  {
+    "id": "PR08",
+    "name": "Zarabanda del Refugio Seguro",
+    "englishName": "Zarabanda of the Safe Haven",
+    "group": "prayers",
+    "area": "Deambulador de sus Santidades",
+    "room": "D07Z01S01",
+    "hint": "Viridiana's gift",
+    "ngplus": false
+  },
+  {
+    "id": "PR09",
+    "name": "Taranto a la Hermana Mía",
+    "englishName": "Taranto to my Sister",
+    "group": "prayers",
+    "area": "Puente de los Tres Calvarios",
+    "room": "D08Z01S01",
+    "hint": "Esdras' gift",
+    "ngplus": false
+  },
+  {
+    "id": "PR10",
+    "name": "Soleá de la Excomunión",
+    "englishName": "Solea of Excommunication",
+    "group": "prayers",
+    "area": "Jondo",
+    "room": "D03Z02S01",
+    "hint": "Upper east chest",
+    "ngplus": false
+  },
+  {
+    "id": "PR11",
+    "name": "Tiento a tus Cabellos Espinados",
+    "englishName": "Tiento to your Thorned Hairs",
+    "group": "prayers",
+    "area": "Sueños de Misericordia",
+    "room": "D01BZ04S01",
+    "hint": "Final gift for Cleofas",
+    "ngplus": false
+  },
+  {
+    "id": "PR12",
+    "name": "Cante Jondo de las Tres Hermanas",
+    "englishName": "Cante Jondo of the Three Sisters",
+    "group": "prayers",
+    "area": "Altos de la Archicatedral",
+    "room": "D06Z01S12",
+    "hint": "Upper west shaft chest",
+    "ngplus": false
+  },
+  {
+    "id": "PR14",
+    "name": "Verdiales del Pueblo Olvidado",
+    "englishName": "Verdiales of the Forsaken Hamlet",
+    "group": "prayers",
+    "area": "El Camino Santo",
+    "room": "D01Z01S02",
+    "hint": "Hanging skeleton",
+    "ngplus": false
+  },
+  {
+    "id": "PR15",
+    "name": "Romance a la Bruma Carmesí",
+    "englishName": "Romance to the Crimson Mist",
+    "group": "prayers",
+    "area": "Biblioteca de las Palabras Negadas",
+    "room": "D05Z01S18",
+    "hint": "Bone puzzle",
+    "ngplus": false
+  },
+  {
+    "id": "PR16",
+    "name": "Zambra a la Corona Resplandeciente",
+    "englishName": "Zambra to the Resplendent Crown",
+    "group": "prayers",
+    "area": "Aljibe Profanado",
+    "room": "D01Z05S06",
+    "hint": "Upper east tunnel chest",
+    "ngplus": false
+  },
+  {
+    "id": "PR101",
+    "name": "Aubade of the Nameless Guardian",
+    "englishName": "Aubade of the Nameless Guardian",
+    "group": "prayers",
+    "area": "Recompensa de Nueva Partida+",
+    "room": "Initial",
+    "hint": "Defeat all Amanecidas",
+    "ngplus": true
+  },
+  {
+    "id": "PR201",
+    "name": "Cantiña de la Rosa Azul",
+    "englishName": "Cantina of the Blue Rose",
+    "group": "prayers",
+    "area": "Zona no catalogada",
+    "room": "D04Z04S01",
+    "hint": "Miriam's gift",
+    "ngplus": false
+  },
+  {
+    "id": "PR202",
+    "name": "Mirabrás del Regreso al Puerto",
+    "englishName": "Mirabras of the Return to Port",
+    "group": "prayers",
+    "area": "Ecos de Sal",
+    "room": "D20Z02S11",
+    "hint": "West chest",
+    "ngplus": false
+  },
+  {
+    "id": "PR203",
+    "name": "Tirana del Bastión Celeste",
+    "englishName": "Tirana of the Celestial Bastion",
+    "group": "prayers",
+    "area": "Hermandad del Lamento Mudo",
+    "room": "D17Z01S14",
+    "hint": "Outside church",
+    "ngplus": false
+  },
+  {
+    "id": "RE01",
+    "name": "Sangre Perpetuada en Arena",
+    "englishName": "Blood Perpetuated in Sand",
+    "group": "relics",
+    "area": "Hermandad del Lamento Mudo",
+    "room": "D17BZ01S01",
+    "hint": "Chamber of the Eldest Brother",
+    "description": "Hace aparecer plataformas de sangre en los puntos rojos suspendidos.",
+    "guide": "Compra a Candelaria la Llave de la Cámara del Hermano Mayor en Sueños de Misericordia (400 lágrimas). Abre la puerta cerrada en la Hermandad del Lamento Mudo.",
+    "priority": 2,
+    "ngplus": false
+  },
+  {
+    "id": "RE02",
+    "name": "Mano Incorrupta del Maestro Fraterno",
+    "englishName": "Incorrupt Hand of the Fraternal Master",
+    "group": "relics",
+    "area": "Albero",
+    "room": "D01Z02S01",
+    "hint": "Bless Severed Hand",
+    "description": "Su campanilla avisa cuando estás cerca de un secreto.",
+    "guide": "Obtén la Mano Cortada en Aljibe Profanado. La Uña Arrancada del Barro facilita alcanzar su escondite. Lleva la mano a la fuente de Albero para bendecirla.",
+    "priority": 7,
+    "ngplus": false
+  },
+  {
+    "id": "RE03",
+    "name": "Uña Arrancada del Barro",
+    "englishName": "Nail Uprooted from Dirt",
+    "group": "relics",
+    "area": "Madre de Madres",
+    "room": "D04BZ02S01",
+    "hint": "Redento's treasure",
+    "description": "Permite moverte y saltar en agua y barro sin la penalización habitual.",
+    "guide": "Ayuda a Redento en su peregrinación hasta Madre de Madres. Ante la estatua del Primer Peregrino, equipa a la vez sus tres dedos de piedra caliza (RB20, RB21 y RB22) para abrir el pasaje a la reliquia.",
+    "priority": 4,
+    "ngplus": false
+  },
+  {
+    "id": "RE04",
+    "name": "Sudario de los Pecados Soñados",
+    "englishName": "Shroud of Dreamt Sins",
+    "group": "relics",
+    "area": "Albero",
+    "room": "D01Z02S01",
+    "hint": "Bless Linen Cloth",
+    "description": "Permite escuchar a los cadáveres y obtener pistas para secretos y acertijos.",
+    "guide": "Consigue el Paño de Lino ayudando a Tirso en Albero y bendícelo en la fuente de Albero.",
+    "priority": 6,
+    "ngplus": false
+  },
+  {
+    "id": "RE05",
+    "name": "Lienzo de Hilo de Oro",
+    "englishName": "Linen of Golden Thread",
+    "group": "relics",
+    "area": "Lienzos Durmientes",
+    "room": "D05Z02S10",
+    "hint": "Jocinero's 1st reward",
+    "description": "Permite caer a determinadas salas inferiores por abismos señalados, sin morir por la caída.",
+    "guide": "Rescata al menos 20 de los 38 querubines y habla con Jocinero, en el cuadro del toro de Lienzos Durmientes.",
+    "priority": 5,
+    "ngplus": false
+  },
+  {
+    "id": "RE07",
+    "name": "Pulmón Plateado de Dolphos",
+    "englishName": "Silvered Lung of Dolphos",
+    "group": "relics",
+    "area": "Asciende el Quejido",
+    "room": "D03Z03S06",
+    "hint": "Miasma room treasure",
+    "description": "Permite atravesar el miasma venenoso sin recibir su daño.",
+    "guide": "Está en Asciende el Quejido, en la sala vertical con miasma. Sube por las paredes hasta el tesoro.",
+    "priority": 3,
+    "ngplus": false
+  },
+  {
+    "id": "RE10",
+    "name": "Tres Lenguas Nudosas",
+    "englishName": "Three Gnarled Tongues",
+    "group": "relics",
+    "area": "Albero",
+    "room": "D01Z02S01",
+    "hint": "Bless Hatched Egg",
+    "description": "Activa raíces que sirven como puentes y paredes escalables.",
+    "guide": "Completa la misión de Altasgracias. La ruta prioritaria de arriba utiliza el estado del huevo en tu guardado.",
+    "priority": 1,
+    "ngplus": false
+  },
+  {
+    "id": "HE01",
+    "name": "Corazón Humeante de Incienso",
+    "englishName": "Smoking Heart of Incense",
+    "group": "hearts",
+    "area": "Madre de Madres",
+    "room": "D04Z02S16",
+    "hint": "Giant chandelier statue",
+    "ngplus": false
+  },
+  {
+    "id": "HE02",
+    "name": "Corazón del Dolor Virtuoso",
+    "englishName": "Heart of the Virtuous Pain",
+    "group": "hearts",
+    "area": "Yermo de las Iglesias Enterradas",
+    "room": "D01Z03S07",
+    "hint": "Cliffside statue",
+    "ngplus": false
+  },
+  {
+    "id": "HE03",
+    "name": "Corazón de Sangre de Salitre",
+    "englishName": "Heart of Saltpeter Blood",
+    "group": "hearts",
+    "area": "Convento de la Faz Denegrida",
+    "room": "D02Z03S12",
+    "hint": "Lower west statue",
+    "ngplus": false
+  },
+  {
+    "id": "HE04",
+    "name": "Corazón de los Óleos",
+    "englishName": "Heart of Oils",
+    "group": "hearts",
+    "area": "Altos de la Archicatedral",
+    "room": "D06Z01S22",
+    "hint": "Statue near MoM",
+    "ngplus": false
+  },
+  {
+    "id": "HE05",
+    "name": "Corazón de Incienso Cerúleo",
+    "englishName": "Heart of Cerulean Incense",
+    "group": "hearts",
+    "area": "Donde se Marchitan los Olivos",
+    "room": "D02Z01S09",
+    "hint": "Upper east statue",
+    "ngplus": false
+  },
+  {
+    "id": "HE06",
+    "name": "Corazón de la Santa Purga",
+    "englishName": "Heart of the Holy Purge",
+    "group": "hearts",
+    "area": "Jondo",
+    "room": "D03Z02S11",
+    "hint": "Spike tunnel statue",
+    "ngplus": false
+  },
+  {
+    "id": "HE07",
+    "name": "Corazón Fundido de Sangre Hirviente",
+    "englishName": "Molten Heart of Boiling Blood",
+    "group": "hearts",
+    "area": "Lienzos Durmientes",
+    "room": "D05Z02S08",
+    "hint": "Candle wax puzzle",
+    "ngplus": false
+  },
+  {
+    "id": "HE10",
+    "name": "Corazón de la Única Nota",
+    "englishName": "Heart of the Single Tone",
+    "group": "hearts",
+    "area": "Recompensa de Nueva Partida+",
+    "room": "Initial",
+    "hint": "Confessor Dungeon 2 extra",
+    "ngplus": false
+  },
+  {
+    "id": "HE11",
+    "name": "Corazón del Juglar Sin Nombre",
+    "englishName": "Heart of the Unnamed Minstrel",
+    "group": "hearts",
+    "area": "Cementerio de las Cumbres",
+    "room": "D02Z02S13",
+    "hint": "Self sacrifice statue",
+    "ngplus": false
+  },
+  {
+    "id": "HE101",
+    "name": "Corazón Brillante del Alba",
+    "englishName": "Brilliant Heart of Dawn",
+    "group": "hearts",
+    "area": "Puente de los Tres Calvarios",
+    "room": "D08Z01S02",
+    "hint": "Inside giant statue",
+    "ngplus": true
+  },
+  {
+    "id": "HE201",
+    "name": "Corazón Apodíctico de Mea Culpa",
+    "englishName": "Apodictic Heart of Mea Culpa",
+    "group": "hearts",
+    "area": "Zona no catalogada",
+    "room": "D04Z03S02",
+    "hint": "Gift from the Traitor",
+    "ngplus": false
+  },
+  {
+    "id": "CO01",
+    "name": "Parietal bone of Lasser, the Inquisitor",
+    "englishName": "Parietal bone of Lasser, the Inquisitor",
+    "group": "bones",
+    "area": "Cementerio de las Cumbres",
+    "room": "D02Z02S04",
+    "hint": "Upper west shaft",
+    "ngplus": false
+  },
+  {
+    "id": "CO02",
+    "name": "Jaw of Ashgan, the Inquisitor",
+    "englishName": "Jaw of Ashgan, the Inquisitor",
+    "group": "bones",
+    "area": "Muralla de las Santas Prohibiciones",
+    "room": "D09BZ01S01",
+    "hint": "Lower west room, bottom gold cell",
+    "ngplus": false
+  },
+  {
+    "id": "CO03",
+    "name": "Cervical vertebra of Zicher, the Brewmaster",
+    "englishName": "Cervical vertebra of Zicher, the Brewmaster",
+    "group": "bones",
+    "area": "Sueños de Misericordia",
+    "room": "D01Z04S06",
+    "hint": "Second area ledge",
+    "ngplus": false
+  },
+  {
+    "id": "CO04",
+    "name": "Clavicle of Dalhuisen, the Schoolchild",
+    "englishName": "Clavicle of Dalhuisen, the Schoolchild",
+    "group": "bones",
+    "area": "El Camino Santo",
+    "room": "D01Z01S03",
+    "hint": "Underground ledge",
+    "ngplus": false
+  },
+  {
+    "id": "CO05",
+    "name": "Sternum of Vitas, the Performer",
+    "englishName": "Sternum of Vitas, the Performer",
+    "group": "bones",
+    "area": "Convento de la Faz Denegrida",
+    "room": "D02Z03S03",
+    "hint": "Snowy window ledge",
+    "ngplus": false
+  },
+  {
+    "id": "CO06",
+    "name": "Ribs of Sabnock, the Guardian",
+    "englishName": "Ribs of Sabnock, the Guardian",
+    "group": "bones",
+    "area": "Altos de la Archicatedral",
+    "room": "D06Z01S12",
+    "hint": "Upper west shaft ledge",
+    "ngplus": false
+  },
+  {
+    "id": "CO07",
+    "name": "Vertebra of John, the Gambler",
+    "englishName": "Vertebra of John, the Gambler",
+    "group": "bones",
+    "area": "Jondo",
+    "room": "D03Z02S07",
+    "hint": "Lower west lift alcove",
+    "ngplus": false
+  },
+  {
+    "id": "CO08",
+    "name": "Scapula of Carlos, the Executioner",
+    "englishName": "Scapula of Carlos, the Executioner",
+    "group": "bones",
+    "area": "Jondo",
+    "room": "D03Z02S01",
+    "hint": "Upper east ledge",
+    "ngplus": false
+  },
+  {
+    "id": "CO09",
+    "name": "Humerus of McMittens, the Nurse",
+    "englishName": "Humerus of McMittens, the Nurse",
+    "group": "bones",
+    "area": "Aljibe Profanado",
+    "room": "D01Z05S05",
+    "hint": "Shortcut to WotBC",
+    "ngplus": false
+  },
+  {
+    "id": "CO10",
+    "name": "Ulna of Koke, the Troubadour",
+    "englishName": "Ulna of Koke, the Troubadour",
+    "group": "bones",
+    "area": "Muralla de las Santas Prohibiciones",
+    "room": "D09BZ01S01",
+    "hint": "Upper east room, center cell ledge",
+    "ngplus": false
+  },
+  {
+    "id": "CO11",
+    "name": "Radius of Helzer, the Poet",
+    "englishName": "Radius of Helzer, the Poet",
+    "group": "bones",
+    "area": "Donde se Marchitan los Olivos",
+    "room": "D02Z01S01",
+    "hint": "Below Prie Dieu",
+    "ngplus": false
+  },
+  {
+    "id": "CO12",
+    "name": "Frontal of Martinus, the Ropemaker",
+    "englishName": "Frontal of Martinus, the Ropemaker",
+    "group": "bones",
+    "area": "Asciende el Quejido",
+    "room": "D03Z03S06",
+    "hint": "Miasma room floor",
+    "ngplus": false
+  },
+  {
+    "id": "CO13",
+    "name": "Metacarpus of Hodges, the Blacksmith",
+    "englishName": "Metacarpus of Hodges, the Blacksmith",
+    "group": "bones",
+    "area": "Serranía del Ocaso Perpetuo",
+    "room": "D03Z01S01",
+    "hint": "Under entrance to DC",
+    "ngplus": false
+  },
+  {
+    "id": "CO14",
+    "name": "Phalanx of Arthur, the Sailor",
+    "englishName": "Phalanx of Arthur, the Sailor",
+    "group": "bones",
+    "area": "Yermo de las Iglesias Enterradas",
+    "room": "D01Z03S02",
+    "hint": "Hidden alcove",
+    "ngplus": false
+  },
+  {
+    "id": "CO15",
+    "name": "Phalanx of Miriam, the Counsellor",
+    "englishName": "Phalanx of Miriam, the Counsellor",
+    "group": "bones",
+    "area": "Convento de la Faz Denegrida",
+    "room": "D02Z03S07",
+    "hint": "Center enemy lineup",
+    "ngplus": false
+  },
+  {
+    "id": "CO16",
+    "name": "Phalanx of Brannon, the Gravedigger",
+    "englishName": "Phalanx of Brannon, the Gravedigger",
+    "group": "bones",
+    "area": "Albero",
+    "room": "D01Z02S05",
+    "hint": "Graveyard",
+    "ngplus": false
+  },
+  {
+    "id": "CO17",
+    "name": "Coxal of June, the Prostitute",
+    "englishName": "Coxal of June, the Prostitute",
+    "group": "bones",
+    "area": "Madre de Madres",
+    "room": "D04Z02S02",
+    "hint": "Upper west floor",
+    "ngplus": false
+  },
+  {
+    "id": "CO18",
+    "name": "Sacrum of the Dark Warlock",
+    "englishName": "Sacrum of the Dark Warlock",
+    "group": "bones",
+    "area": "Biblioteca de las Palabras Negadas",
+    "room": "D05Z01S04",
+    "hint": "Platform room ledge",
+    "ngplus": false
+  },
+  {
+    "id": "CO19",
+    "name": "Coccyx of Daniel, the Possessed",
+    "englishName": "Coccyx of Daniel, the Possessed",
+    "group": "bones",
+    "area": "Donde se Marchitan los Olivos",
+    "room": "D02Z01S06",
+    "hint": "Underground ledge",
+    "ngplus": false
+  },
+  {
+    "id": "CO20",
+    "name": "Femur of Karpow, the Bounty Hunter",
+    "englishName": "Femur of Karpow, the Bounty Hunter",
+    "group": "bones",
+    "area": "Madre de Madres",
+    "room": "D04Z02S11",
+    "hint": "Upper center floor",
+    "ngplus": false
+  },
+  {
+    "id": "CO21",
+    "name": "Kneecap of Sebastien, the Puppeteer",
+    "englishName": "Kneecap of Sebastien, the Puppeteer",
+    "group": "bones",
+    "area": "Sueños de Misericordia",
+    "room": "D01Z04S13",
+    "hint": "Behind gate to TSC",
+    "ngplus": false
+  },
+  {
+    "id": "CO22",
+    "name": "Tibia of Alsahli, the Mystic",
+    "englishName": "Tibia of Alsahli, the Mystic",
+    "group": "bones",
+    "area": "Biblioteca de las Palabras Negadas",
+    "room": "D05Z01S05",
+    "hint": "Root ceiling platform",
+    "ngplus": false
+  },
+  {
+    "id": "CO23",
+    "name": "Fibula of Rysp, the Ranger",
+    "englishName": "Fibula of Rysp, the Ranger",
+    "group": "bones",
+    "area": "Patio de los Pasos Silenciosos",
+    "room": "D04Z01S01",
+    "hint": "First area ledge",
+    "ngplus": false
+  },
+  {
+    "id": "CO24",
+    "name": "Temporal of Joel, the Thief",
+    "englishName": "Temporal of Joel, the Thief",
+    "group": "bones",
+    "area": "Muralla de las Santas Prohibiciones",
+    "room": "D09BZ01S01",
+    "hint": "Upper east room, top silver cell",
+    "ngplus": false
+  },
+  {
+    "id": "CO25",
+    "name": "Metatarsus of Rikusyo, the Traveller",
+    "englishName": "Metatarsus of Rikusyo, the Traveller",
+    "group": "bones",
+    "area": "Zona no catalogada",
+    "room": "D17BZ02S01",
+    "hint": "Platforming gauntlet",
+    "ngplus": false
+  },
+  {
+    "id": "CO26",
+    "name": "Phalanx of Zeth, the Prisoner",
+    "englishName": "Phalanx of Zeth, the Prisoner",
+    "group": "bones",
+    "area": "Muralla de las Santas Prohibiciones",
+    "room": "D09BZ01S01",
+    "hint": "Upper west room, center gold cell",
+    "ngplus": false
+  },
+  {
+    "id": "CO27",
+    "name": "Phalanx of William, the Sceptic",
+    "englishName": "Phalanx of William, the Sceptic",
+    "group": "bones",
+    "area": "Muralla de las Santas Prohibiciones",
+    "room": "D09Z01S10",
+    "hint": "Lower east room, hidden ledge",
+    "ngplus": false
+  },
+  {
+    "id": "CO28",
+    "name": "Phalanx of Aralcarim, the Archivist",
+    "englishName": "Phalanx of Aralcarim, the Archivist",
+    "group": "bones",
+    "area": "Biblioteca de las Palabras Negadas",
+    "room": "D05Z01S11",
+    "hint": "Lowest west upper ledge",
+    "ngplus": false
+  },
+  {
+    "id": "CO29",
+    "name": "Occipital of Tequila, the Metalsmith",
+    "englishName": "Occipital of Tequila, the Metalsmith",
+    "group": "bones",
+    "area": "Cementerio de las Cumbres",
+    "room": "D02Z02S03",
+    "hint": "Center east shaft",
+    "ngplus": false
+  },
+  {
+    "id": "CO30",
+    "name": "Maxilla of Tarradax, the Cleric",
+    "englishName": "Maxilla of Tarradax, the Cleric",
+    "group": "bones",
+    "area": "Sueños de Misericordia",
+    "room": "D01Z04S05",
+    "hint": "First area hidden wall",
+    "ngplus": false
+  },
+  {
+    "id": "CO31",
+    "name": "Nasal bone of Charles, the Artist",
+    "englishName": "Nasal bone of Charles, the Artist",
+    "group": "bones",
+    "area": "Lienzos Durmientes",
+    "room": "D05Z02S11",
+    "hint": "Under elevator shaft",
+    "ngplus": false
+  },
+  {
+    "id": "CO32",
+    "name": "Hyoid bone of Senex, the Beggar",
+    "englishName": "Hyoid bone of Senex, the Beggar",
+    "group": "bones",
+    "area": "Aljibe Profanado",
+    "room": "D01Z05S17",
+    "hint": "High ledge near elevator shaft",
+    "ngplus": false
+  },
+  {
+    "id": "CO33",
+    "name": "Vertebra of Lindquist, the Forger",
+    "englishName": "Vertebra of Lindquist, the Forger",
+    "group": "bones",
+    "area": "Jondo",
+    "room": "D03Z02S04",
+    "hint": "Lower east under chargers",
+    "ngplus": false
+  },
+  {
+    "id": "CO34",
+    "name": "Trapezium of Jeremiah, the Hangman",
+    "englishName": "Trapezium of Jeremiah, the Hangman",
+    "group": "bones",
+    "area": "Madre de Madres",
+    "room": "D04Z02S06",
+    "hint": "Outside Cleofas' room",
+    "ngplus": false
+  },
+  {
+    "id": "CO35",
+    "name": "Trapezoid of Yeager, the Jeweller",
+    "englishName": "Trapezoid of Yeager, the Jeweller",
+    "group": "bones",
+    "area": "Madre de Madres",
+    "room": "D04Z02S07",
+    "hint": "East Chandelier platform",
+    "ngplus": false
+  },
+  {
+    "id": "CO36",
+    "name": "Capitate of Barock, the Herald",
+    "englishName": "Capitate of Barock, the Herald",
+    "group": "bones",
+    "area": "Yermo de las Iglesias Enterradas",
+    "room": "D01Z03S03",
+    "hint": "Outside ledge",
+    "ngplus": false
+  },
+  {
+    "id": "CO37",
+    "name": "Hamate of Vukelich, the Copyist",
+    "englishName": "Hamate of Vukelich, the Copyist",
+    "group": "bones",
+    "area": "Muralla de las Santas Prohibiciones",
+    "room": "D09BZ01S01",
+    "hint": "Lower east room, top silver cell",
+    "ngplus": false
+  },
+  {
+    "id": "CO38",
+    "name": "Pisiform of Hernandez, the Explorer",
+    "englishName": "Pisiform of Hernandez, the Explorer",
+    "group": "bones",
+    "area": "Sueños de Misericordia",
+    "room": "D01Z04S14",
+    "hint": "Sliding challenge",
+    "ngplus": false
+  },
+  {
+    "id": "CO39",
+    "name": "Triquetral of Luca, the Tailor",
+    "englishName": "Triquetral of Luca, the Tailor",
+    "group": "bones",
+    "area": "Patio de los Pasos Silenciosos",
+    "room": "D04Z01S03",
+    "hint": "Third area upper ledge",
+    "ngplus": false
+  },
+  {
+    "id": "CO40",
+    "name": "Lunate of Keiya, the Butcher",
+    "englishName": "Lunate of Keiya, the Butcher",
+    "group": "bones",
+    "area": "Altos de la Archicatedral",
+    "room": "D06Z01S15",
+    "hint": "Upper east shaft ledge",
+    "ngplus": false
+  },
+  {
+    "id": "CO41",
+    "name": "Scaphoid of Fierce, the Leper",
+    "englishName": "Scaphoid of Fierce, the Leper",
+    "group": "bones",
+    "area": "Aljibe Profanado",
+    "room": "D01Z05S15",
+    "hint": "Behind sewage drips",
+    "ngplus": false
+  },
+  {
+    "id": "CO42",
+    "name": "Anklebone of Weston, the Pilgrim",
+    "englishName": "Anklebone of Weston, the Pilgrim",
+    "group": "bones",
+    "area": "Cementerio de las Cumbres",
+    "room": "D02Z02S08",
+    "hint": "Shop cave hidden hole",
+    "ngplus": false
+  },
+  {
+    "id": "CO43",
+    "name": "Calcaneum of Persian, the Bandit",
+    "englishName": "Calcaneum of Persian, the Bandit",
+    "group": "bones",
+    "area": "Albero",
+    "room": "D01Z02S04",
+    "hint": "Outside Ossuary",
+    "ngplus": false
+  },
+  {
+    "id": "CO44",
+    "name": "Navicular of Kahnnyhoo, the Murderer",
+    "englishName": "Navicular of Kahnnyhoo, the Murderer",
+    "group": "bones",
+    "area": "Aljibe Profanado",
+    "room": "D01Z05S25",
+    "hint": "Elevator shaft ledge",
+    "ngplus": false
+  },
+  {
+    "id": "QI01",
+    "name": "Cord of the True Burying",
+    "englishName": "Cord of the True Burying",
+    "group": "quest",
+    "area": "Albero",
+    "room": "D01Z02S03",
+    "hint": "First gift for Cleofas",
+    "ngplus": false
+  },
+  {
+    "id": "QI02",
+    "name": "Mark of the First Refuge",
+    "englishName": "Mark of the First Refuge",
+    "group": "quest",
+    "area": "Altos de la Archicatedral",
+    "room": "D06Z01S03",
+    "hint": "First soldier fight",
+    "ngplus": false
+  },
+  {
+    "id": "QI03",
+    "name": "Mark of the Second Refuge",
+    "englishName": "Mark of the Second Refuge",
+    "group": "quest",
+    "area": "Altos de la Archicatedral",
+    "room": "D06Z01S06",
+    "hint": "Second soldier fight",
+    "ngplus": false
+  },
+  {
+    "id": "QI04",
+    "name": "Mark of the Third Refuge",
+    "englishName": "Mark of the Third Refuge",
+    "group": "quest",
+    "area": "Altos de la Archicatedral",
+    "room": "D06Z01S21",
+    "hint": "Third soldier fight",
+    "ngplus": false
+  },
+  {
+    "id": "QI06",
+    "name": "Tentudia's Carnal Remains",
+    "englishName": "Tentudia's Carnal Remains",
+    "group": "quest",
+    "area": "Yermo de las Iglesias Enterradas",
+    "room": "D01Z03S05",
+    "hint": "Under broken bridge",
+    "ngplus": false
+  },
+  {
+    "id": "QI07",
+    "name": "Remains of Tentudia's Hair",
+    "englishName": "Remains of Tentudia's Hair",
+    "group": "quest",
+    "area": "Donde se Marchitan los Olivos",
+    "room": "D02Z01S05",
+    "hint": "Death run",
+    "ngplus": false
+  },
+  {
+    "id": "QI08",
+    "name": "Tentudia's Skeletal Remains",
+    "englishName": "Tentudia's Skeletal Remains",
+    "group": "quest",
+    "area": "Cementerio de las Cumbres",
+    "room": "D02Z02S03",
+    "hint": "Upper east shaft",
+    "ngplus": false
+  },
+  {
+    "id": "QI10",
+    "name": "Monedas de Oro Fundidas",
+    "englishName": "Melted Golden Coins",
+    "group": "quest",
+    "area": "Asciende el Quejido",
+    "room": "D03Z03S08",
+    "hint": "End of blood bridge",
+    "ngplus": false
+  },
+  {
+    "id": "QI11",
+    "name": "Cinta Nupcial Rasgada",
+    "englishName": "Torn Bridal Ribbon",
+    "group": "quest",
+    "area": "Cementerio de las Cumbres",
+    "room": "D02BZ02S01",
+    "hint": "Shop item 1",
+    "ngplus": false
+  },
+  {
+    "id": "QI12",
+    "name": "Velo de Negro Luto",
+    "englishName": "Black Grieving Veil",
+    "group": "quest",
+    "area": "Aljibe Profanado",
+    "room": "D01Z05S08",
+    "hint": "Behind gate in miasma room",
+    "ngplus": false
+  },
+  {
+    "id": "QI13",
+    "name": "Huevo de la Deformidad",
+    "englishName": "Egg of Deformity",
+    "group": "quest",
+    "area": "Asciende el Quejido",
+    "room": "D03Z03S10",
+    "hint": "Altasgracias' gift",
+    "ngplus": false
+  },
+  {
+    "id": "QI14",
+    "name": "Huevo de la Deformidad Eclosionado",
+    "englishName": "Hatched Egg of Deformity",
+    "group": "quest",
+    "area": "Serranía del Ocaso Perpetuo",
+    "room": "D03Z01S06",
+    "hint": "Egg hatching",
+    "ngplus": false
+  },
+  {
+    "id": "QI19",
+    "name": "Bouquet of Rosemary",
+    "englishName": "Bouquet of Rosemary",
+    "group": "quest",
+    "area": "Jondo",
+    "room": "D03Z02S06",
+    "hint": "Lower east bell trap",
+    "ngplus": false
+  },
+  {
+    "id": "QI20",
+    "name": "Incense Garlic",
+    "englishName": "Incense Garlic",
+    "group": "quest",
+    "area": "Donde se Marchitan los Olivos",
+    "room": "D02Z01S04",
+    "hint": "Entrance to tomb",
+    "ngplus": false
+  },
+  {
+    "id": "QI37",
+    "name": "Olive Seeds",
+    "englishName": "Olive Seeds",
+    "group": "quest",
+    "area": "Patio de los Pasos Silenciosos",
+    "room": "D04Z01S03",
+    "hint": "Third area lower ledge",
+    "ngplus": false
+  },
+  {
+    "id": "QI38",
+    "name": "Santa Llaga de la Atrición",
+    "englishName": "Holy Wound of Attrition",
+    "group": "quest",
+    "area": "Sueños de Misericordia",
+    "room": "D01Z04S19",
+    "hint": "Visage of Attrition",
+    "ngplus": false
+  },
+  {
+    "id": "QI39",
+    "name": "Santa Llaga de la Contrición",
+    "englishName": "Holy Wound of Contrition",
+    "group": "quest",
+    "area": "Asciende el Quejido",
+    "room": "D03Z03S16",
+    "hint": "Visage of Contrition",
+    "ngplus": false
+  },
+  {
+    "id": "QI40",
+    "name": "Santa Llaga de la Compunción",
+    "englishName": "Holy Wound of Compunction",
+    "group": "quest",
+    "area": "Convento de la Faz Denegrida",
+    "room": "D02Z03S21",
+    "hint": "Visage of Compunction",
+    "ngplus": false
+  },
+  {
+    "id": "QI57",
+    "name": "Golden Thimble Filled with Burning Oil",
+    "englishName": "Golden Thimble Filled with Burning Oil",
+    "group": "quest",
+    "area": "Convento de la Faz Denegrida",
+    "room": "D02Z03S21",
+    "hint": "Fountain of burning oil",
+    "ngplus": false
+  },
+  {
+    "id": "QI58",
+    "name": "Llave de la Cámara del Hermano Mayor",
+    "englishName": "Key to the Chamber of the Eldest Brother",
+    "group": "quest",
+    "area": "Albero",
+    "room": "D01BZ02S01",
+    "hint": "Shop item 1",
+    "ngplus": false
+  },
+  {
+    "id": "QI59",
+    "name": "Empty Golden Thimble",
+    "englishName": "Empty Golden Thimble",
+    "group": "quest",
+    "area": "Donde se Marchitan los Olivos",
+    "room": "D02Z01S01",
+    "hint": "Gemino's gift",
+    "ngplus": false
+  },
+  {
+    "id": "QI60",
+    "name": "Máscara Deforme de Orestes",
+    "englishName": "Deformed Mask of Orestes",
+    "group": "quest",
+    "area": "Madre de Madres",
+    "room": "D04Z02S15",
+    "hint": "Mask room",
+    "ngplus": false
+  },
+  {
+    "id": "QI61",
+    "name": "Máscara Reflejada de Dolphos",
+    "englishName": "Mirrored Mask of Dolphos",
+    "group": "quest",
+    "area": "Convento de la Faz Denegrida",
+    "room": "D02Z03S19",
+    "hint": "Mask room",
+    "ngplus": false
+  },
+  {
+    "id": "QI62",
+    "name": "Máscara Labrada de Crescente",
+    "englishName": "Embossed Mask of Crescente",
+    "group": "quest",
+    "area": "Biblioteca de las Palabras Negadas",
+    "room": "D05Z01S15",
+    "hint": "Mask room",
+    "ngplus": false
+  },
+  {
+    "id": "QI63",
+    "name": "Dried Clove",
+    "englishName": "Dried Clove",
+    "group": "quest",
+    "area": "Serranía del Ocaso Perpetuo",
+    "room": "D03Z01S04",
+    "hint": "Blood platform alcove",
+    "ngplus": false
+  },
+  {
+    "id": "QI64",
+    "name": "Sooty Garlic",
+    "englishName": "Sooty Garlic",
+    "group": "quest",
+    "area": "Lienzos Durmientes",
+    "room": "D05Z02S02",
+    "hint": "Painting ladder ledge",
+    "ngplus": false
+  },
+  {
+    "id": "QI65",
+    "name": "Bouquet of Thyme",
+    "englishName": "Bouquet of Thyme",
+    "group": "quest",
+    "area": "Albero",
+    "room": "D01Z02S07",
+    "hint": "Gate of Travel room",
+    "ngplus": false
+  },
+  {
+    "id": "QI66",
+    "name": "Paño de Lino",
+    "englishName": "Linen Cloth",
+    "group": "quest",
+    "area": "Albero",
+    "room": "D01Z02S02",
+    "hint": "Tirso's 1st reward",
+    "ngplus": false
+  },
+  {
+    "id": "QI67",
+    "name": "Mano Cortada",
+    "englishName": "Severed Hand",
+    "group": "quest",
+    "area": "Aljibe Profanado",
+    "room": "D01Z05S05",
+    "hint": "Hidden alcove near fountain",
+    "ngplus": false
+  },
+  {
+    "id": "QI68",
+    "name": "Dried Flowers bathed in Tears",
+    "englishName": "Dried Flowers bathed in Tears",
+    "group": "quest",
+    "area": "Donde se Marchitan los Olivos",
+    "room": "D02Z01S04",
+    "hint": "Gift for the tomb",
+    "ngplus": false
+  },
+  {
+    "id": "QI69",
+    "name": "Key of the Secular",
+    "englishName": "Key of the Secular",
+    "group": "quest",
+    "area": "Muralla de las Santas Prohibiciones",
+    "room": "D09BZ01S01",
+    "hint": "Upper east room, center cell floor",
+    "ngplus": false
+  },
+  {
+    "id": "QI70",
+    "name": "Key of the Scribe",
+    "englishName": "Key of the Scribe",
+    "group": "quest",
+    "area": "Muralla de las Santas Prohibiciones",
+    "room": "D09Z01S10",
+    "hint": "Lower east room, top bronze cell",
+    "ngplus": false
+  },
+  {
+    "id": "QI71",
+    "name": "Key of the Inquisitor",
+    "englishName": "Key of the Inquisitor",
+    "group": "quest",
+    "area": "Lienzos Durmientes",
+    "room": "D05BZ02S01",
+    "hint": "Shop item 3",
+    "ngplus": false
+  },
+  {
+    "id": "QI72",
+    "name": "Key of the High Peaks",
+    "englishName": "Key of the High Peaks",
+    "group": "quest",
+    "area": "Muralla de las Santas Prohibiciones",
+    "room": "D09Z01S08",
+    "hint": "Collapsing floor ledge",
+    "ngplus": false
+  },
+  {
+    "id": "QI75",
+    "name": "Cáliz de Versos Invertidos",
+    "englishName": "Chalice of Inverted Verses",
+    "group": "quest",
+    "area": "Aljibe Profanado",
+    "room": "D01Z05S23",
+    "hint": "Chalice room",
+    "ngplus": false
+  },
+  {
+    "id": "QI106",
+    "name": "Petrified Bell",
+    "englishName": "Petrified Bell",
+    "group": "quest",
+    "area": "Recompensa de Nueva Partida+",
+    "room": "Initial",
+    "hint": "Beginning gift",
+    "ngplus": true
+  },
+  {
+    "id": "QI201",
+    "name": "Severed Right Eye of the Traitor",
+    "englishName": "Severed Right Eye of the Traitor",
+    "group": "quest",
+    "area": "Zona no catalogada",
+    "room": "D01BZ08S01",
+    "hint": "Isidora, Voice of the Dead",
+    "ngplus": false
+  },
+  {
+    "id": "QI202",
+    "name": "Broken Left Eye of the Traitor",
+    "englishName": "Broken Left Eye of the Traitor",
+    "group": "quest",
+    "area": "Ecos de Sal",
+    "room": "D20Z02S08",
+    "hint": "Sierpes' eye",
+    "ngplus": false
+  },
+  {
+    "id": "QI203",
+    "name": "Incomplete Scapular",
+    "englishName": "Incomplete Scapular",
+    "group": "quest",
+    "area": "Luto y Estrago",
+    "room": "D20Z03S01",
+    "hint": "Perpetva's shrine",
+    "ngplus": false
+  },
+  {
+    "id": "QI204",
+    "name": "Key Grown from Twisted Wood",
+    "englishName": "Key Grown from Twisted Wood",
+    "group": "quest",
+    "area": "Hermandad del Lamento Mudo",
+    "room": "D17Z01S15",
+    "hint": "Esdras' final gift",
+    "ngplus": false
+  },
+  {
+    "id": "QI301",
+    "name": "Holy Wound of Abnegation",
+    "englishName": "Holy Wound of Abnegation",
+    "group": "quest",
+    "area": "Hermandad del Lamento Mudo",
+    "room": "D17Z01S15",
+    "hint": "Crisanta's gift",
+    "ngplus": false
+  },
+  {
+    "id": "RB17",
+    "name": "Pequeña Cuenta de Cera Roja",
+    "englishName": "Bead of Red Wax",
+    "group": "beads",
+    "area": "Sueños de Misericordia",
+    "room": "D01Z04S08",
+    "hint": "First red candle",
+    "laterStages": [
+      "RB18",
+      "RB19"
+    ],
+    "ngplus": false,
+    "description": "Se mejora al interactuar con las velas de su color."
+  },
+  {
+    "id": "RB18",
+    "name": "Mediana Cuenta de Cera Roja",
+    "englishName": "Bead of Red Wax",
+    "group": "beads",
+    "area": "Recompensa de Nueva Partida+",
+    "room": "Initial",
+    "hint": "Second red candle",
+    "laterStages": [
+      "RB19"
+    ],
+    "ngplus": false,
+    "description": "Se mejora al interactuar con las velas de su color."
+  },
+  {
+    "id": "RB19",
+    "name": "Gran Cuenta de Cera Roja",
+    "englishName": "Bead of Red Wax",
+    "group": "beads",
+    "area": "Recompensa de Nueva Partida+",
+    "room": "Initial",
+    "hint": "Third red candle",
+    "laterStages": [],
+    "ngplus": false,
+    "description": "Se mejora al interactuar con las velas de su color."
+  },
+  {
+    "id": "RB24",
+    "name": "Pequeña Cuenta de Cera Azul",
+    "englishName": "Bead of Blue Wax",
+    "group": "beads",
+    "area": "Convento de la Faz Denegrida",
+    "room": "D02Z03S17",
+    "hint": "First blue candle",
+    "laterStages": [
+      "RB25",
+      "RB26"
+    ],
+    "ngplus": false,
+    "description": "Se mejora al interactuar con las velas de su color."
+  },
+  {
+    "id": "RB25",
+    "name": "Mediana Cuenta de Cera Azul",
+    "englishName": "Bead of Blue Wax",
+    "group": "beads",
+    "area": "Recompensa de Nueva Partida+",
+    "room": "Initial",
+    "hint": "Second blue candle",
+    "laterStages": [
+      "RB26"
+    ],
+    "ngplus": false,
+    "description": "Se mejora al interactuar con las velas de su color."
+  },
+  {
+    "id": "RB26",
+    "name": "Gran Cuenta de Cera Azul",
+    "englishName": "Bead of Blue Wax",
+    "group": "beads",
+    "area": "Recompensa de Nueva Partida+",
+    "room": "Initial",
+    "hint": "Third blue candle",
+    "laterStages": [],
+    "ngplus": false,
+    "description": "Se mejora al interactuar con las velas de su color."
+  },
+  {
+    "id": "QI44",
+    "name": "Nudo de Cordón de Rosario · 1",
+    "englishName": "Knot of Rosary Rope",
+    "group": "upgrades",
+    "area": "Asciende el Quejido",
+    "room": "D03Z03S02",
+    "hint": "Lower west ledge",
+    "laterStages": [],
+    "ngplus": false,
+    "description": "Entrégalo a Soledad para ampliar las ranuras de rosario."
+  },
+  {
+    "id": "QI52",
+    "name": "Nudo de Cordón de Rosario · 2",
+    "englishName": "Knot of Rosary Rope",
+    "group": "upgrades",
+    "area": "Jondo",
+    "room": "D03Z02S12",
+    "hint": "Upper west bell puzzle",
+    "laterStages": [],
+    "ngplus": false,
+    "description": "Entrégalo a Soledad para ampliar las ranuras de rosario."
+  },
+  {
+    "id": "QI53",
+    "name": "Nudo de Cordón de Rosario · 3",
+    "englishName": "Knot of Rosary Rope",
+    "group": "upgrades",
+    "area": "Cementerio de las Cumbres",
+    "room": "D02Z02S11",
+    "hint": "Elevator shaft ledge",
+    "laterStages": [],
+    "ngplus": false,
+    "description": "Entrégalo a Soledad para ampliar las ranuras de rosario."
+  },
+  {
+    "id": "QI54",
+    "name": "Nudo de Cordón de Rosario · 4",
+    "englishName": "Knot of Rosary Rope",
+    "group": "upgrades",
+    "area": "Madre de Madres",
+    "room": "D04BZ02S01",
+    "hint": "Final meeting with Redento",
+    "laterStages": [],
+    "ngplus": false,
+    "description": "Entrégalo a Soledad para ampliar las ranuras de rosario."
+  },
+  {
+    "id": "QI55",
+    "name": "Nudo de Cordón de Rosario · 5",
+    "englishName": "Knot of Rosary Rope",
+    "group": "upgrades",
+    "area": "El Camino Santo",
+    "room": "D01Z01S03",
+    "hint": "Underground chest",
+    "laterStages": [],
+    "ngplus": false,
+    "description": "Entrégalo a Soledad para ampliar las ranuras de rosario."
+  },
+  {
+    "id": "QI56",
+    "name": "Nudo de Cordón de Rosario · 6",
+    "englishName": "Knot of Rosary Rope",
+    "group": "upgrades",
+    "area": "Albero",
+    "room": "D01Z02S02",
+    "hint": "Tirso's final reward",
+    "laterStages": [],
+    "ngplus": false,
+    "description": "Entrégalo a Soledad para ampliar las ranuras de rosario."
+  },
+  {
+    "id": "QI41",
+    "name": "Recipiente Vacío de Bilis · 1",
+    "englishName": "Empty Bile Vessel",
+    "group": "upgrades",
+    "area": "Jondo",
+    "room": "D03Z02S08",
+    "hint": "Lower west bell alcove",
+    "laterStages": [],
+    "ngplus": false,
+    "description": "Llénalo en una fuente de sangre para aumentar tus matraces."
+  },
+  {
+    "id": "QI45",
+    "name": "Recipiente Vacío de Bilis · 2",
+    "englishName": "Empty Bile Vessel",
+    "group": "upgrades",
+    "area": "Aljibe Profanado",
+    "room": "D01Z05S11",
+    "hint": "Lower east tunnel chest",
+    "laterStages": [],
+    "ngplus": false,
+    "description": "Llénalo en una fuente de sangre para aumentar tus matraces."
+  },
+  {
+    "id": "QI46",
+    "name": "Recipiente Vacío de Bilis · 3",
+    "englishName": "Empty Bile Vessel",
+    "group": "upgrades",
+    "area": "Cementerio de las Cumbres",
+    "room": "D02Z02S03",
+    "hint": "Lower east shaft",
+    "laterStages": [],
+    "ngplus": false,
+    "description": "Llénalo en una fuente de sangre para aumentar tus matraces."
+  },
+  {
+    "id": "QI47",
+    "name": "Recipiente Vacío de Bilis · 4",
+    "englishName": "Empty Bile Vessel",
+    "group": "upgrades",
+    "area": "Serranía del Ocaso Perpetuo",
+    "room": "D03Z01S03",
+    "hint": "Platform above chasm",
+    "laterStages": [],
+    "ngplus": false,
+    "description": "Llénalo en una fuente de sangre para aumentar tus matraces."
+  },
+  {
+    "id": "QI48",
+    "name": "Recipiente Vacío de Bilis · 5",
+    "englishName": "Empty Bile Vessel",
+    "group": "upgrades",
+    "area": "Sueños de Misericordia",
+    "room": "D01Z04S11",
+    "hint": "Third area hidden room",
+    "laterStages": [],
+    "ngplus": false,
+    "description": "Llénalo en una fuente de sangre para aumentar tus matraces."
+  },
+  {
+    "id": "QI49",
+    "name": "Recipiente Vacío de Bilis · 6",
+    "englishName": "Empty Bile Vessel",
+    "group": "upgrades",
+    "area": "Lienzos Durmientes",
+    "room": "D05BZ02S01",
+    "hint": "Shop item 2",
+    "laterStages": [],
+    "ngplus": false,
+    "description": "Llénalo en una fuente de sangre para aumentar tus matraces."
+  },
+  {
+    "id": "QI50",
+    "name": "Recipiente Vacío de Bilis · 7",
+    "englishName": "Empty Bile Vessel",
+    "group": "upgrades",
+    "area": "Biblioteca de las Palabras Negadas",
+    "room": "D05Z01S05",
+    "hint": "Hidden floor",
+    "laterStages": [],
+    "ngplus": false,
+    "description": "Llénalo en una fuente de sangre para aumentar tus matraces."
+  },
+  {
+    "id": "QI51",
+    "name": "Recipiente Vacío de Bilis · 8",
+    "englishName": "Empty Bile Vessel",
+    "group": "upgrades",
+    "area": "Muralla de las Santas Prohibiciones",
+    "room": "D09Z01S02",
+    "hint": "Upper east room, center gold cell",
+    "laterStages": [],
+    "ngplus": false,
+    "description": "Llénalo en una fuente de sangre para aumentar tus matraces."
+  },
+  {
+    "id": "QI101",
+    "name": "Mercurio · 1",
+    "englishName": "Quicksilver",
+    "group": "upgrades",
+    "area": "Petrous",
+    "room": "D01Z06S01",
+    "hint": "Temple entrance",
+    "laterStages": [],
+    "ngplus": false,
+    "description": "Entrégalo a Nacimiento para mejorar la curación de los matraces."
+  },
+  {
+    "id": "QI102",
+    "name": "Mercurio · 2",
+    "englishName": "Quicksilver",
+    "group": "upgrades",
+    "area": "Patio de los Pasos Silenciosos",
+    "room": "D04Z01S06",
+    "hint": "Climb to WotHP",
+    "laterStages": [],
+    "ngplus": false,
+    "description": "Entrégalo a Nacimiento para mejorar la curación de los matraces."
+  },
+  {
+    "id": "QI103",
+    "name": "Mercurio · 3",
+    "englishName": "Quicksilver",
+    "group": "upgrades",
+    "area": "Jondo",
+    "room": "D03Z02S15",
+    "hint": "Spike tunnel cave",
+    "laterStages": [],
+    "ngplus": false,
+    "description": "Entrégalo a Nacimiento para mejorar la curación de los matraces."
+  },
+  {
+    "id": "QI104",
+    "name": "Mercurio · 4",
+    "englishName": "Quicksilver",
+    "group": "upgrades",
+    "area": "Lienzos Durmientes",
+    "room": "D05Z02S15",
+    "hint": "Swinging blade tunnel",
+    "laterStages": [],
+    "ngplus": false,
+    "description": "Entrégalo a Nacimiento para mejorar la curación de los matraces."
+  },
+  {
+    "id": "QI105",
+    "name": "Mercurio · 5",
+    "englishName": "Quicksilver",
+    "group": "upgrades",
+    "area": "Salón de los Albores",
+    "room": "D08Z03S01",
+    "hint": "Mirror room",
+    "laterStages": [],
+    "ngplus": false,
+    "description": "Entrégalo a Nacimiento para mejorar la curación de los matraces."
+  },
+  {
+    "id": "QI107",
+    "name": "Verso Hilado en Oro · 1",
+    "englishName": "Verses Spun from Gold",
+    "group": "upgrades",
+    "area": "Recompensa de Nueva Partida+",
+    "room": "Initial",
+    "hint": "Defeat 1 Amanecida",
+    "laterStages": [],
+    "ngplus": true,
+    "description": "Recompensa de las Amanecidas en Nueva Partida+."
+  },
+  {
+    "id": "QI108",
+    "name": "Verso Hilado en Oro · 2",
+    "englishName": "Verses Spun from Gold",
+    "group": "upgrades",
+    "area": "Recompensa de Nueva Partida+",
+    "room": "Initial",
+    "hint": "Defeat 2 Amanecidas",
+    "laterStages": [],
+    "ngplus": true,
+    "description": "Recompensa de las Amanecidas en Nueva Partida+."
+  },
+  {
+    "id": "QI109",
+    "name": "Verso Hilado en Oro · 3",
+    "englishName": "Verses Spun from Gold",
+    "group": "upgrades",
+    "area": "Recompensa de Nueva Partida+",
+    "room": "Initial",
+    "hint": "Defeat 3 Amanecidas",
+    "laterStages": [],
+    "ngplus": true,
+    "description": "Recompensa de las Amanecidas en Nueva Partida+."
+  },
+  {
+    "id": "QI110",
+    "name": "Verso Hilado en Oro · 4",
+    "englishName": "Verses Spun from Gold",
+    "group": "upgrades",
+    "area": "Recompensa de Nueva Partida+",
+    "room": "Initial",
+    "hint": "Defeat 4 Amanecidas",
+    "laterStages": [],
+    "ngplus": true,
+    "description": "Recompensa de las Amanecidas en Nueva Partida+."
+  },
+  {
+    "id": "RB38",
+    "name": "Cuenta Inmaculada",
+    "englishName": "Immaculate Bead",
+    "group": "beads",
+    "area": "Cementerio de las Cumbres",
+    "room": "D02Z02S06",
+    "hint": "Confessor Dungeon room",
+    "laterStages": [
+      "RB39",
+      "RB40",
+      "RB41"
+    ],
+    "description": "Se transforma con las muertes al llevarla equipada. Sus etapas intermedias no son coleccionables independientes."
+  },
+  {
+    "id": "RESCUED_CHERUB_01",
+    "name": "Querubín · 01",
+    "group": "cherubs",
+    "area": "Biblioteca de las Palabras Negadas",
+    "room": "D05Z01S04",
+    "hint": "Platform room Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_02",
+    "name": "Querubín · 02",
+    "group": "cherubs",
+    "area": "Biblioteca de las Palabras Negadas",
+    "room": "D05Z01S11",
+    "hint": "Lowest west Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_03",
+    "name": "Querubín · 03",
+    "group": "cherubs",
+    "area": "Muralla de las Santas Prohibiciones",
+    "room": "D09BZ01S01",
+    "hint": "Upper east room, top bronze cell"
+  },
+  {
+    "id": "RESCUED_CHERUB_04",
+    "name": "Querubín · 04",
+    "group": "cherubs",
+    "area": "Muralla de las Santas Prohibiciones",
+    "room": "D09BZ01S01",
+    "hint": "Lower east room, bottom silver cell"
+  },
+  {
+    "id": "RESCUED_CHERUB_05",
+    "name": "Querubín · 05",
+    "group": "cherubs",
+    "area": "Muralla de las Santas Prohibiciones",
+    "room": "D09Z01S06",
+    "hint": "Outside Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_06",
+    "name": "Querubín · 06",
+    "group": "cherubs",
+    "area": "Hermandad del Lamento Mudo",
+    "room": "D17Z01S01",
+    "hint": "Start room Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_07",
+    "name": "Querubín · 07",
+    "group": "cherubs",
+    "area": "El Camino Santo",
+    "room": "D01Z01S03",
+    "hint": "Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_08",
+    "name": "Querubín · 08",
+    "group": "cherubs",
+    "area": "Albero",
+    "room": "D01Z02S03",
+    "hint": "Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_09",
+    "name": "Querubín · 09",
+    "group": "cherubs",
+    "area": "Sueños de Misericordia",
+    "room": "D01Z04S06",
+    "hint": "Second area Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_10",
+    "name": "Querubín · 10",
+    "group": "cherubs",
+    "area": "Yermo de las Iglesias Enterradas",
+    "room": "D01Z03S03",
+    "hint": "Outside Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_11",
+    "name": "Querubín · 11",
+    "group": "cherubs",
+    "area": "Aljibe Profanado",
+    "room": "D01Z05S14",
+    "hint": "Child of Moonlight, above water"
+  },
+  {
+    "id": "RESCUED_CHERUB_12",
+    "name": "Querubín · 12",
+    "group": "cherubs",
+    "area": "Aljibe Profanado",
+    "room": "D01Z05S13",
+    "hint": "Child of Moonlight, behind pillar"
+  },
+  {
+    "id": "RESCUED_CHERUB_13",
+    "name": "Querubín · 13",
+    "group": "cherubs",
+    "area": "Aljibe Profanado",
+    "room": "D01Z05S06",
+    "hint": "Upper east Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_14",
+    "name": "Querubín · 14",
+    "group": "cherubs",
+    "area": "Aljibe Profanado",
+    "room": "D01Z05S08",
+    "hint": "Child of Moonlight, miasma room"
+  },
+  {
+    "id": "RESCUED_CHERUB_15",
+    "name": "Querubín · 15",
+    "group": "cherubs",
+    "area": "Aljibe Profanado",
+    "room": "D01Z05S20",
+    "hint": "Elevator top Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_16",
+    "name": "Querubín · 16",
+    "group": "cherubs",
+    "area": "Serranía del Ocaso Perpetuo",
+    "room": "D03Z01S03",
+    "hint": "Child of Moonlight, above chasm"
+  },
+  {
+    "id": "RESCUED_CHERUB_17",
+    "name": "Querubín · 17",
+    "group": "cherubs",
+    "area": "Jondo",
+    "room": "D03Z02S10",
+    "hint": "Upper west Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_18",
+    "name": "Querubín · 18",
+    "group": "cherubs",
+    "area": "Jondo",
+    "room": "D03Z02S05",
+    "hint": "Upper east Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_19",
+    "name": "Querubín · 19",
+    "group": "cherubs",
+    "area": "Asciende el Quejido",
+    "room": "D03Z03S06",
+    "hint": "Miasma room Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_20",
+    "name": "Querubín · 20",
+    "group": "cherubs",
+    "area": "Asciende el Quejido",
+    "room": "D03Z03S09",
+    "hint": "Lower east Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_21",
+    "name": "Querubín · 21",
+    "group": "cherubs",
+    "area": "Asciende el Quejido",
+    "room": "D03Z03S08",
+    "hint": "Blood bridge Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_22",
+    "name": "Querubín · 22",
+    "group": "cherubs",
+    "area": "Aljibe Profanado",
+    "room": "D01Z05S25",
+    "hint": "Elevator shaft Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_23",
+    "name": "Querubín · 23",
+    "group": "cherubs",
+    "area": "Donde se Marchitan los Olivos",
+    "room": "D02Z01S02",
+    "hint": "Upper east Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_24",
+    "name": "Querubín · 24",
+    "group": "cherubs",
+    "area": "Cementerio de las Cumbres",
+    "room": "D02Z02S02",
+    "hint": "Center shaft Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_25",
+    "name": "Querubín · 25",
+    "group": "cherubs",
+    "area": "Cementerio de las Cumbres",
+    "room": "D02Z02S04",
+    "hint": "West shaft Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_26",
+    "name": "Querubín · 26",
+    "group": "cherubs",
+    "area": "Cementerio de las Cumbres",
+    "room": "D02Z02S11",
+    "hint": "Elevator shaft Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_27",
+    "name": "Querubín · 27",
+    "group": "cherubs",
+    "area": "Donde se Marchitan los Olivos",
+    "room": "D02Z01S06",
+    "hint": "Underground Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_28",
+    "name": "Querubín · 28",
+    "group": "cherubs",
+    "area": "Patio de los Pasos Silenciosos",
+    "room": "D04Z01S03",
+    "hint": "Third area Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_29",
+    "name": "Querubín · 29",
+    "group": "cherubs",
+    "area": "Madre de Madres",
+    "room": "D04Z02S11",
+    "hint": "Upper center Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_30",
+    "name": "Querubín · 30",
+    "group": "cherubs",
+    "area": "Madre de Madres",
+    "room": "D04Z02S01",
+    "hint": "Lower west Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_31",
+    "name": "Querubín · 31",
+    "group": "cherubs",
+    "area": "Cementerio de las Cumbres",
+    "room": "D02Z02S08",
+    "hint": "Shop cave Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_32",
+    "name": "Querubín · 32",
+    "group": "cherubs",
+    "area": "Biblioteca de las Palabras Negadas",
+    "room": "D05Z01S21",
+    "hint": "Elevator Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_33",
+    "name": "Querubín · 33",
+    "group": "cherubs",
+    "area": "Sueños de Misericordia",
+    "room": "D01Z04S16",
+    "hint": "Cave Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_34",
+    "name": "Querubín · 34",
+    "group": "cherubs",
+    "area": "Muralla de las Santas Prohibiciones",
+    "room": "D09BZ01S01",
+    "hint": "Upper west room, top silver cell"
+  },
+  {
+    "id": "RESCUED_CHERUB_35",
+    "name": "Querubín · 35",
+    "group": "cherubs",
+    "area": "Patio de los Pasos Silenciosos",
+    "room": "D04Z01S01",
+    "hint": "First area Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_36",
+    "name": "Querubín · 36",
+    "group": "cherubs",
+    "area": "Altos de la Archicatedral",
+    "room": "D06Z01S12",
+    "hint": "Upper west Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_37",
+    "name": "Querubín · 37",
+    "group": "cherubs",
+    "area": "Jondo",
+    "room": "D03Z02S11",
+    "hint": "Spike tunnel Child of Moonlight"
+  },
+  {
+    "id": "RESCUED_CHERUB_38",
+    "name": "Querubín · 38",
+    "group": "cherubs",
+    "area": "Yermo de las Iglesias Enterradas",
+    "room": "D01Z03S07",
+    "hint": "Cliffside Child of Moonlight"
+  }
+]

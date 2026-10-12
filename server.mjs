@@ -1,0 +1,4 @@
+import http from 'node:http';
+import fs from 'node:fs';
+const port=Number(process.env.PORT ?? 8765);
+http.createServer((req,res)=>{const path=req.url?.split('?')[0];if(path==='/downloads/lector-posicion.zip'){const file=new URL('./dist/downloads/lector-posicion.zip',import.meta.url);if(!fs.existsSync(file)){res.writeHead(404);return res.end('Not found');}res.writeHead(200,{'Content-Type':'application/zip','Content-Disposition':'attachment; filename="lector-posicion.zip"','X-Content-Type-Options':'nosniff'});return res.end(fs.readFileSync(file));}if(path!=='/'&&path!=='/index.html'){res.writeHead(404);return res.end('Not found');}res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(fs.readFileSync(new URL('./dist/index.html', import.meta.url)));}).listen(port,'127.0.0.1',()=>console.log('Local: http://127.0.0.1:'+port));

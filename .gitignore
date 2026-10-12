@@ -1,0 +1,14 @@
+node_modules/
+dist/
+release/
+assets-local/
+live/
+reader/live/
+.state/
+*.save
+*.save_backup
+*.tmp
+.playwright-cli/
+__pycache__/
+*.spec
+.build-env/

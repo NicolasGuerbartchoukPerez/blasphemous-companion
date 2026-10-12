@@ -1,0 +1,3 @@
+PyInstaller==6.22.0
+UnityPy==1.25.4
+TypeTreeGeneratorAPI==0.0.10
