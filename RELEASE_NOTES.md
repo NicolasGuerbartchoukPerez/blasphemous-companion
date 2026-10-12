@@ -1,9 +1,10 @@
-# Diario de Cvstodia 3.1.0
+# Diario de Cvstodia 3.1.1
 
 La posesión de un objeto entregado o transformado ya no depende solo del inventario actual: se contrastan registros individuales de recogida y eventos de misión. Se incorpora lectura en directo del inventario y eventos desde el juego local, vinculada a la ranura y al guardado cargado.
 
 - Verificación por 129 actores de recogida, que cubren 126 identificadores; prueba visible en los detalles del objeto.
 - Reconoce huevos transformados, ofrendas de Altasgracias, dedal, máscaras entregadas, llave de Diosdado, ojos, cáliz y mejoras consumidas cuando existe evidencia.
+- Los detalles de objetos y misiones permanecen abiertos cuando llegan nuevos eventos del juego.
 - Panel de 13 misiones con estado, pasos y próximo objetivo; filtros y opción de ocultar el panel.
 - Evita confundir una ofrenda parcial con un objeto concreto, un camino abierto con una etapa de Redento, estatuas destruidas con arenas superadas y recompensas conservadas en NG+ con misiones repetidas.
 - La lectura en directo comprueba identidad de partida y descarta señales antiguas, incompatibles o de otra ranura. Si no se puede leer, vuelve al archivo cargado.

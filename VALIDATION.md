@@ -1,4 +1,4 @@
-# Validación de la release 3.1.0
+# Validación de la release 3.1.1
 
 Comprobaciones realizadas el 12 de octubre de 2026 en Windows 11 x64.
 
