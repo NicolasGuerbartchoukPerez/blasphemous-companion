@@ -1,15 +1,13 @@
-Primera release portátil pública para Windows x64.
+# Diario de Cvstodia 3.1.0
 
-### Uso
+La posesión de un objeto entregado o transformado ya no depende solo del inventario actual: se contrastan registros individuales de recogida y eventos de misión. Se incorpora lectura en directo del inventario y eventos desde el juego local, vinculada a la ranura y al guardado cargado.
 
-Descarga **Diario-de-Cvstodia-3.0.0-windows-x64.zip**, descomprime todo y abre **DiarioDeCvstodia.exe**. Carga tu propio guardado. La posición conecta automáticamente cuando Blasphemous está abierto. Para actualizar inventario al guardar, conecta su carpeta en Chrome/Edge.
+- Verificación por 129 actores de recogida, que cubren 126 identificadores; prueba visible en los detalles del objeto.
+- Reconoce huevos transformados, ofrendas de Altasgracias, dedal, máscaras entregadas, llave de Diosdado, ojos, cáliz y mejoras consumidas cuando existe evidencia.
+- Panel de 13 misiones con estado, pasos y próximo objetivo; filtros y opción de ocultar el panel.
+- Evita confundir una ofrenda parcial con un objeto concreto, un camino abierto con una etapa de Redento, estatuas destruidas con arenas superadas y recompensas conservadas en NG+ con misiones repetidas.
+- La lectura en directo comprueba identidad de partida y descarta señales antiguas, incompatibles o de otra ranura. Si no se puede leer, vuelve al archivo cargado.
 
-Incluye mapa interactivo, seguimiento por objeto, requisitos de acceso en lenguaje claro y configuración de capas. **Importar-graficos.exe** permite añadir la estética original desde tu propia instalación; el paquete público lleva gráficos propios.
+Descarga el ZIP de Windows x64, descomprímelo y abre DiarioDeCvstodia.exe. Cierra la versión anterior desde su icono junto al reloj antes de abrir esta. Carga el archivo de la partida activa; para mantener también las salas actualizadas, conecta la carpeta de guardados en Chrome o Edge.
 
-No necesitas instalar Node, Python ni un mod. Guardados y posición permanecen en el PC. Usa **Salir** en el icono junto al reloj para cerrar el lector y servidor local.
-
-### Límites
-
-Windows 10/11 x64, Blasphemous 1 de PC con Unity/Mono. Lector validado en Steam; no comprobado con todas las versiones o mods. Inventario y requisitos reflejan el último guardado leído. Algunas rutas/misiones requieren comprobación manual, indicada en la interfaz. Los desafíos de Miriam no muestran posición en el mapa principal. Ejecutables sin firma digital.
-
-**SHA256SUMS.txt** permite comprobar la integridad del ZIP. El código fuente y las instrucciones de compilación están en el repositorio.
+Se conservan estados sin confirmar cuando el juego no aporta una prueba individual. Las salas, habilidades y dinero se actualizan al guardar. No hay modificaciones del juego, inyección ni escritura de memoria; no se publican guardados ni gráficos originales.

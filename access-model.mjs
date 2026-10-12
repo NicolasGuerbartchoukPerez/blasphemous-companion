@@ -116,7 +116,21 @@ export function analyzeAccess(data,analysis,model,options={}){
    if(ctx.flags.D05Z01S15_THREEBOOKSPUZZLE!==true&&data.commonElements.ID_INVENTORY.wearSwords?.includes('HE201'))local={value:false,reasons:['El corazón verdadero equipado no se puede retirar en esta vuelta'],uses:[]};
    else local={value:true,reasons:[],uses:[]};notes.push('Puzzle: fervor lleno, quitar todos los equipos y esperar 10 segundos.');
   }
-  if(loc.questUncertain||loc.variablePosition){local={...local,value:local.value===false&&loc.questUncertain?null:local.value===false?false:null};notes.push(loc.variablePosition?'Esta mejora se recoge en una de las velas restantes de su color; ubicación variable.':'La recompensa o su ubicación depende de la misión. Consulta la guía y sus alternativas.');}
+  if(loc.questUncertain){
+   let ready=null;
+   if(row.id==='PR11'&&ctx.flag('CLEOFAS_JOINED_ORDER')!==null)ready=ctx.flag('CLEOFAS_JOINED_ORDER');
+   if(row.id==='QI59'&&ctx.flag('GEMINO_FIRST_CONVERSATION_DONE')===false)ready=true;
+   if(row.id==='QI57'&&data.commonElements.ID_INVENTORY.ownQuestItems?.includes('QI59'))ready=true;
+   if(row.id==='RB10'&&data.commonElements.ID_INVENTORY.ownQuestItems?.includes('QI57')&&ctx.flag('GEMINO_FROZEN')===false)ready=true;
+   if(row.id==='QI68'&&ctx.flag('GEMINO_ENTRANCE_OPEN')===true)ready=true;
+   if(row.id==='PR04'&&ctx.flag('GEMINO_TOMB_OPEN')===true)ready=true;
+   if(row.id==='QI66'&&ctx.flag('TIRSO_FIRSTREWARD_DONE')===false&&ctx.flag('TIRSO_TIRSO_DEAD')===false)ready=ctx.resolve('herbs').value>=1;
+   if(ready!==null){local={...local,value:ready,reasons:ready?[]:['Completar los pasos pendientes de la misión; consulta el panel de misiones.']};notes.push('Disponibilidad de la recompensa contrastada con los eventos de su misión.');}
+   else{local={...local,value:local.value===false?false:null};notes.push('Falta confirmar el diálogo o la ubicación de esta recompensa. Consulta el panel de misiones.');}
+  }
+  if(loc.variablePosition){local={...local,value:local.value===false?false:null};notes.push('Esta mejora se recoge en una de las velas restantes de su color; ubicación variable.');}
+  if(row.id==='PR11'&&ctx.flag('CLEOFAS_DEAD')===true){local={value:null,reasons:['Buscar la recompensa en el cadáver de Cleofás, en Patio de los Pasos Silenciosos. Su ubicación cambia en esta ruta.'],uses:[]};}
+  if(row.id==='RB20'&&ctx.flag('REDENTO_LOCATION_3')===true||row.id==='RB21'&&ctx.flag('REDENTO_LOCATION_4')===true){local={value:true,reasons:[],uses:[]};notes.push('Redento ya se encuentra en la etapa de esta recompensa. Habla con él.');}
   if(['RB34','RB35','RB36','HE10'].includes(row.id))notes.push('Completar las arenas de los confesores; alcanzar la sala no prueba la victoria.');
   let state=local.value===false?'blocked':local.value===null?'unknown':ctx.reachableRooms.has(room)?'available':'unknown';
   if(!ctx.reachableRooms.has(room)&&local.value!==false)notes.push('La ruta hasta esta sala no está confirmada con tus puertas, llaves y victorias actuales.');

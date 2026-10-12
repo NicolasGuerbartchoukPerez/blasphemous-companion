@@ -135,3 +135,25 @@ Si faltan flags concretos o proceden de otra versión, no convertir ausencia en 
 - Comprobación directa, solo lectura, de la instalación del juego: `Core.Logic.Penitent`, `PlatformCharacterController.m_smartCollider`, `SmartRectCollider2D.ResolveCollisions` y su caché `m_prevPos` de `transform.position`; `NewMapManager.CurrentMap.Cells` aporta los rectángulos reales y las claves de casilla; `CurrentScene` valida la sala. Se resuelven nombres de campos en Mono, sin ejecutar código dentro del juego.
 - Se descartó `LastPlayerCell` como fuente única porque puede corresponder a una sala anterior. La posición física debe caer dentro del rectángulo de una casilla de la sala activa. Cargas, muerte, ausencia de jugador o coordenadas sin correspondencia no producen un marcador.
 - El marcador señala la casilla, no una coordenada exacta dentro del dibujo ni una ruta automática hasta ella. Las localizaciones de accesos especiales se deducen de puertas/casillas y se etiquetan aproximadas cuando no hay una correspondencia única.
+
+## Verificación de recogidas y misiones (3.1.0)
+
+Los pares GUID–objeto–sala de verification-data.json se contrastaron con los componentes UniqueId, InteractableInvAdd/InteractableInventoryAdd y BuildSettings de una instalación de PC DLC3. Solo se incluyen identificadores factuales, sin gráficos, diálogos, textos originales ni guardados. El campo Consumed de Interactable y AlreadyUsed de Chest se contrastó con la implementación de persistencia del juego. No se infiere la recogida por el nombre ACT_Collectible, por visitar la sala ni por cantidades agregadas.
+
+El lector consulta, mediante ReadProcessMemory, InventoryManager, EventManager y la instantánea de PersistentManager. No ejecuta métodos de Mono ni del juego. La instantánea sirve de referencia de ranura/tiempo/altar/inventario para vincular el archivo que carga el usuario. Los eventos con nombres de etapas se distinguen de eventos de recompensa y de cambios de ubicación.
+
+Referencias para los pasos explicados al jugador:
+
+- [Redento](https://blasphemous.wiki.gg/wiki/Redento)
+- [Besadores de Llagas](https://blasphemous.wiki.gg/wiki/Kissers_of_Wounds_quest)
+- [Tentudía](https://blasphemous.wiki.gg/wiki/True_Shrine_quest)
+- [Cleofás y Socorro](https://blasphemous.wiki.gg/wiki/Lady_of_the_Perpetual_Agony_quest)
+- [Marcas del Refugio](https://blasphemous.wiki.gg/wiki/Three_Marks_of_Refuge)
+- [Nacimiento](https://blasphemous.wiki.gg/wiki/Nacimiento)
+- [Azogues](https://blasphemous.wiki.gg/wiki/Quicksilver)
+- [Diosdado](https://blasphemous.wiki.gg/wiki/Diosdado)
+- [Escapulario Incompleto](https://blasphemous.wiki.gg/wiki/Incomplete_Scapular)
+- [Esdras](https://blasphemous.wiki.gg/wiki/Esdras%2C_of_the_Anointed_Legion_%28NPC%29)
+- [Cáliz de Versos Invertidos](https://blasphemous.wiki.gg/wiki/Chalice_of_Inverted_Verses)
+
+La posesión de reliquias, cuentas, corazones o rezos conservados en NG+ no prueba que se hayan repetido sus misiones en la vuelta actual. Las ofrendas parciales a Socorro y mejoras de Nacimiento no se asignan a IDs arbitrarios.

@@ -1,14 +1,15 @@
 # Diario de Cvstodia · Blasphemous 1
 
-Herramienta no oficial en español para analizar guardados locales, seguir coleccionables y explorar los accesos especiales de Cvstodia. Incluye mapa interactivo, filtros personalizables y lector de posición para Windows.
+Herramienta no oficial en español para analizar guardados locales, seguir coleccionables y explorar los accesos especiales de Cvstodia. Incluye mapa interactivo, filtros personalizables y lectores de posición, inventario y eventos de misión para Windows.
 
 ## Descargar y usar
 
-1. Descarga **Diario-de-Cvstodia-3.0.0-windows-x64.zip** desde [Releases](https://github.com/NicolasGuerbartchoukPerez/blasphemous-companion/releases/latest). Los archivos «Source code» son para desarrollo.
+1. Descarga **Diario-de-Cvstodia-3.1.0-windows-x64.zip** desde [Releases](https://github.com/NicolasGuerbartchoukPerez/blasphemous-companion/releases/latest). Los archivos «Source code» son para desarrollo.
 2. Descomprime todo el ZIP en una carpeta donde puedas escribir y abre **DiarioDeCvstodia.exe**. Se abre la interfaz en tu navegador, en una dirección `http://127.0.0.1:8765/` (o un puerto próximo si está ocupado).
 3. Pulsa **Cargar partida** y elige tu propio `savegame_0.save`, `savegame_1.save` o `savegame_2.save`. También puedes arrastrarlo sobre la interfaz.
 4. Abre Blasphemous: al cargar una partida real, el lector integrado conecta automáticamente la posición. No necesitas instalar un mod, seleccionar una carpeta `live`, ni instalar Node o Python.
-5. Para que el inventario también se actualice, usa **Conectar carpeta en vivo** en Chrome o Edge. Selecciona la carpeta que contiene esos archivos. La lectura se comprueba cada 3 segundos y refleja lo que el juego ha guardado; guarda en un altar para registrar cambios.
+5. **Leer inventario y misiones del juego en directo** se activa al cargar la partida. Comprueba los eventos e inventario cada 1,2 segundos. Debes cargar el archivo de la ranura activa: el lector contrasta tiempo, altar, NG+ e inventario del último guardado para vincularlos. Si no coinciden, guarda en un altar y carga de nuevo el archivo.
+6. **Conectar carpeta en vivo** en Chrome o Edge complementa esa lectura: actualiza cada 3 segundos los registros de salas, mapa, habilidades y lágrimas al guardar. La posición y el inventario no necesitan este permiso de carpeta.
 
 Guardados habituales en Windows:
 
@@ -33,6 +34,8 @@ El importador solo lee la instalación. Los gráficos se conservan localmente y 
 ## Qué muestra
 
 - 230 entradas del catálogo: 7 reliquias, 44 huesos, 38 querubines, cuentas, rezos, corazones, objetos de misión y mejoras.
+- Verificación adicional mediante 129 actores de recogida que cubren 126 identificadores de objetos, más eventos de entregas, transformaciones, máscaras y mejoras. Cada objeto muestra la prueba usada en sus detalles.
+- Panel de **13 misiones** con pasos confirmados, pendientes o sin evidencia, próximo paso, filtro de estado y opción de ocultarlo. Distingue rutas alternativas y objetivos perdidos en esta vuelta; en NG+ no confunde recompensas conservadas con misiones repetidas.
 - Estado de posesión separado del acceso: **accesible**, **requisitos pendientes** o **por verificar**. Los objetos consumidos no se consideran ausentes sin evidencia suficiente.
 - Requisitos por camino: **Tres Lenguas Nudosas** para raíces, **Lienzo de Hilo de Oro** para ciertas caídas, plataformas de sangre, miasma y otros accesos. Una entrada concreta puede exigir una reliquia mientras otra no la exige.
 - Selección de cuadrantes y resaltado de pasos especiales, con opción de priorizar casillas sin descubrir. Seguimiento por objeto, capas, tamaños, opacidad y filtros de spoilers.
@@ -44,17 +47,17 @@ Release para **Windows 10/11 de 64 bits**, Blasphemous 1 de PC con runtime Unity
 
 El lector se ha validado con una instalación de Steam; no está comprobado en todas las revisiones, tiendas ni mods. Si el formato de memoria cambia, muestra posición no disponible en vez de inventar una casilla. Las salas de desafíos de Miriam no forman parte del mapa principal y no tendrán cursor sobre Cvstodia. No funciona con Blasphemous 2, consolas ni ejecutables IL2CPP.
 
-La accesibilidad es una estimación conservadora para el recorrido normal, sin glitches. Algunas misiones, rutas alternativas y posiciones de objetos necesitan comprobación manual; la interfaz identifica las incertidumbres. Inventario y requisitos siguen usando el último guardado leído, aunque la posición esté en directo.
+La accesibilidad es una estimación conservadora para el recorrido normal, sin glitches. Algunas misiones, rutas alternativas y posiciones de objetos necesitan comprobación manual; la interfaz identifica las incertidumbres. El panel de progreso indica si inventario y eventos proceden del juego en directo o del archivo. Las recogidas de salas, habilidades, dinero y mapa siguen dependiendo del último guardado. Una ofrenda parcial o un número agregado de mejoras no identifica el objeto consumido: no se asignan arbitrariamente a un coleccionable. Puede persistir una incertidumbre cuando no hay registro individual ni evento que la resuelva.
 
 Los filtros y seguimientos se guardan en el almacenamiento del navegador; cambiar de navegador o puerto puede requerir configurarlos de nuevo. El ejecutable no está firmado digitalmente; Windows puede mostrar un aviso de editor desconocido. No requiere desactivar el antivirus ni ejecutarlo como administrador.
 
 ## Lectura local
 
-La interfaz está incrustada en el ejecutable. No envía guardados ni posición a ningún servidor, no modifica el juego, no inyecta DLL y no escribe memoria. El servidor escucha exclusivamente en `127.0.0.1`, comprueba el host y exige peticiones del mismo origen para leer la posición. Los enlaces a wikis se abren solo cuando los pulsas. El lector no depende de protecciones de OpenAI: funciona por estas medidas locales.
+La interfaz está incrustada en el ejecutable. No envía guardados ni posición a ningún servidor, no modifica el juego, no inyecta DLL y no escribe memoria. El servidor escucha exclusivamente en `127.0.0.1`, comprueba el host y exige peticiones del mismo origen para leer posición e inventario/eventos. Los enlaces a wikis se abren solo cuando los pulsas. El lector no depende de protecciones de OpenAI: funciona por estas medidas locales.
 
 ## Desarrollo
 
-Node 18+ para la web. No requiere `npm install`:
+Node 24+ para la web. No requiere `npm install`:
 
 ```powershell
 npm test

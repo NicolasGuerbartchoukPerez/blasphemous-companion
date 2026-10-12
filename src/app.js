@@ -2,8 +2,8 @@ const $ = id => document.getElementById(id);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const COMMUNICATION=createCommunication(CATALOG,ACCESS_DATA);
 const STATUS_LABEL = {missing:'No obtenido',obtained:'Obtenido',unknown:'Posesión sin confirmar',later:'Nueva Partida+'};
-let current=null, tracked=new Set(), profile='', visible=[], liveDirectory=null, liveTimer=null, generation=0, liveText='', fileName='', busy=false, demoMode=false, exploredMap={id:null,cells:[]},saveData=null,accessibility=null;
-function refreshAccessibility(){if(current&&saveData)accessibility=analyzeAccess(saveData,current,ACCESS_DATA,{equipmentOnly:prefs.equipmentOnly});}
+let current=null, tracked=new Set(), profile='', visible=[], liveDirectory=null, liveTimer=null, generation=0, liveText='', fileName='', busy=false, demoMode=false, exploredMap={id:null,cells:[]},saveData=null,analysisData=null,accessibility=null;
+function refreshAccessibility(data=analysisData??saveData){if(current&&data){analysisData=data;accessibility=analyzeAccess(data,current,ACCESS_DATA,{equipmentOnly:prefs.equipmentOnly});}}
 for(const [key,name] of Object.entries(GROUPS)) $('category').add(new Option(name,key));
 function tell(text,error=false){$('message').textContent=text;$('message').classList.toggle('error',error);}
 function loadTracking(key){profile=key;try{const a=JSON.parse(localStorage.getItem(key)??'[]');tracked=new Set(Array.isArray(a)?a.filter(x=>typeof x==='string'):[]);}catch{tracked=new Set();}}
@@ -15,7 +15,7 @@ function acceptText(text,name,mode='manual') {
  const before=current?.rows.filter(r=>r.status==='obtained').map(r=>r.id)??[];
  const same=profile===nextProfile;
  if(!same){stopPosition(false);loadTracking(nextProfile);}
- current=result;saveData=data;fileName=name;demoMode=mode==='demo';exploredMap=extractMapCells(data);refreshAccessibility();document.body.classList.add('loaded');
+ stopProgress(false);current=result;saveData=data;analysisData=data;fileName=name;demoMode=mode==='demo';exploredMap=extractMapCells(data);refreshAccessibility();document.body.classList.add('loaded');
  if(!same)resetMapState();
  $('welcome').hidden=true;$('results').hidden=false;
  $('save-label').textContent=demoMode?'EJEMPLO FICTICIO · NO ES TU PARTIDA':name+(result.ngplus?' · NUEVA PARTIDA+':' · PARTIDA NORMAL');
@@ -23,7 +23,7 @@ function acceptText(text,name,mode='manual') {
  const hours=result.playtime===null?'':Math.floor(result.playtime/3600)+' h '+Math.floor(result.playtime%3600/60)+' min';
  $('save-meta').textContent=[result.progress===null?'':result.progress.toLocaleString('es-ES',{maximumFractionDigits:2})+' % indicado por el juego',hours,result.scene?'Último altar: '+COMMUNICATION.areaForRoom(result.scene):''].filter(Boolean).join(' · ');
  $('root-next').textContent=result.rootNext;
- updateTracking();render();
+ updateTracking();render();startProgress();
  if(!same&&!demoMode&&LOCAL_RUNTIME)connectLocalPosition();
  if(mode==='live'&&same){const added=result.rows.filter(r=>r.status==='obtained'&&!before.includes(r.id));if(added.length)tell('Guardado actualizado. Nuevos: '+added.slice(0,5).map(r=>r.name).join(', ')+(added.length>5?'…':''));}
  else tell(demoMode?'Estás viendo datos de ejemplo. Carga tu archivo para analizar tu partida.':'Partida leída. '+result.warnings.join(' '));
@@ -37,7 +37,7 @@ function accessHTML(row,details=false){
  return '<span class="access-badge '+a.state+'" title="'+esc(p.title)+'">'+esc(ACCESS_LABEL[a.state])+'</span>'+(details?'<p class="access-title">'+esc(p.title)+'</p>'+(p.next?'<p class="next-action"><strong>Qué hacer ahora</strong><br>'+esc(p.next)+'</p>':'')+requirementHTML(p.requirements)+(p.reasons.length?'<ul class="access-reasons">'+p.reasons.slice(0,7).map(r=>'<li>'+esc(r)+'</li>').join('')+'</ul>':'')+(p.routes.length>1?'<details class="access-routes"><summary>Alternativas de acceso</summary>'+routesHTML(p.routes)+'</details>':'')+(p.note?'<p class="muted access-note">'+esc(p.note)+'</p>':''):'');
 }
 function locationHTML(row){return esc(row.area)+(prefs.showIDs&&row.room?'<span class="item-code">Sala '+esc(row.room)+'</span>':'');}
-function guideFor(row){let guide=row.guide??'';if(row.id==='RE05'&&current.cherubsKnown)guide+=' Tu partida tiene '+current.rescued+' querubines: '+(current.rescued>=20?'ya cumples el mínimo; comprueba la entrega con Jocinero.':'te faltan '+(20-current.rescued)+' para el mínimo.');if(row.group==='quest'&&row.status==='unknown')guide+=' Puede haberse entregado o transformado; el inventario no basta para concluir que falta.';return guide;}
+function guideFor(row){let guide=row.guide??'';if(row.id==='RE05'&&current.cherubsKnown)guide+=' Tu partida tiene '+current.rescued+' querubines: '+(current.rescued>=20?'ya cumples el mínimo; comprueba la entrega con Jocinero.':'te faltan '+(20-current.rescued)+' para el mínimo.');if(row.status==='unknown')guide+=' Falta un evento de entrega o un registro individual de recogida para confirmar este objeto. Guarda en un altar después de recogerlo o activa la lectura del juego.';return guide;}
 function render(){
  if(!current)return;
  visible=current.rows.filter(matches).sort((a,b)=>(a.priority??100)-(b.priority??100)||a.group.localeCompare(b.group)||a.name.localeCompare(b.name,'es',{numeric:true}));
@@ -47,9 +47,9 @@ function render(){
  $('item-list').innerHTML=visible.map(row=>{
   const guide=guideFor(row);
   const wiki=row.englishName?'https://blasphemous.wiki.gg/wiki/'+encodeURIComponent(row.englishName.replaceAll(' ','_')):'https://blasphemous.wiki.gg/wiki/Children_of_Moonlight';
-  return '<article class="item-row"><div><div class="item-header"><span class="category-name">'+esc(GROUPS[row.group])+'</span><span class="item-code">'+esc(row.id)+'</span></div><h3>'+esc(row.name)+'</h3>'+(spoilers?'<p class="item-location">'+locationHTML(row)+'</p>':'')+(row.description?'<p class="item-description">'+esc(row.description)+'</p>':'')+(spoilers?'<details class="item-guide"><summary>Requisitos y cómo encontrarlo</summary>'+accessHTML(row,true)+(guide?'<p>'+esc(guide)+'</p>':'<p>Consulta la guía para los detalles del objeto.</p>')+'<a href="'+wiki+'" target="_blank" rel="noopener noreferrer">Consultar objeto ↗</a></details>':'')+'</div><div class="item-side"><span class="state '+row.status+'">'+esc(STATUS_LABEL[row.status])+'</span>'+accessHTML(row)+(row.equipped?'<span class="equipped">Equipado</span>':'')+'<label class="track-label"><input type="checkbox" data-track="'+esc(row.id)+'" aria-label="Seguir '+esc(row.name)+'" '+(tracked.has(row.id)?'checked':'')+'> Seguir</label>'+(spoilers&&MAP_DATA.positions[row.id]?.length?'<button class="text-button locate-item" data-map-item="'+esc(row.id)+'">Ver en mapa</button>':'')+'</div></article>';
+  return '<article class="item-row"><div><div class="item-header"><span class="category-name">'+esc(GROUPS[row.group])+'</span><span class="item-code">'+esc(row.id)+'</span></div><h3>'+esc(row.name)+'</h3>'+(spoilers?'<p class="item-location">'+locationHTML(row)+'</p>':'')+(row.description?'<p class="item-description">'+esc(row.description)+'</p>':'')+(spoilers?'<details class="item-guide"><summary>Requisitos y cómo encontrarlo</summary>'+accessHTML(row,true)+(row.proof?'<p class="verification-proof"><strong>Prueba de la partida:</strong> '+esc(row.proof.text)+'</p>':'')+(guide?'<p>'+esc(guide)+'</p>':'<p>Consulta la guía para los detalles del objeto.</p>')+'<a href="'+wiki+'" target="_blank" rel="noopener noreferrer">Consultar objeto ↗</a></details>':'')+'</div><div class="item-side"><span class="state '+row.status+'">'+esc(STATUS_LABEL[row.status])+'</span>'+accessHTML(row)+(row.equipped?'<span class="equipped">Equipado</span>':'')+'<label class="track-label"><input type="checkbox" data-track="'+esc(row.id)+'" aria-label="Seguir '+esc(row.name)+'" '+(tracked.has(row.id)?'checked':'')+'> Seguir</label>'+(spoilers&&MAP_DATA.positions[row.id]?.length?'<button class="text-button locate-item" data-map-item="'+esc(row.id)+'">Ver en mapa</button>':'')+'</div></article>';
  }).join('');
- renderMap();
+ renderMap();renderQuests();
 }
 $('item-list').addEventListener('change',e=>{const id=e.target.dataset.track;if(!id)return;e.target.checked?tracked.add(id):tracked.delete(id);saveTracking();if($('tracked-only').checked)render();else renderMap();});
 $('item-list').addEventListener('click',e=>{const button=e.target.closest('[data-map-item]');if(button)focusMapItem(button.dataset.mapItem);});
@@ -91,7 +91,15 @@ function reportText(){
   lines.push('','['+STATUS_LABEL[row.status]+' · '+ACCESS_LABEL[a.state]+'] '+row.name+(tracked.has(row.id)?' — SIGUIENDO':'')+(prefs.showIDs?' ('+row.id+')':''));
   if(spoilers){lines.push('Zona: '+row.area+(prefs.showIDs&&row.room?' · Sala '+row.room:''));if(p.next)lines.push('Qué hacer ahora: '+p.next);for(const r of p.requirements)lines.push((r.optional?'Alternativa: ':'Reliquia: ')+r.name+' — '+r.status+'. '+r.action+' '+(r.owned?r.instruction:r.obtain));for(const reason of p.reasons)lines.push('• '+reason);if(p.note)lines.push(p.note);}
  }
- lines.push('','La posesión y el acceso se comprueban por separado. Algunos objetos entregados o transformados necesitan comprobación en el juego. El acceso se estima para un recorrido normal y con los requisitos detectados. Este informe no modifica el guardado.');return lines.join('\n');
+ lines.push('','MISIONES');for(const q of analyzeQuests(analysisData,current)){lines.push('['+QUEST_LABELS[q.state]+'] '+q.name);if(spoilers){lines.push(q.next);for(const s of q.steps)lines.push((s.value===true?'✓ ':s.value===false?'Pendiente: ':'Sin confirmar: ')+s.label);}}
+ lines.push('','La posesión y el acceso se comprueban por separado. Los objetos se verifican también mediante sus recogidas, entregas y transformaciones. El acceso se estima para un recorrido normal y con los requisitos detectados. Este informe no modifica el guardado.');return lines.join('\n');
 }
 $('export').addEventListener('click',()=>{if(!current)return;const url=URL.createObjectURL(new Blob([reportText()],{type:'text/plain;charset=utf-8'}));const link=document.createElement('a');link.href=url;link.download='cvstodia-'+fileName.replace(/[^a-zA-Z0-9_.-]/g,'_')+'.txt';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
 if(!('showDirectoryPicker'in window))$('live-start').title='Disponible en Chrome o Edge por HTTPS o localhost';
+function renderQuests(){
+ const quests=analyzeQuests(analysisData,current),filter=$('quest-filter').value;
+ $('quest-summary').textContent=quests.filter(q=>q.state==='completed').length+'/'+quests.length+' completadas · '+(progressSource==='game'?'eventos del juego en directo':'datos del guardado');
+ const shown=quests.filter(q=>filter==='all'||filter==='pending'&&q.state!=='completed'||q.state===filter);
+ $('quest-list').innerHTML=shown.length?shown.map(q=>'<details class="quest-row"><summary><span>'+esc(q.name)+'</span><span class="state '+(q.state==='completed'?'obtained':q.state==='unknown'?'unknown':'missing')+'">'+esc(QUEST_LABELS[q.state])+'</span></summary><p class="next-action">'+esc(q.next)+'</p>'+(q.note?'<p class="muted">'+esc(q.note)+'</p>':'')+'<ol class="quest-steps">'+q.steps.map(s=>'<li><span class="step-state">'+(s.value===true?'✓ Confirmado':s.value===false?'Pendiente':'Sin confirmar')+'</span><span>'+esc(s.label)+'</span><small>'+esc(s.proof)+'</small></li>').join('')+'</ol>'+(q.url?'<a href="https://blasphemous.wiki.gg/wiki/'+encodeURIComponent(q.url)+'" target="_blank" rel="noopener noreferrer">Guía de la misión ↗</a>':'')+'</details>').join(''):'<p class="muted">No hay misiones con este filtro.</p>';
+}
+$('quest-filter').addEventListener('change',()=>{if(current)renderQuests();});

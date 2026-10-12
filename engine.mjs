@@ -24,7 +24,9 @@ export function decodeSave(input) {
   if (Object.keys(common).some(k => /randomizer/i.test(k))) throw new Error('Esta versión analiza partidas normales. Un randomizer cambia las ubicaciones y requiere su propio catálogo.');
   return data;
 }
-export function analyze(data, catalog) {
+import {additionalEvidence} from './verification-model.mjs';
+import VERIFICATION_DATA from './verification-data.json' with {type:'json'};
+export function analyze(data, catalog,verification=VERIFICATION_DATA) {
   const common = data.commonElements, inv = common.ID_INVENTORY, flags = common.ID_EVENT_MANAGER?.flags ?? {}, persistent = common.ID_PERSISTENT_MANAGER ?? {};
   const sets = {}, known = {};
   for (const [group, fields] of Object.entries(FIELDS)) {
@@ -49,8 +51,12 @@ export function analyze(data, catalog) {
       const explicit = [item.id + '_OWNED', 'CLAIMED_' + item.id, item.id + '_USED'].some(k => flags[k] === false);
       status = explicit ? 'missing' : 'unknown';
     } else status = 'missing';
+    let proof=evidence(item.id,item.group)?{kind:sets[item.group]?.has(item.id)?'inventory':'event',text:sets[item.group]?.has(item.id)?'Figura en tu inventario actual.':'Un evento confirma que lo adquiriste o utilizaste.'}:null;
+    const extra=additionalEvidence(data,item.id,verification);
+    if(extra?.value===true){status='obtained';proof=extra;}
+    else if(extra?.value===false&&status!=='obtained'&&status!=='later'){status='missing';proof=extra;}
     const equipped = (WEAR[item.group] ?? []).some(k => inv[k]?.includes(item.id));
-    return { ...item, status, equipped };
+    return { ...item, status, equipped, proof };
   });
   const rescued = rows.filter(r => r.group === 'cherubs' && r.status === 'obtained').length;
   const cherubsKnown = rows.filter(r => r.group === 'cherubs' && r.status !== 'unknown').length === 38;

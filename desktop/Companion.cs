@@ -15,6 +15,7 @@ using CvstodiaPosition;
 public static class Companion {
  static volatile bool running=true;
  static volatile string signal=MonoMap.Json("waiting");
+ static volatile string progressSignal=MonoMap.StateStatus("waiting");
  static TcpListener listener;
  static int port;
  static byte[] page;
@@ -48,11 +49,11 @@ public static class Companion {
   }
  }
  static void ReadPosition(){
-  Memory memory=null;MonoMap map=null;
+  Memory memory=null;MonoMap map=null;int tick=0;
   try{while(running){try{
    if(memory==null||memory.Process.HasExited){if(memory!=null)memory.Dispose();memory=null;map=null;var games=Process.GetProcessesByName("Blasphemous");if(games.Length>0)memory=new Memory(games[0]);}
-   if(memory==null)signal=MonoMap.Json("waiting");else{if(map==null)map=new MonoMap(memory);signal=map.Position();}
-  }catch(Exception){signal=MonoMap.Json("unavailable");map=null;}Thread.Sleep(250);}}
+   if(memory==null){signal=MonoMap.Json("waiting");progressSignal=MonoMap.StateStatus("waiting");}else{if(map==null)map=new MonoMap(memory);signal=map.Position();if(tick++%4==0){try{string state=map.State();progressSignal=state.Length<=200000?state:MonoMap.StateStatus("unavailable");}catch(Exception){progressSignal=MonoMap.StateStatus("unavailable");}}}
+  }catch(Exception){signal=MonoMap.Json("unavailable");progressSignal=MonoMap.StateStatus("unavailable");map=null;}Thread.Sleep(250);}}
   finally{if(memory!=null)memory.Dispose();}
  }
  static void Serve(){while(running){try{var client=listener.AcceptTcpClient();if(!requests.WaitOne(0)){client.Close();continue;}ThreadPool.QueueUserWorkItem(_=>{try{Respond(client);}catch(Exception){}finally{client.Close();requests.Release();}});}catch(SocketException){if(!running)return;}catch(ObjectDisposedException){return;}}}
@@ -77,6 +78,7 @@ public static class Companion {
    if(!headers.TryGetValue("X-Cvstodia-Local",out scope)||scope!="1"||(headers.TryGetValue("Origin",out origin)&&origin!=Address.TrimEnd('/'))||(headers.TryGetValue("Sec-Fetch-Site",out site)&&site!="same-origin"&&site!="none")){Text(stream,403,"Same-origin local request required");return;}
    if(path=="/local/info"){Write(stream,200,"application/json",Encoding.UTF8.GetBytes("{\"app\":\"cvstodia-portable\",\"protocol\":1}"));return;}
    if(path=="/local/position"){Write(stream,200,"application/json",Encoding.UTF8.GetBytes(signal));return;}
+   if(path=="/local/state"){Write(stream,200,"application/json",Encoding.UTF8.GetBytes(progressSignal));return;}
    if(path=="/local/art"){
     string file=Path.Combine(root,"assets-local","game-art.json");if(!File.Exists(file)){Write(stream,200,"application/json",Encoding.UTF8.GetBytes("{\"protocol\":1,\"tiles\":{},\"icons\":{}}"));return;}
     if(new FileInfo(file).Length>3000000){Text(stream,400,"Artwork file too large");return;}Write(stream,200,"application/json",File.ReadAllBytes(file));return;

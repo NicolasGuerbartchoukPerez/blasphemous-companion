@@ -1,11 +1,11 @@
 {
   "name": "diario-de-cvstodia",
   "private": true,
-  "version": "3.0.0",
+  "version": "3.1.0",
   "type": "module",
   "scripts": {
     "build": "node build.mjs",
-    "test": "node --test tests/analyzer.test.mjs tests/map.test.mjs tests/access.test.mjs tests/communication.test.mjs tests/quadrant.test.mjs",
+    "test": "node --test tests/analyzer.test.mjs tests/map.test.mjs tests/access.test.mjs tests/communication.test.mjs tests/quadrant.test.mjs tests/verification.test.mjs",
     "start": "node server.mjs"
   },
   "license": "GPL-3.0-or-later"

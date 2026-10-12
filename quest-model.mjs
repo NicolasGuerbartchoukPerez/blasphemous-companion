@@ -1,0 +1,90 @@
+export const QUEST_LABELS={active:'En curso',completed:'Completada',notstarted:'Sin iniciar',alternative:'Ruta alternativa',lost:'Objetivo perdido en esta vuelta',unknown:'Estado sin confirmar'};
+export function analyzeQuests(data,analysis){
+ const flags=data.commonElements.ID_EVENT_MANAGER?.flags??{},events=data.commonElements.ID_EVENT_MANAGER??{};
+ const rows=new Map(analysis.rows.map(r=>[r.id,r])), inv=data.commonElements.ID_INVENTORY;
+ const has=id=>analysis.ngplus&&/^(RE|PR|RB|HE)/.test(id)&&rows.get(id)?.status==='obtained'&&rows.get(id)?.proof?.kind!=='pickup'?null:rows.get(id)?.status==='obtained'?true:rows.get(id)?.status==='unknown'||!rows.has(id)?null:false,carrying=id=>inv.ownQuestItems?.includes(id)===true;
+ const f=id=>typeof flags[id]==='boolean'?flags[id]:null;
+ const any=(...values)=>values.some(v=>v===true)?true:values.every(v=>v===false)?false:null;
+ const all=(...values)=>values.every(v=>v===true)?true:values.some(v=>v===false)?false:null;
+ const step=(label,value,proof)=>({label,value,proof:proof??(value===true?'Confirmado por la partida.':value===false?'Este paso todavía no está completado.':'El archivo no conserva evidencia suficiente de este paso.')});
+ const quests=[];
+ function add(id,name,steps,next,{done=steps.at(-1)?.value,started=any(...steps.map(s=>s.value)),alternative=false,lost=false,url='',note=''}={}){
+  started=any(started,...steps.map(s=>s.value));
+  const state=done===true?'completed':lost?'lost':alternative?'alternative':started===true?'active':started===false?'notstarted':'unknown';
+  quests.push({id,name,state,steps,next:state==='completed'?'Recompensa o final de la misión confirmado.':next,url,note});
+ }
+ const rootsThisCycle=analysis.ngplus?f('ALTASGRACIAS_QI14_CONVERSATION_DONE'):has('RE10');
+ add('roots','Altasgracias · las raíces',[
+  step('Entregar las tres ofrendas',rootsThisCycle||has('QI13')||has('QI14')?true:all(...[10,11,12].map(n=>any(...[1,2,3].map(altar=>f('ALTASGRACIAS_ALTAR'+altar+'_QI'+n)))))),
+  step('Recibir el Huevo de la Deformidad',has('QI13')),
+  step('Hacerlo eclosionar en el árbol de Perpetva',has('QI14')),
+  step('Bendecir el huevo y recibir Tres Lenguas Nudosas',rootsThisCycle)
+ ],analysis.rootNext,{done:rootsThisCycle,url:'Egg_of_Deformity_quest',note:analysis.ngplus?'Conservar Tres Lenguas Nudosas en Nueva Partida+ no demuestra que hayas repetido las ofrendas en esta vuelta.':''});
+ const stage=Math.max(1,...[2,3,4,5].filter(n=>f('REDENTO_LOCATION_'+n)===true));
+ add('redento','Redento · peregrinación',[
+  step('Ayudarle en Jondo y recibir el Cuarto Dedo',has('RB22')),
+  step('Continuar por la Hermandad del Lamento Mudo',stage>=3||has('RB20')||has('RB21')||has('RE03')?true:f('REDENTO_LOCATION_3')),
+  step('Recibir el Dedo Meñique en Yermo de las Iglesias Enterradas',has('RB20')),
+  step('Recibir el Dedo Pulgar en Patio de los Pasos Silenciosos',has('RB21')),
+  step('Equipar las tres cuentas ante la estatua y recoger la Uña Arrancada del Barro',has('RE03')),
+  step('Volver a la sala y recoger el nudo del cadáver',has('QI54'))
+ ],!has('RE03')?(stage===5?'Equipa Cuarto Dedo, Dedo Meñique y Dedo Pulgar de piedra caliza ante la estatua de Madre de Madres.':stage===4?'Busca a Redento en Patio de los Pasos Silenciosos y despeja su camino.':stage===3?'Vuelve a Redento en Yermo de las Iglesias Enterradas después de abrir el paso.':stage===2?'Busca a Redento en la Hermandad del Lamento Mudo; abre su camino y vuelve a hablar con él.':'Abre el paso de Jondo y habla con Redento.'):'Sal y vuelve a entrar en la sala de la estatua de Madre de Madres para recoger el nudo.',{done:has('QI54'),started:any(f('REDENTO_FIRSTCONVERSATION_DONE'),has('RB22')),url:'Redento',note:'Abrir un obstáculo no confirma que Redento haya llegado ni que hayas recogido su recompensa.'});
+ const herbs=['QI19','QI20','QI37','QI63','QI64','QI65'],delivered=herbs.filter(id=>f('TIRSO_'+id+'_DELIVERED')===true).length;
+ const deaths=[1,2,3,4,5].filter(n=>f('TIRSO_KISSER'+n+'_DEAD')===true).length;
+ add('tirso','Tirso · Besadores de Llagas',herbs.map(id=>step('Entregar '+(rows.get(id)?.name??'una hierba'),f('TIRSO_'+id+'_DELIVERED'))).concat(step('Cobrar la recompensa final',f('TIRSO_LASTREWARD_DONE'))),
+  'Lleva las hierbas que tengas a Tirso en Albero y vuelve a hablar con él tras los jefes principales. Las hierbas en inventario aún no se han entregado.',{done:f('TIRSO_LASTREWARD_DONE'),started:any(f('TIRSO_FIRSTCONVERSATION_DONE'),...herbs.map(carrying)),alternative:deaths>0,url:'Kissers_of_Wounds_quest',note:delivered+'/6 entregas confirmadas · '+deaths+' pacientes fallecidos confirmados. El objetivo de salvar a todos ya no es posible si ha muerto alguno.'});
+ add('gemino','Gémino · aceite y sepulcro',[
+  step('Hablar con Gémino',f('GEMINO_FIRST_CONVERSATION_DONE')),
+  step('Llenar el dedal de aceite',has('QI57')||f('GEMINO_QI57_OWNED')===true),
+  step('Devolver el aceite y recibir Oliva Congelada',any(has('RB10'),f('GEMINO_RB10_REWARD'))),
+  step('Abrir el sepulcro',f('GEMINO_TOMB_OPEN')),
+  step('Recoger Saeta Dolorosa',has('PR04'))
+ ],carrying('QI57')?'Lleva el dedal lleno a Gémino, en Donde se Marchitan los Olivos.':has('RB10')?'Busca el sepulcro de Engracia. Si la ruta de Gémino se cerró, puedes entrar por la caída con el Lienzo de Hilo de Oro.':'Habla con Gémino y lleva su dedal a la fuente de aceite del Convento de la Faz Denegrida.',{done:has('PR04'),started:any(f('GEMINO_FIRST_CONVERSATION_DONE'),has('QI59'),has('QI57')),alternative:f('GEMINO_FROZEN')===true&&!has('RB10'),url:'Gemino',note:'La recompensa de la entrega y la apertura del sepulcro se comprueban por separado.'});
+ const cleofasDead=f('CLEOFAS_DEAD')===true,joined=f('CLEOFAS_JOINED_ORDER')===true;
+ add('cleofas','Cleofás y Socorro',[
+  step('Conocer a Cleofás en Madre de Madres',f('PENITENT_MET_CLEOFAS')),
+  step('Ofrecer las tres marcas a Socorro',f('SOCORRO_STATE_GONE')===true&&f('SOCORRO_STATE_KILLED')===false?true:f('SOCORRO_STATE_GONE')),
+  step('Obtener el Cordón de la Verdadera Sepultura',has('QI01')||joined),
+  step('Reconducir a Cleofás a Albero',joined),
+  step('Recoger Tiento a tus Cabellos Espinados',has('PR11'))
+ ],cleofasDead?'Busca la recompensa de Cleofás en su cadáver, al fondo de Patio de los Pasos Silenciosos. Su regreso a la orden ya no es posible.':joined?'Habla con Cleofás en la iglesia de Albero para recibir su rezo.':f('SOCORRO_STATE_GONE')===true?(carrying('QI01')?'Lleva el cordón a Cleofás en Azoteas de la Archicatedral antes de hablar con él al borde del precipicio.':'Pide el cordón a Lvdovico en la iglesia de Albero antes de continuar con Cleofás.'):'Reúne las tres Marcas del Refugio en los combates cerrados de Azoteas y entrégalas a Socorro. Conserva el cordón para Cleofás.',{done:has('PR11'),started:f('PENITENT_MET_CLEOFAS'),alternative:cleofasDead||f('SOCORRO_STATE_KILLED')===true,url:'Lady_of_the_Perpetual_Agony_quest',note:'Una ofrenda parcial no identifica qué marca se entregó: no se asigna a un objeto concreto sin su evento o registro.'});
+ add('tentudia','Lvdovico · restos de Tentudía',['QI06','QI07','QI08'].map(id=>step('Recoger '+rows.get(id)?.name,has(id))).concat(step('Recibir Debla de las Luces',has('PR03'))),
+  'Lleva los restos que tengas a la ventana de la iglesia de Albero. Busca los pendientes en Donde se Marchitan los Olivos, Yermo de las Iglesias Enterradas y Montañas del Ocaso Perpetuo.',{done:has('PR03'),started:any(...['QI06','QI07','QI08'].map(has)),url:'True_Shrine_quest',note:'Recogida y entrega son pasos distintos; tener el rezo confirma el final.'});
+ const challenges=[1,2,3,4,5].map(n=>step('Completar el desafío de espejo '+n,f('MIRIAM_CHALLENGE_'+n)));
+ add('miriam','Miriam · espejos',challenges.concat(step('Recibir el rezo de Miriam',has('PR202'))),
+  challenges.every(s=>s.value===true)?'Vuelve a Miriam en Madre de Madres para cobrar su recompensa.':'Completa los desafíos de espejo pendientes y regresa a Miriam en Madre de Madres.',{done:has('PR202'),started:any(f('MIRIAM_FIRSTENCOUNTER_DONE'),events.IsMiriamQuestStarted===true),url:'Miriam',note:challenges.filter(s=>s.value===true).length+'/5 desafíos confirmados; terminar las pruebas no equivale a cobrar el rezo.'});
+ add('jocinero','Jocinero · querubines',[
+  step('Rescatar 20 querubines',analysis.rescued>=20?true:analysis.cherubsKnown?false:null),
+  step('Recibir el Lienzo de Hilo de Oro',has('RE05')),
+  step('Rescatar los 38 querubines',analysis.rescued===38?true:analysis.cherubsKnown?false:null),
+  step('Recibir la recompensa de los 38',has('PR05'))
+ ],'Habla con Jocinero en Lienzos Durmientes después de alcanzar 20 y 38 querubines.',{done:has('PR05'),started:analysis.rescued>0,url:'Jocinero',note:analysis.rescued+' rescates confirmados. Si faltan eventos no se presupone el total.'});
+ add('diosdado','Diosdado · ruido y puerta secreta',[
+  step('Recibir la Rueda del Joven Alba',has('RB203')),
+  step('Obtener la Llave de Madera Retorcida de Esdras',has('QI204')||f('SERENO_DOOR_REVEALED')===true),
+  step('Entregar la llave y abrir la puerta oculta',any(f('SERENO_DOOR_REVEALED'),f('SERENO_DLC2QUEST_FINISHED')))
+ ],has('RB203')?'Consigue de Esdras la llave de madera y entrégala a Diosdado en Biblioteca de las Palabras Negadas.':'Resuelve el ruido del fantasma en Biblioteca de las Palabras Negadas y vuelve a Diosdado.',{done:any(f('SERENO_DOOR_REVEALED'),f('SERENO_DLC2QUEST_FINISHED')),started:any(f('SERENO_FIRSTCONVERSATION_DONE'),has('RB203')),url:'Diosdado'});
+ const upgrades=[1,2,3,4].filter(n=>f('NACIMIENTO_OFFERING_'+n)===true).length+(f('NACIMIENTO_OFFERING_ALL')===true?1:0);
+ add('nacimiento','Nacimiento · mejoras de matraces',[1,2,3,4,5].map(n=>step('Realizar la mejora '+n,n===5?f('NACIMIENTO_OFFERING_ALL'):f('NACIMIENTO_OFFERING_'+n))),
+  'Lleva un Azogue, lágrimas suficientes y un matraz a Nacimiento, bajo Albero. Cada mejora consume un matraz y aumenta su curación.',{done:f('NACIMIENTO_OFFERING_ALL'),started:any(f('NACIMIENTO_FIRST_CONVERSATION'),...['QI101','QI102','QI103','QI104','QI105'].map(has)),url:'Nacimiento',note:upgrades+'/5 mejoras confirmadas. El número de mejoras no permite saber qué Azogue concreto se consumió; eso se comprueba por su recogida.'});
+ add('confessors','Confesores · desafíos de culpa',[1,2,3,4,5,6,7].map(n=>step('Completar la arena del confesor '+n,f('CONFESSOR_'+n+'_ARENACOMPLETED'))),
+  'Transforma la Cuenta Inmaculada en Peso de la Verdadera Culpa muriendo con ella equipada. Destruye los confesores y entra en cada arena con esa cuenta.',{started:any(...[1,2,3,4,5,6,7].map(n=>f('CONFESSOR_'+n+'_DESTROYED'))),done:all(...[1,2,3,4,5,6,7].map(n=>f('CONFESSOR_'+n+'_ARENACOMPLETED'))),url:'Weight_of_True_Guilt',note:'Una estatua destruida no demuestra que su arena esté completada.'});
+ add('eventide','Heridas del Ocaso · ruta del final C',[
+  step('Recibir el Escapulario Incompleto',has('QI203')),
+  step('Evitar el combate de Esdras',f('D08Z01S01_BOSSDEAD')===true?false:all(f('PONTIFF_BRIDGE_EVENT'),has('QI203'))),
+  step('Abrir la puerta del Traidor con Diosdado',any(f('SERENO_DOOR_REVEALED'),f('SERENO_DLC2QUEST_FINISHED'))),
+  step('Recuperar ambos ojos',all(has('QI201'),has('QI202'))),
+  step('Recibir el Corazón Apodíctico',has('HE201')),
+  step('Liberar a Crisanta con el corazón equipado',f('CRISANTA_LIBERATED')),
+  step('Hablar con Crisanta en la Hermandad',f('CRISANTA_HIGHWILLS'))
+ ],f('CRISANTA_LIBERATED')===true?'Habla con Crisanta en la Hermandad y completa también los desafíos de los confesores antes del tramo final.':has('HE201')?'Equipa el Corazón Apodíctico antes de enfrentarte a Crisanta.':any(f('SERENO_DOOR_REVEALED'),f('SERENO_DLC2QUEST_FINISHED'))===true?'Recupera los ojos de Isidora y Sierpes y entrégalos al Traidor.':'Consigue el Escapulario Incompleto antes del combate de Esdras. Después habla con él en la Hermandad y lleva su llave a Diosdado.',{done:all(f('CRISANTA_LIBERATED'),f('CRISANTA_HIGHWILLS')),started:any(has('QI203'),has('QI204'),has('HE201')),lost:f('D08Z01S01_BOSSDEAD')===true||f('D06Z01S25_BOSSDEAD')===true&&f('CRISANTA_LIBERATED')===false,url:'Wounds_of_Eventide_quest',note:'Este estado describe la preparación de la ruta; no afirma que ya hayas visto el final C.'});
+ const chaliceDone=f('D01Z05S23_CHALICEPUZZLE');
+ add('chalice','Cáliz de Versos Invertidos',[
+  step('Recoger el cáliz',has('QI75')),
+  step('Derrotar un Sepulcro Insomne para el cáliz',chaliceDone===true?true:f('ISABEL_CHALICE_DEAD')),
+  step('Derrotar un Phalaris para el cáliz',chaliceDone===true?true:f('ROLLER_CHALICE_DEAD')),
+  step('Derrotar un Lionheart para el cáliz',chaliceDone===true?true:f('LIONHEAD_CHALICE_DEAD')),
+  step('Devolver el cáliz lleno y abrir el altar',chaliceDone)
+ ],carrying('QI77')?'Vuelve con el cáliz lleno a su pedestal de Aljibe Profanado. No mueras ni uses teletransporte.':'Recoge el cáliz de Aljibe Profanado y derrota a sus tres enemigos marcados sin morir ni teletransportarte. Después vuelve al pedestal.',{done:chaliceDone,started:any(has('QI75'),has('QI76'),has('QI77')),url:'Chalice_of_Inverted_Verses',note:'Las muertes del cáliz indican la carga actual; morir o teletransportarse la vacía. Completar el altar confirma toda la misión.'});
+ return quests;
+}

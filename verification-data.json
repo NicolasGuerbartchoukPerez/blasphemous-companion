@@ -1,0 +1,779 @@
+{
+  "version": "PC DLC3",
+  "actors": [
+    {
+      "id": "QI44",
+      "room": "D03Z03S02",
+      "guid": "bc75324e-991c-4e75-993e-8c034bd2d6da",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO12",
+      "room": "D03Z03S06",
+      "guid": "17410aaa-b4cd-420c-be34-37115d5ba5da",
+      "field": "Consumed"
+    },
+    {
+      "id": "RE07",
+      "room": "D03Z03S06",
+      "guid": "abe4d306-a1ae-4a6b-a87f-24457bbcc701",
+      "field": "AlreadyUsed"
+    },
+    {
+      "id": "QI10",
+      "room": "D03Z03S08",
+      "guid": "a608e5ed-71a0-48a0-abd0-83f8690d62aa",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB07",
+      "room": "D01Z01S02",
+      "guid": "9082d3bd-0568-4908-9e5f-00044182cbc4",
+      "field": "Consumed"
+    },
+    {
+      "id": "PR14",
+      "room": "D01Z01S02",
+      "guid": "5710974d-771c-4907-8f1b-b318516ec0db",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO04",
+      "room": "D01Z01S03",
+      "guid": "e21c696e-61f5-4ef2-808a-cd0ccf852c0c",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI55",
+      "room": "D01Z01S03",
+      "guid": "5082226e-fcc9-4d90-bed0-9f6d4775fd75",
+      "field": "AlreadyUsed"
+    },
+    {
+      "id": "RB01",
+      "room": "D01Z02S02",
+      "guid": "d402af99-cf62-4c4f-bc37-9a7d6f860a15",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB04",
+      "room": "D01Z03S01",
+      "guid": "08b24276-55e8-414c-9ca7-55490a87fcc0",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO36",
+      "room": "D01Z03S03",
+      "guid": "75914932-821e-402a-88ec-1209458f3f4b",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO14",
+      "room": "D01Z03S02",
+      "guid": "4693a90e-fc42-4e0b-97b6-fa0f099fba03",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB204",
+      "room": "D17Z01S01",
+      "guid": "98eafe95-57de-4d04-b28e-1219e7ef39e8",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI19",
+      "room": "D03Z02S06",
+      "guid": "90071382-6837-43d4-af42-dcd1c02a3ddf",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO07",
+      "room": "D03Z02S07",
+      "guid": "3d2700bc-a988-498c-ac67-7506cf125cd7",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI41",
+      "room": "D03Z02S08",
+      "guid": "bc323483-9713-4464-b026-3d54a1fa21f6",
+      "field": "Consumed"
+    },
+    {
+      "id": "HE06",
+      "room": "D03Z02S11",
+      "guid": "4429d84d-6db2-48ad-a203-35bcb556599a",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI52",
+      "room": "D03Z02S12",
+      "guid": "068bf48f-48e7-4c15-8e8c-7719368b2bbd",
+      "field": "AlreadyUsed"
+    },
+    {
+      "id": "RB28",
+      "room": "D03Z02S13",
+      "guid": "050edbc8-6489-4f05-a307-6f2b94a2b6b6",
+      "field": "Consumed"
+    },
+    {
+      "id": "PR10",
+      "room": "D03Z02S01",
+      "guid": "7455514c-c4ae-4429-97cf-a4d8c8c74770",
+      "field": "AlreadyUsed"
+    },
+    {
+      "id": "CO08",
+      "room": "D03Z02S01",
+      "guid": "af613abd-4bdf-463c-8fd6-1474e96672dc",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI63",
+      "room": "D03Z01S04",
+      "guid": "e4a343fd-16b1-4a0f-9a19-8a6e7a138a68",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI47",
+      "room": "D03Z01S03",
+      "guid": "ff8ff2a9-b4b2-48c9-a7a5-ea0b08d6c1eb",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO33",
+      "room": "D03Z02S04",
+      "guid": "4c613f66-dd96-4da7-afaf-f52b92527980",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO13",
+      "room": "D03Z01S01",
+      "guid": "184f2d41-e6dc-48a7-9a0d-fd31f81e1196",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI06",
+      "room": "D01Z03S05",
+      "guid": "cad13f65-1ca8-48df-ada0-e146fd4d25c7",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO30",
+      "room": "D01Z04S05",
+      "guid": "e882ccea-f807-4c7a-a7ee-49e7264a9395",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO03",
+      "room": "D01Z04S06",
+      "guid": "6983b8ee-3bec-4bbd-9d3e-e8011218de5f",
+      "field": "Consumed"
+    },
+    {
+      "id": "PR01",
+      "room": "D01Z04S07",
+      "guid": "a26f6067-cf09-4019-80ed-2741cb89de4e",
+      "field": "AlreadyUsed"
+    },
+    {
+      "id": "RB17",
+      "room": "D01Z04S08",
+      "guid": "994d60f7-545b-4986-ba6b-546db9483c5f",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI48",
+      "room": "D01Z04S11",
+      "guid": "83d661e0-0523-4dee-8302-aab6da79b6ee",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO21",
+      "room": "D01Z04S13",
+      "guid": "965c7ae5-3149-409a-a9e0-bcf8c9592524",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO38",
+      "room": "D01Z04S14",
+      "guid": "b6c775dc-e630-4521-b87f-d6a717bb4695",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB42",
+      "room": "D17Z01S02",
+      "guid": "9f0c2ed7-5d8c-4fe4-a234-c5e8aba4339f",
+      "field": "AlreadyUsed"
+    },
+    {
+      "id": "PR203",
+      "room": "D17Z01S14",
+      "guid": "98eafe95-57de-4d04-b28e-1219e7ef39e8",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI67",
+      "room": "D01Z05S05",
+      "guid": "b94e8f00-74c9-42c8-8fcf-cba780269b36",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO09",
+      "room": "D01Z05S05",
+      "guid": "00ff856c-f1ce-4dc1-8c1d-fe8f1fc3bda8",
+      "field": "Consumed"
+    },
+    {
+      "id": "PR16",
+      "room": "D01Z05S06",
+      "guid": "cbb342e7-3c07-4226-abc2-d8e75b9c4ce8",
+      "field": "AlreadyUsed"
+    },
+    {
+      "id": "QI12",
+      "room": "D01Z05S08",
+      "guid": "7f7de558-3e8b-415e-a099-51dd2e95435b",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI45",
+      "room": "D01Z05S11",
+      "guid": "8ec65451-7b3c-4854-be2b-cb87b7dc0e88",
+      "field": "AlreadyUsed"
+    },
+    {
+      "id": "CO41",
+      "room": "D01Z05S15",
+      "guid": "290fe407-ed2b-4299-be73-f15bb79a18d8",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO32",
+      "room": "D01Z05S17",
+      "guid": "ae6ec466-5f49-4406-9090-af5cc3e053ab",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB104",
+      "room": "D01BZ04S01",
+      "guid": "98eafe95-57de-4d04-b28e-1219e7ef39e8",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB105",
+      "room": "D01BZ04S01",
+      "guid": "57269b9b-f3fd-4f2b-be81-f7b3d72028e4",
+      "field": "Consumed"
+    },
+    {
+      "id": "RE01",
+      "room": "D17BZ01S01",
+      "guid": "635603b6-07d5-471d-a49f-51c558d89362",
+      "field": "AlreadyUsed"
+    },
+    {
+      "id": "CO17",
+      "room": "D04Z02S02",
+      "guid": "5c850694-bf0c-4704-b3c1-76307746ae55",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI08",
+      "room": "D01Z02S03",
+      "guid": "5e4fe0e6-3928-4183-b0e3-da32ad4a769e",
+      "field": "AlreadyUsed"
+    },
+    {
+      "id": "QI07",
+      "room": "D01Z02S03",
+      "guid": "bf909cdd-b671-4a70-900b-20a802d59d81",
+      "field": "AlreadyUsed"
+    },
+    {
+      "id": "QI06",
+      "room": "D01Z02S03",
+      "guid": "7455514c-c4ae-4429-97cf-a4d8c8c74770",
+      "field": "AlreadyUsed"
+    },
+    {
+      "id": "CO43",
+      "room": "D01Z02S04",
+      "guid": "fd9a8f43-cb35-4b4e-bc7b-27af46e5ced4",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO16",
+      "room": "D01Z02S05",
+      "guid": "509072a9-0d58-4bcb-a025-3dadad6325e4",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI64",
+      "room": "D05Z02S02",
+      "guid": "00bbf955-7b39-4770-a565-e5c8c2cf0823",
+      "field": "Consumed"
+    },
+    {
+      "id": "HE07",
+      "room": "D05Z02S08",
+      "guid": "b10e3250-2940-48ac-a9bf-9eac2598bf87",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO31",
+      "room": "D05Z02S11",
+      "guid": "b2cdc579-6bac-4431-a25f-740cb92b46f9",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO05",
+      "room": "D02Z03S03",
+      "guid": "999d9b4e-f9f5-449e-9f09-d32fb3597f7b",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB08",
+      "room": "D02Z03S05",
+      "guid": "2348a9a4-0a18-4a9d-85f9-b20c14c0136f",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO15",
+      "room": "D02Z03S07",
+      "guid": "880c396a-c7a2-481f-8994-9efdca134a85",
+      "field": "Consumed"
+    },
+    {
+      "id": "HE03",
+      "room": "D02Z03S12",
+      "guid": "d4c2b23f-f2eb-4eed-a8fc-61a675aead3c",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB107",
+      "room": "D02Z03S23",
+      "guid": "98eafe95-57de-4d04-b28e-1219e7ef39e8",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO34",
+      "room": "D04Z02S06",
+      "guid": "5a97c5b6-8ad1-4151-99db-bdec0b330a52",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB33",
+      "room": "D04Z02S07",
+      "guid": "a0b89188-37a9-4f20-b765-6696ae795a74",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO35",
+      "room": "D04Z02S07",
+      "guid": "739da3a9-bc7c-469c-8818-33ebfca6a91a",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO20",
+      "room": "D04Z02S11",
+      "guid": "0bb0bba0-506d-4899-8160-cd8a2c4b6548",
+      "field": "Consumed"
+    },
+    {
+      "id": "RE03",
+      "room": "D04BZ02S01",
+      "guid": "8a1c64f0-507b-42b5-9eaf-9480932f829f",
+      "field": "AlreadyUsed"
+    },
+    {
+      "id": "CO11",
+      "room": "D02Z01S01",
+      "guid": "07cbe4db-53be-463d-b314-7396fcf46bcf",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI20",
+      "room": "D02Z01S04",
+      "guid": "98eafe95-57de-4d04-b28e-1219e7ef39e8",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI07",
+      "room": "D02Z01S05",
+      "guid": "aff230c0-eaa1-4401-b248-baf70eb9ce44",
+      "field": "Consumed"
+    },
+    {
+      "id": "PR04",
+      "room": "D02Z01S08",
+      "guid": "7b1d0aa4-2a9a-4141-bee1-b5b760fea616",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI08",
+      "room": "D02Z02S03",
+      "guid": "309bceef-8798-48a3-ad98-650f613d456f",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI46",
+      "room": "D02Z02S03",
+      "guid": "f9b2c8a6-6c43-4966-b876-2d93bd0ab095",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO29",
+      "room": "D02Z02S03",
+      "guid": "611b9d1a-b37a-415d-bce6-e7cadc89c4aa",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO01",
+      "room": "D02Z02S04",
+      "guid": "cbde2d24-61c9-458e-8035-643c00a6d376",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB32",
+      "room": "D02Z02S04",
+      "guid": "9dcb9501-a474-4d41-96c8-a3875ce8a638",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB15",
+      "room": "D02Z02S05",
+      "guid": "c5d58f0c-b905-4278-abd6-92a5a22ec7b9",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO42",
+      "room": "D02Z02S08",
+      "guid": "ec75430b-dc1f-4ca0-934c-622dbe56cc13",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO23",
+      "room": "D04Z01S01",
+      "guid": "ff8d5a0e-fc5c-476c-b095-40cbd2a40130",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB14",
+      "room": "D04Z01S02",
+      "guid": "1591d68c-60ed-468f-bfa7-9ac75806f52c",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO39",
+      "room": "D04Z01S03",
+      "guid": "f054b407-2cdb-4e7b-b031-f6a2020d8f5e",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI37",
+      "room": "D04Z01S03",
+      "guid": "a6bfeaa0-a546-4ad9-8d98-b053006f0203",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI102",
+      "room": "D04Z01S06",
+      "guid": "98eafe95-57de-4d04-b28e-1219e7ef39e8",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO18",
+      "room": "D05Z01S04",
+      "guid": "7c70e5f2-b811-4948-abfb-3b9765505989",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI50",
+      "room": "D05Z01S05",
+      "guid": "dac0e740-251f-40b8-962b-4a1aaac12787",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO22",
+      "room": "D05Z01S05",
+      "guid": "4dbfc4e6-d979-47ce-b4cf-927fbca74c87",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB31",
+      "room": "D05Z01S06",
+      "guid": "7a1ab0fd-972f-4d54-b44c-fdce0ce1a1d0",
+      "field": "AlreadyUsed"
+    },
+    {
+      "id": "PR07",
+      "room": "D05Z01S10",
+      "guid": "57b6fe51-00be-4252-9df7-49a256adb07c",
+      "field": "AlreadyUsed"
+    },
+    {
+      "id": "RB30",
+      "room": "D05Z01S11",
+      "guid": "e2f6f817-8168-4683-83d3-d82b7b93307b",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO28",
+      "room": "D05Z01S11",
+      "guid": "5380262d-3478-401a-a326-665f35ee7e30",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI104",
+      "room": "D05Z02S15",
+      "guid": "98eafe95-57de-4d04-b28e-1219e7ef39e8",
+      "field": "Consumed"
+    },
+    {
+      "id": "PR12",
+      "room": "D06Z01S12",
+      "guid": "91f372e4-1028-4299-919a-b42aceea01f4",
+      "field": "AlreadyUsed"
+    },
+    {
+      "id": "CO06",
+      "room": "D06Z01S12",
+      "guid": "2cbb1ea6-4841-4d4d-b913-47ff3530f27f",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO40",
+      "room": "D06Z01S15",
+      "guid": "30dbe500-8629-4fe0-97e1-36e9b838c818",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI105",
+      "room": "D08Z03S01",
+      "guid": "98eafe95-57de-4d04-b28e-1219e7ef39e8",
+      "field": "Consumed"
+    },
+    {
+      "id": "HE101",
+      "room": "D08Z01S02",
+      "guid": "69a9b9c9-d04e-4d1a-a0d0-32298106834f",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB11",
+      "room": "D09Z01S02",
+      "guid": "dfe967b5-8601-4094-a0de-6586001f3148",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI51",
+      "room": "D09Z01S02",
+      "guid": "84665e48-c2d1-46df-af15-c07c3ee50d89",
+      "field": "AlreadyUsed"
+    },
+    {
+      "id": "QI72",
+      "room": "D09Z01S08",
+      "guid": "27ac21b5-d35f-40ab-bd59-05c3b2d6cef0",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB16",
+      "room": "D09Z01S09",
+      "guid": "a768ea2e-7853-4b73-8ca2-0982e70d896f",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI70",
+      "room": "D09Z01S10",
+      "guid": "1ad69347-4c28-402c-b1a0-575089e5fa5f",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO27",
+      "room": "D09Z01S10",
+      "guid": "057bc369-c0a1-4797-abb2-4e49210328a5",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB13",
+      "room": "D03Z01S06",
+      "guid": "98eafe95-57de-4d04-b28e-1219e7ef39e8",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO19",
+      "room": "D02Z01S06",
+      "guid": "75fba863-7b32-4dd0-8853-a7726f55b058",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO25",
+      "room": "D17BZ02S01",
+      "guid": "0f11c3cc-867e-47c3-a97c-983f2ef0b9ac",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO24",
+      "room": "D09BZ01S01",
+      "guid": "1ea60cae-692c-4b90-831c-3cd581ca9162",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO37",
+      "room": "D09BZ01S01",
+      "guid": "402c16b9-d157-4f7f-9ab7-7dd4dd4e01a3",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO26",
+      "room": "D09BZ01S01",
+      "guid": "8cd5b42a-8e8c-4cf5-9097-e8cc89a8daa8",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO02",
+      "room": "D09BZ01S01",
+      "guid": "9ef658de-65d3-4075-b8cf-f5c68ecaea0d",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO10",
+      "room": "D09BZ01S01",
+      "guid": "e88bf360-3908-4b2d-8e74-54dce9dc9aa1",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI69",
+      "room": "D09BZ01S01",
+      "guid": "898ebf47-1ce6-4528-941a-54342e9a45ca",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI65",
+      "room": "D01Z02S07",
+      "guid": "a96c43f4-fc8e-4696-ad8d-1a6e8d334571",
+      "field": "Consumed"
+    },
+    {
+      "id": "HE02",
+      "room": "D01Z03S07",
+      "guid": "d5d6022e-7bb2-44f9-bd7e-950d4044d8a1",
+      "field": "Consumed"
+    },
+    {
+      "id": "HE01",
+      "room": "D04Z02S16",
+      "guid": "791eeb94-ede6-4b67-a906-7437ffed3f2e",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB38",
+      "room": "D02Z02S06",
+      "guid": "8bd708a2-4eb7-484f-9f64-89cf362e76ed",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB24",
+      "room": "D02Z03S17",
+      "guid": "98eafe95-57de-4d04-b28e-1219e7ef39e8",
+      "field": "Consumed"
+    },
+    {
+      "id": "PR15",
+      "room": "D05Z01S18",
+      "guid": "5f451460-a4de-4781-8b16-b9c3fd2bf5e5",
+      "field": "AlreadyUsed"
+    },
+    {
+      "id": "HE05",
+      "room": "D02Z01S09",
+      "guid": "9770a9bd-f3db-4a6a-9858-a23d6c95e44b",
+      "field": "Consumed"
+    },
+    {
+      "id": "HE04",
+      "room": "D06Z01S22",
+      "guid": "c0619612-370d-4d55-b55f-0a2c82af05d3",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB03",
+      "room": "D01BZ05S01",
+      "guid": "aa834763-1d11-4ea9-a9ca-6892b8e36bdc",
+      "field": "Consumed"
+    },
+    {
+      "id": "HE11",
+      "room": "D02Z02S13",
+      "guid": "39f1e0d7-26de-4937-a197-088fa1555e5b",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI53",
+      "room": "D02Z02S11",
+      "guid": "475f05b8-1ad8-43f8-92f0-a18b17677f5a",
+      "field": "Consumed"
+    },
+    {
+      "id": "CO44",
+      "room": "D01Z05S25",
+      "guid": "f9a83a8a-700d-4d2e-9870-d2a2d0577e02",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI103",
+      "room": "D03Z02S15",
+      "guid": "98eafe95-57de-4d04-b28e-1219e7ef39e8",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB108",
+      "room": "D20Z01S02",
+      "guid": "98eafe95-57de-4d04-b28e-1219e7ef39e8",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB202",
+      "room": "D20Z01S09",
+      "guid": "98eafe95-57de-4d04-b28e-1219e7ef39e8",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB201",
+      "room": "D20Z02S02",
+      "guid": "7455514c-c4ae-4429-97cf-a4d8c8c74770",
+      "field": "AlreadyUsed"
+    },
+    {
+      "id": "PR202",
+      "room": "D20Z02S11",
+      "guid": "bf22d5e0-a884-4686-894e-4c48a50d0af1",
+      "field": "AlreadyUsed"
+    },
+    {
+      "id": "QI101",
+      "room": "D01Z06S01",
+      "guid": "98eafe95-57de-4d04-b28e-1219e7ef39e8",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB106",
+      "room": "D02Z02S14",
+      "guid": "98eafe95-57de-4d04-b28e-1219e7ef39e8",
+      "field": "Consumed"
+    },
+    {
+      "id": "RB301",
+      "room": "D05BZ01S01",
+      "guid": "98eafe95-57de-4d04-b28e-1219e7ef39e8",
+      "field": "Consumed"
+    },
+    {
+      "id": "QI201",
+      "room": "D01BZ08S01",
+      "guid": "98eafe95-57de-4d04-b28e-1219e7ef39e8",
+      "field": "Consumed"
+    }
+  ]
+}

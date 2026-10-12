@@ -47,6 +47,36 @@ namespace CvstodiaPosition {
   int Offset(long obj,string name){long klass=m.Ptr(m.Ptr(obj));return Fields(klass)[name];}
   long Field(long obj,string name){return m.Ptr(obj+Offset(obj,name));}
   long Static(string name){long runtime=m.Ptr(core+248+shift),vtable=m.Ptr(runtime+8),data=m.Ptr(vtable+24);return m.Ptr(data+Fields(core)[name]);}
+  static string Quote(string s){var b=new StringBuilder("\"");foreach(char c in s){if(c=='\"'||c=='\\')b.Append('\\').Append(c);else if(c<32)b.Append("\\u").Append(((int)c).ToString("x4"));else b.Append(c);}return b.Append('"').ToString();}
+  bool Bool(long obj,string name){return m.Read(obj+Offset(obj,name),1)[0]!=0;}
+  string StringField(long obj,string name){long p=Field(obj,name);return p==0?"":m.ManagedText(p);}
+  string FloatField(long obj,string name){float n=BitConverter.ToSingle(m.Read(obj+Offset(obj,name),4),0);if(float.IsNaN(n)||float.IsInfinity(n))throw new IOException("Número incompatible");return n.ToString("R",System.Globalization.CultureInfo.InvariantCulture);}
+  List<long> List(long list){int version=m.Int(list+Offset(list,"_version"));long array=Field(list,"_items");int n=m.Int(list+Offset(list,"_size"));if(n<0||n>512)throw new IOException("Lista incompatible");var result=Array(array,n);if(version!=m.Int(list+Offset(list,"_version")))throw new IOException("Inventario actualizándose");return result;}
+  List<long> Array(long array,int size=-1){var r=new List<long>();if(array==0)return r;int n=m.Int(array+24);if(n<0||n>10000||size>n)throw new IOException("Array incompatible");if(size>=0)n=size;for(int i=0;i<n;i++)r.Add(m.Ptr(array+32+8*i));return r;}
+  Dictionary<string,long> Dictionary(long obj){
+   int version=m.Int(obj+Offset(obj,"generation")),n=m.Int(obj+Offset(obj,"touchedSlots"));if(n<0||n>10000)throw new IOException("Diccionario incompatible");
+   long keys=Field(obj,"keySlots"),values=Field(obj,"valueSlots"),links=Field(obj,"linkSlots");if(n>m.Int(keys+24)||n>m.Int(values+24)||n>m.Int(links+24))throw new IOException("Capacidad incompatible");var result=new Dictionary<string,long>();
+   for(int i=0;i<n;i++){if((m.Int(links+32+8*i)&unchecked((int)0x80000000))==0)continue;long key=m.Ptr(keys+32+8*i);if(key!=0)result[m.ManagedText(key)]=m.Ptr(values+32+8*i);}
+   if(version!=m.Int(obj+Offset(obj,"generation")))throw new IOException("El juego está actualizando sus eventos");return result;
+  }
+  string Inventory(long obj,bool objects){var result=new List<string>();foreach(string name in new[]{"ownRellics","ownBeads","ownQuestItems","ownPrayers","ownCollectibleItems","ownSwords","wearRellics","wearBeads","wearPrayers","wearSwords"}){
+   long container=Field(obj,name);var ids=new List<string>();foreach(long p in name.StartsWith("wear")?Array(container):List(container))ids.Add(Quote(p==0?"":objects?StringField(p,"id"):m.ManagedText(p)));
+   result.Add(Quote(name)+":["+string.Join(",",ids.ToArray())+"]");
+  }return "{"+string.Join(",",result.ToArray())+"}";}
+  public string State(){
+   long logic=Static("<Logic>k__BackingField");int state=m.Int(logic+Offset(logic,"<CurrentState>k__BackingField"));long player=Field(logic,"<Penitent>k__BackingField");
+   if(state==0||state==2||player==0||m.Ptr(player+16)==0)return StateStatus("waiting");
+   long level=Static("<LevelManager>k__BackingField");if(Bool(level,"<InsideChangeLevel>k__BackingField"))return StateStatus("loading");
+   long persistence=Static("<Persistence>k__BackingField");if(Bool(persistence,"InsideLoadProcess")||Bool(persistence,"InsideSaveProcess")||Bool(persistence,"InsideLoadLevelProcess"))return StateStatus("loading");
+   long klass=m.Ptr(m.Ptr(persistence)),runtime=m.Ptr(klass+248+shift),vtable=m.Ptr(runtime+8),staticData=m.Ptr(vtable+24);int slot=m.Int(staticData+Fields(klass)["CurrentSaveSlot"]);if(slot<0||slot>2)throw new IOException("Ranura incompatible");
+   long snapshot=Field(persistence,"currentSnapshot");var common=Dictionary(Field(snapshot,"commonElements"));
+   long savedInventory=common["ID_INVENTORY"],persistent=common["ID_PERSISTENT_MANAGER"],checkpoint=common["ID_CHECKPOINT_MANAGER"];
+   long events=Static("<Events>k__BackingField"),inventory=Static("<InventoryManager>k__BackingField"),flagDictionary=Field(events,"flags");int flagVersion=m.Int(flagDictionary+Offset(flagDictionary,"generation"));var flags=new List<string>();foreach(var flag in Dictionary(flagDictionary))flags.Add(Quote(flag.Key)+":"+(Bool(flag.Value,"value")?"true":"false"));
+   string anchor="{\"Time\":"+FloatField(persistent,"Time")+",\"IsNewGamePlus\":"+(Bool(persistent,"IsNewGamePlus")?"true":"false")+",\"checkpoint\":"+Quote(StringField(checkpoint,"activePrieDieuScene"))+",\"inventory\":"+Inventory(savedInventory,false)+"}";
+   string liveInventory=Inventory(inventory,true);if(snapshot!=Field(persistence,"currentSnapshot")||Bool(persistence,"InsideSaveProcess")||Bool(persistence,"InsideLoadProcess")||flagVersion!=m.Int(flagDictionary+Offset(flagDictionary,"generation")))return StateStatus("loading");
+   return "{\"protocol\":1,\"kind\":\"blasphemous-state\",\"state\":\"playing\",\"updatedAt\":"+Quote(DateTime.UtcNow.ToString("o"))+",\"slot\":"+slot+",\"pid\":"+m.Process.Id+",\"anchor\":"+anchor+",\"inventory\":"+liveInventory+",\"events\":{\"flags\":{"+string.Join(",",flags.ToArray())+"},\"IsMiriamQuestStarted\":"+(Bool(events,"<IsMiriamQuestStarted>k__BackingField")?"true":"false")+",\"IsMiriamQuestFinished\":"+(Bool(events,"<IsMiriamQuestFinished>k__BackingField")?"true":"false")+"}}";
+  }
+  public static string StateStatus(string state){return "{\"protocol\":1,\"kind\":\"blasphemous-state\",\"state\":"+Quote(state)+",\"updatedAt\":"+Quote(DateTime.UtcNow.ToString("o"))+"}";}
   string Room(long zone){return m.ManagedText(Field(zone,"_district"))+m.ManagedText(Field(zone,"_zone"))+m.ManagedText(Field(zone,"_scene"));}
   void ReadCells(long map){
    long list=Field(map,"Cells"),array=Field(list,"_items");int size=m.Int(list+Offset(list,"_size"));if(size<1||size>20000)throw new IOException("Mapa incompatible");byte[] objects=m.Read(array+32,size*8);var cells=new List<MapCell>();
