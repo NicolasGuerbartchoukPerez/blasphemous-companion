@@ -4,7 +4,7 @@ Herramienta no oficial en español para analizar guardados locales, seguir colec
 
 ## Descargar y usar
 
-1. Descarga **Diario-de-Cvstodia-3.1.1-windows-x64.zip** desde [Releases](https://github.com/NicolasGuerbartchoukPerez/blasphemous-companion/releases/latest). Los archivos «Source code» son para desarrollo.
+1. Descarga **Diario-de-Cvstodia-3.1.2-windows-x64.zip** desde [Releases](https://github.com/NicolasGuerbartchoukPerez/blasphemous-companion/releases/latest). Los archivos «Source code» son para desarrollo.
 2. Descomprime todo el ZIP en una carpeta donde puedas escribir y abre **DiarioDeCvstodia.exe**. Se abre la interfaz en tu navegador, en una dirección `http://127.0.0.1:8765/` (o un puerto próximo si está ocupado).
 3. Pulsa **Cargar partida** y elige tu propio `savegame_0.save`, `savegame_1.save` o `savegame_2.save`. También puedes arrastrarlo sobre la interfaz.
 4. Abre Blasphemous: al cargar una partida real, el lector integrado conecta automáticamente la posición. No necesitas instalar un mod, seleccionar una carpeta `live`, ni instalar Node o Python.

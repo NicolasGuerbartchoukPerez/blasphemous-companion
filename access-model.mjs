@@ -86,7 +86,7 @@ export function accessContext(data,analysis,model,{equipmentOnly=false}={}){
   const room=door.id.split('[')[0];
   if(room==='D08Z01S01'&&flag('PONTIFF_BRIDGE_EVENT')===true)return value(true);
   // Vanilla Diosdado door needs the actual reveal quest; randomizer auto-enables this room.
-  if(door.id==='D05Z01S03[Frontal]'&&flag('SERENO_DOOR_REVEALED')!==true&&flag('SERENO_DLC2QUEST_FINISHED')!==true)return value(flag('SERENO_DOOR_REVEALED'),['Resolver la misión del ruido de Diosdado y entregar la llave de madera']);
+  if(door.id==='D05Z01S03[Frontal]'&&flag('SERENO_DOOR_REVEALED')!==true)return value(has('QI204')&&flag('SERENO_DLC2QUEST_FINISHED')===true?true:flag('SERENO_DOOR_REVEALED'),['Resolver la misión del ruido de Diosdado y entregar la llave de madera']);
   let r=evaluateCondition(parseCondition(door.logic??''),resolve);
   const vf=String(door.visibilityFlags??'');
   const known=reached.has(door.id),required=door.requiredDoors?.some(p=>reached.has(p));

@@ -47,7 +47,7 @@ export function analyzeQuests(data,analysis){
   step('Obtener el Cordón de la Verdadera Sepultura',has('QI01')||joined),
   step('Reconducir a Cleofás a Albero',joined),
   step('Recoger Tiento a tus Cabellos Espinados',has('PR11'))
- ],cleofasDead?'Busca la recompensa de Cleofás en su cadáver, al fondo de Patio de los Pasos Silenciosos. Su regreso a la orden ya no es posible.':joined?'Habla con Cleofás en la iglesia de Albero para recibir su rezo.':f('SOCORRO_STATE_GONE')===true?(carrying('QI01')?'Lleva el cordón a Cleofás en Azoteas de la Archicatedral antes de hablar con él al borde del precipicio.':'Pide el cordón a Lvdovico en la iglesia de Albero antes de continuar con Cleofás.'):'Reúne las tres Marcas del Refugio en los combates cerrados de Azoteas y entrégalas a Socorro. Conserva el cordón para Cleofás.',{done:has('PR11'),started:f('PENITENT_MET_CLEOFAS'),alternative:cleofasDead||f('SOCORRO_STATE_KILLED')===true,url:'Lady_of_the_Perpetual_Agony_quest',note:'Una ofrenda parcial no identifica qué marca se entregó: no se asigna a un objeto concreto sin su evento o registro.'});
+ ],cleofasDead?'Busca la recompensa de Cleofás en su cadáver, al fondo de Patio de los Pasos Silenciosos. Su regreso a la orden ya no es posible.':joined?'Habla con Cleofás en la iglesia de Albero para recibir su rezo.':f('SOCORRO_STATE_GONE')===true?(carrying('QI01')?'Lleva el cordón a Cleofás en Azoteas de la Archicatedral antes de hablar con él al borde del precipicio.':'Pide el cordón a Lvdovico en la iglesia de Albero antes de continuar con Cleofás.'):'Reúne las tres Marcas del Refugio en los combates cerrados de Azoteas y entrégalas a Socorro. Conserva el cordón para Cleofás.',{done:has('PR11'),started:f('PENITENT_MET_CLEOFAS'),alternative:cleofasDead||f('SOCORRO_STATE_KILLED')===true,url:'Lady_of_the_Perpetual_Agony_quest',note:'Una ofrenda parcial solo identifica una marca si todas las restantes siguen en inventario y el conjunto coincide con las entregas registradas.'});
  add('tentudia','Lvdovico · restos de Tentudía',['QI06','QI07','QI08'].map(id=>step('Recoger '+rows.get(id)?.name,has(id))).concat(step('Recibir Debla de las Luces',has('PR03'))),
   'Lleva los restos que tengas a la ventana de la iglesia de Albero. Busca los pendientes en Donde se Marchitan los Olivos, Yermo de las Iglesias Enterradas y Montañas del Ocaso Perpetuo.',{done:has('PR03'),started:any(...['QI06','QI07','QI08'].map(has)),url:'True_Shrine_quest',note:'Recogida y entrega son pasos distintos; tener el rezo confirma el final.'});
  const challenges=[1,2,3,4,5].map(n=>step('Completar el desafío de espejo '+n,f('MIRIAM_CHALLENGE_'+n)));
@@ -60,10 +60,11 @@ export function analyzeQuests(data,analysis){
   step('Recibir la recompensa de los 38',has('PR05'))
  ],'Habla con Jocinero en Lienzos Durmientes después de alcanzar 20 y 38 querubines.',{done:has('PR05'),started:analysis.rescued>0,url:'Jocinero',note:analysis.rescued+' rescates confirmados. Si faltan eventos no se presupone el total.'});
  add('diosdado','Diosdado · ruido y puerta secreta',[
+  step('Resolver el ruido del fantasma',f('SERENO_DLC2QUEST_FINISHED')),
   step('Recibir la Rueda del Joven Alba',has('RB203')),
   step('Obtener la Llave de Madera Retorcida de Esdras',has('QI204')||f('SERENO_DOOR_REVEALED')===true),
-  step('Entregar la llave y abrir la puerta oculta',any(f('SERENO_DOOR_REVEALED'),f('SERENO_DLC2QUEST_FINISHED')))
- ],has('RB203')?'Consigue de Esdras la llave de madera y entrégala a Diosdado en Biblioteca de las Palabras Negadas.':'Resuelve el ruido del fantasma en Biblioteca de las Palabras Negadas y vuelve a Diosdado.',{done:any(f('SERENO_DOOR_REVEALED'),f('SERENO_DLC2QUEST_FINISHED')),started:any(f('SERENO_FIRSTCONVERSATION_DONE'),has('RB203')),url:'Diosdado'});
+  step('Entregar la llave y abrir la puerta oculta',f('SERENO_DOOR_REVEALED'))
+ ],has('RB203')?'Consigue de Esdras la llave de madera y entrégala a Diosdado en Biblioteca de las Palabras Negadas.':'Resuelve el ruido del fantasma en Biblioteca de las Palabras Negadas y vuelve a Diosdado.',{done:f('SERENO_DOOR_REVEALED'),started:any(f('SERENO_FIRSTCONVERSATION_DONE'),has('RB203')),url:'Diosdado',note:'Resolver el ruido y abrir la puerta del Traidor son objetivos distintos. La puerta se confirma por su evento propio.'});
  const upgrades=[1,2,3,4].filter(n=>f('NACIMIENTO_OFFERING_'+n)===true).length+(f('NACIMIENTO_OFFERING_ALL')===true?1:0);
  add('nacimiento','Nacimiento · mejoras de matraces',[1,2,3,4,5].map(n=>step('Realizar la mejora '+n,n===5?f('NACIMIENTO_OFFERING_ALL'):f('NACIMIENTO_OFFERING_'+n))),
   'Lleva un Azogue, lágrimas suficientes y un matraz a Nacimiento, bajo Albero. Cada mejora consume un matraz y aumenta su curación.',{done:f('NACIMIENTO_OFFERING_ALL'),started:any(f('NACIMIENTO_FIRST_CONVERSATION'),...['QI101','QI102','QI103','QI104','QI105'].map(has)),url:'Nacimiento',note:upgrades+'/5 mejoras confirmadas. El número de mejoras no permite saber qué Azogue concreto se consumió; eso se comprueba por su recogida.'});
@@ -72,12 +73,12 @@ export function analyzeQuests(data,analysis){
  add('eventide','Heridas del Ocaso · ruta del final C',[
   step('Recibir el Escapulario Incompleto',has('QI203')),
   step('Evitar el combate de Esdras',f('D08Z01S01_BOSSDEAD')===true?false:all(f('PONTIFF_BRIDGE_EVENT'),has('QI203'))),
-  step('Abrir la puerta del Traidor con Diosdado',any(f('SERENO_DOOR_REVEALED'),f('SERENO_DLC2QUEST_FINISHED'))),
+  step('Abrir la puerta del Traidor con Diosdado',f('SERENO_DOOR_REVEALED')),
   step('Recuperar ambos ojos',all(has('QI201'),has('QI202'))),
   step('Recibir el Corazón Apodíctico',has('HE201')),
   step('Liberar a Crisanta con el corazón equipado',f('CRISANTA_LIBERATED')),
   step('Hablar con Crisanta en la Hermandad',f('CRISANTA_HIGHWILLS'))
- ],f('CRISANTA_LIBERATED')===true?'Habla con Crisanta en la Hermandad y completa también los desafíos de los confesores antes del tramo final.':has('HE201')?'Equipa el Corazón Apodíctico antes de enfrentarte a Crisanta.':any(f('SERENO_DOOR_REVEALED'),f('SERENO_DLC2QUEST_FINISHED'))===true?'Recupera los ojos de Isidora y Sierpes y entrégalos al Traidor.':'Consigue el Escapulario Incompleto antes del combate de Esdras. Después habla con él en la Hermandad y lleva su llave a Diosdado.',{done:all(f('CRISANTA_LIBERATED'),f('CRISANTA_HIGHWILLS')),started:any(has('QI203'),has('QI204'),has('HE201')),lost:f('D08Z01S01_BOSSDEAD')===true||f('D06Z01S25_BOSSDEAD')===true&&f('CRISANTA_LIBERATED')===false,url:'Wounds_of_Eventide_quest',note:'Este estado describe la preparación de la ruta; no afirma que ya hayas visto el final C.'});
+ ],f('CRISANTA_LIBERATED')===true?'Habla con Crisanta en la Hermandad y completa también los desafíos de los confesores antes del tramo final.':has('HE201')?'Equipa el Corazón Apodíctico antes de enfrentarte a Crisanta.':f('SERENO_DOOR_REVEALED')===true?'Recupera los ojos de Isidora y Sierpes y entrégalos al Traidor.':'Consigue el Escapulario Incompleto antes del combate de Esdras. Después habla con él en la Hermandad y lleva su llave a Diosdado.',{done:all(f('CRISANTA_LIBERATED'),f('CRISANTA_HIGHWILLS')),started:any(has('QI203'),has('QI204'),has('HE201')),lost:f('D08Z01S01_BOSSDEAD')===true||f('D06Z01S25_BOSSDEAD')===true&&f('CRISANTA_LIBERATED')===false,url:'Wounds_of_Eventide_quest',note:'Este estado describe la preparación de la ruta; no afirma que ya hayas visto el final C.'});
  const chaliceDone=f('D01Z05S23_CHALICEPUZZLE');
  add('chalice','Cáliz de Versos Invertidos',[
   step('Recoger el cáliz',has('QI75')),

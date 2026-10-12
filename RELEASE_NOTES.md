@@ -1,7 +1,8 @@
-# Diario de Cvstodia 3.1.1
+# Diario de Cvstodia 3.1.2
 
 La posesión de un objeto entregado o transformado ya no depende solo del inventario actual: se contrastan registros individuales de recogida y eventos de misión. Se incorpora lectura en directo del inventario y eventos desde el juego local, vinculada a la ranura y al guardado cargado.
 
+- La misión del ruido de Diosdado se comprueba por separado de la llave y la puerta del Traidor.
 - Verificación por 129 actores de recogida, que cubren 126 identificadores; prueba visible en los detalles del objeto.
 - Reconoce huevos transformados, ofrendas de Altasgracias, dedal, máscaras entregadas, llave de Diosdado, ojos, cáliz y mejoras consumidas cuando existe evidencia.
 - Los detalles de objetos y misiones permanecen abiertos cuando llegan nuevos eventos del juego.

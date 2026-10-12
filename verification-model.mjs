@@ -22,10 +22,15 @@ export function additionalEvidence(data,id,verification){
  if(!ngplus&&id==='QI202'&&flags.D20Z02S08_BOSSDEAD===false&&!own.has(id))return {value:false,kind:'boss',text:'Sierpes aún no ha sido derrotado: no se ha obtenido su ojo.'};
  if(['QI60','QI61','QI62'].includes(id)&&flags.ELEVATOR_FULL_UNLOCKED===true)return {value:true,kind:'delivered',text:'El ascensor completamente desbloqueado confirma la entrega de las tres máscaras.'};
  if(['QI201','QI202'].includes(id)&&(!ngplus&&own.has('HE201')||flags.ABNEGATION_EYES_RETRIEVED===true))return {value:true,kind:'delivered',text:'La entrega de ambos ojos al Traidor está confirmada.'};
- if(id==='QI204'&&(flags.SERENO_DOOR_REVEALED===true||flags.SERENO_DLC2QUEST_FINISHED===true))return {value:true,kind:'delivered',text:'Diosdado completó la apertura de la puerta oculta con esta llave.'};
+ if(id==='QI204'&&flags.SERENO_DOOR_REVEALED===true)return {value:true,kind:'delivered',text:'Diosdado completó la apertura de la puerta oculta con esta llave.'};
  if(id==='QI68'&&(own.has('PR04')||flags.GEMINO_OFFERING_DONE===true))return {value:true,kind:'delivered',text:'La ofrenda del sepulcro o su recompensa confirma que obtuviste y usaste las flores.'};
  const delivery={};
  if(['QI02','QI03','QI04'].includes(id)&&flags.SOCORRO_STATE_GONE===true&&flags.SOCORRO_STATE_KILLED===false)return {value:true,kind:'delivered',text:'Socorro fue liberada mediante las tres marcas: ya las entregaste.'};
+ const marks=['QI02','QI03','QI04'];
+ if(!ngplus&&marks.includes(id)&&!own.has(id)&&flags.SOCORRO_STATE_GONE===false&&flags.SOCORRO_STATE_KILLED===false){
+  const offered=flags.SOCORRO_SECOND_OFFERING===true?2:flags.SOCORRO_FIRST_OFFERING===true&&flags.SOCORRO_SECOND_OFFERING===false?1:0;
+  if(offered>0&&marks.filter(mark=>own.has(mark)).length===3-offered)return {value:true,kind:'delivered',text:'Las ofrendas registradas y las marcas restantes en tu inventario identifican esta marca como ya entregada a Socorro.'};
+ }
  if(['QI06','QI07','QI08'].includes(id)&&flags.LVDOVICO_QUEST_DONE===true)return {value:true,kind:'delivered',text:'La misión de Lvdovico confirma la entrega de los tres restos de Tentudía.'};
  if(delivery[id]&&flags[delivery[id]]===true)return {value:true,kind:'delivered',text:'Un evento de la misión confirma que ya lo entregaste.'};
  return pickupEvidence(data,id,verification);
