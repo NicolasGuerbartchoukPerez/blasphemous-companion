@@ -1,4 +1,4 @@
-param([string]$Python = 'python', [string]$Version = '3.1.2')
+param([string]$Python = 'python', [string]$Version = '3.2.0')
 $ErrorActionPreference = 'Stop'
 $project = Split-Path $PSScriptRoot -Parent
 Set-Location -LiteralPath $project

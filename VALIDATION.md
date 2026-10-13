@@ -1,4 +1,18 @@
-# Validación de la release 3.1.2
+# Validación de la release 3.2.0
+
+Esta release cambia únicamente la web, el modelo de misiones y el servidor de desarrollo. El lector de posición y el lanzador de .NET Framework no se han modificado respecto a 3.1.2, cuya validación en Windows se conserva más abajo.
+
+Comprobaciones realizadas el 14 de octubre de 2026 en Linux (no en Windows):
+
+- 75 pruebas automáticas (48 anteriores y 27 nuevas: modelo de vista de misiones, copia de seguridad y servidor). Las pruebas nuevas se sometieron a mutaciones para confirmar que detectan regresiones.
+- Prueba diferencial del motor y de las misiones contra la versión 3.1.2 con 4500 guardados sintéticos: sin diferencias salvo la prueba «etapa posterior» añadida.
+- Comparación del HTML generado de mapa y lista frente a la compilación anterior tras varias interacciones: idéntico salvo los enlaces nuevos a misiones.
+- Web compilada ejecutada en jsdom (carga, misiones en 10 densidades de guardado, filtros, seguimiento, copia y restauración) y en Chromium real con el servidor local: persistencia tras recargar, teclado, descarga de la copia, 390 px y 1280 px sin desbordamiento horizontal. Sin errores JavaScript.
+- No se ha probado esta release con el juego, el lector integrado ni la política de contenido de otros navegadores. La compilación de Windows la realiza GitHub Actions.
+
+---
+
+## Validación anterior · release 3.1.2
 
 Comprobaciones realizadas el 12 de octubre de 2026 en Windows 11 x64.
 
