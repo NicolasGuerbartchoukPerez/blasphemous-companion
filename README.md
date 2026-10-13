@@ -35,7 +35,8 @@ El importador solo lee la instalación. Los gráficos se conservan localmente y 
 
 - 230 entradas del catálogo: 7 reliquias, 44 huesos, 38 querubines, cuentas, rezos, corazones, objetos de misión y mejoras.
 - Verificación adicional mediante 129 actores de recogida que cubren 126 identificadores de objetos, más eventos de entregas, transformaciones, máscaras y mejoras. Cada objeto muestra la prueba usada en sus detalles.
-- Panel de **13 misiones** con pasos confirmados, pendientes o sin evidencia, próximo paso, filtro de estado y opción de ocultarlo. Distingue rutas alternativas y objetivos perdidos en esta vuelta; en NG+ no confunde recompensas conservadas con misiones repetidas.
+- **Seguimiento de misiones** (13 misiones, sin depender de la wiki): lista con progreso y filtros (pendientes, seguidas, en curso, completadas, sin confirmar) y detalle paso a paso. Cada misión explica qué hacer ahora, marca el **paso actual**, indica qué te falta para llegar a cada objeto (reliquias y acceso), muestra zona, estado y pista de cada objeto con botón «Ver en el mapa», y permite pasar a la misión anterior o siguiente. Puedes **seguir** misiones para fijarlas arriba con su paso actual. Desde la lista de objetos y desde el mapa se salta a las misiones que los usan, y `#mision-<id>` abre una misión directamente. Se navega con teclado (flechas, Inicio y Fin en la lista). Distingue rutas alternativas y objetivos perdidos en esta vuelta; en NG+ no confunde recompensas conservadas con misiones repetidas. La guía externa de la wiki queda como enlace opcional.
+- **Copia de seguridad** del seguimiento (objetos y misiones) y de la configuración, en «Personalizar mapa y vista». El navegador guarda estos datos por dirección y puerto, así que conviene exportarlos antes de cambiar de navegador o de puerto. Al restaurar, las listas se unen con lo que ya tienes.
 - Estado de posesión separado del acceso: **accesible**, **requisitos pendientes** o **por verificar**. Los objetos consumidos no se consideran ausentes sin evidencia suficiente.
 - Requisitos por camino: **Tres Lenguas Nudosas** para raíces, **Lienzo de Hilo de Oro** para ciertas caídas, plataformas de sangre, miasma y otros accesos. Una entrada concreta puede exigir una reliquia mientras otra no la exige.
 - Selección de cuadrantes y resaltado de pasos especiales, con opción de priorizar casillas sin descubrir. Seguimiento por objeto, capas, tamaños, opacidad y filtros de spoilers.
@@ -65,7 +66,7 @@ npm run build
 npm start
 ```
 
-El servidor de desarrollo solo sirve la web; el lector integrado está en la release de Windows. Para construir la release, necesitas Windows, Node, Python 3.12+ y el compilador de .NET Framework:
+El servidor de desarrollo solo sirve la web (solo en 127.0.0.1; con `PORT=8766 npm start` cambias de puerto, y recuerda que el seguimiento guardado en el navegador depende del puerto); el lector integrado está en la release de Windows. Para construir la release, necesitas Windows, Node, Python 3.12+ y el compilador de .NET Framework:
 
 ```powershell
 python -m venv .build-env

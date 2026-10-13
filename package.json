@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "node build.mjs",
-    "test": "node --test tests/analyzer.test.mjs tests/map.test.mjs tests/access.test.mjs tests/communication.test.mjs tests/quadrant.test.mjs tests/verification.test.mjs",
+    "test": "node --test tests/analyzer.test.mjs tests/map.test.mjs tests/access.test.mjs tests/communication.test.mjs tests/quadrant.test.mjs tests/verification.test.mjs tests/quest-view.test.mjs tests/backup.test.mjs tests/server.test.mjs",
     "start": "node server.mjs"
   },
   "license": "GPL-3.0-or-later"

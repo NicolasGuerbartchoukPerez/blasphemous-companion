@@ -1,17 +1,25 @@
-// Exact actor identity matters: two collectibles in the same room are independent.
-export function pickupEvidence(data,id,verification){
- const actors=verification?.actors?.filter(a=>a.id===id)??[];
+// Datos derivados del guardado que cada objeto necesita para comprobar su evidencia.
+// Calcularlos una sola vez por análisis evita rehacerlos 230 veces (uno por objeto).
+export function createEvidenceContext(data,verification){
+ const common=data.commonElements,inv=common.ID_INVENTORY;
+ const own=new Set(Object.entries(inv).filter(([k,v])=>/^(own|wear)/.test(k)&&Array.isArray(v)).flatMap(([,v])=>v));
  const scenes=new Map(Object.entries(data.sceneElements??{}).map(([room,objects])=>[room.toUpperCase(),objects]));
+ const actorsById=new Map();
+ for(const actor of verification?.actors??[]){if(!actorsById.has(actor.id))actorsById.set(actor.id,[]);actorsById.get(actor.id).push(actor);}
+ return {own,scenes,actorsById,flags:common.ID_EVENT_MANAGER?.flags??{},ngplus:common.ID_PERSISTENT_MANAGER?.IsNewGamePlus===true};
+}
+// Exact actor identity matters: two collectibles in the same room are independent.
+export function pickupEvidence(data,id,verification,context=createEvidenceContext(data,verification)){
+ const actors=context.actorsById.get(id)??[];
+ const scenes=context.scenes;
  const results=actors.map(actor=>({actor,value:scenes.get(actor.room)?.[actor.guid]?.[actor.field]}));
  const positive=results.find(r=>r.value===true);
  if(positive)return {value:true,kind:'pickup',text:'El registro de la sala confirma que recogiste este objeto.',room:positive.actor.room};
  if(results.length&&results.every(r=>r.value===false))return {value:false,kind:'pickup',text:'El registro de sus puntos de recogida confirma que aún sigue sin recoger.'};
  return null;
 }
-export function additionalEvidence(data,id,verification){
- const inv=data.commonElements.ID_INVENTORY, flags=data.commonElements.ID_EVENT_MANAGER?.flags??{};
- const own=new Set(Object.entries(inv).filter(([k,v])=>/^(own|wear)/.test(k)&&Array.isArray(v)).flatMap(([,v])=>v));
- const ngplus=data.commonElements.ID_PERSISTENT_MANAGER?.IsNewGamePlus===true;
+export function additionalEvidence(data,id,verification,context=createEvidenceContext(data,verification)){
+ const {own,flags,ngplus}=context;
  const transformed={QI13:ngplus?['QI14']:['QI14','RE10'],QI14:ngplus?[]:['RE10'],QI66:ngplus?[]:['RE04'],QI67:ngplus?[]:['RE02'],QI59:['QI57'],QI75:['QI76','QI77']};
  if(transformed[id]?.some(next=>own.has(next)))return {value:true,kind:'transformed',text:'Ya obtuviste su forma posterior: este objeto fue adquirido y transformado.'};
  if(['QI59','QI57'].includes(id)&&flags.GEMINO_QI57_OWNED===true)return {value:true,kind:'transformed',text:'El evento de Gémino confirma que ya llenaste el dedal.'};
@@ -33,7 +41,7 @@ export function additionalEvidence(data,id,verification){
  }
  if(['QI06','QI07','QI08'].includes(id)&&flags.LVDOVICO_QUEST_DONE===true)return {value:true,kind:'delivered',text:'La misión de Lvdovico confirma la entrega de los tres restos de Tentudía.'};
  if(delivery[id]&&flags[delivery[id]]===true)return {value:true,kind:'delivered',text:'Un evento de la misión confirma que ya lo entregaste.'};
- return pickupEvidence(data,id,verification);
+ return pickupEvidence(data,id,verification,context);
 }
 export const STATE_INVENTORY_FIELDS=['ownRellics','ownBeads','ownQuestItems','ownPrayers','ownCollectibleItems','ownSwords'];
 export function validateLiveState(payload,save,fileName,now=Date.now()){

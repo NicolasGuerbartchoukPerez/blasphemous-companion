@@ -3,7 +3,7 @@ $ErrorActionPreference = 'Stop'
 $project = Split-Path $PSScriptRoot -Parent
 Set-Location -LiteralPath $project
 function Assert-Exit { if ($LASTEXITCODE -ne 0) { throw "Falló el comando anterior: $LASTEXITCODE" } }
-node --test tests/analyzer.test.mjs tests/map.test.mjs tests/access.test.mjs tests/communication.test.mjs tests/quadrant.test.mjs tests/verification.test.mjs
+node --test tests/analyzer.test.mjs tests/map.test.mjs tests/access.test.mjs tests/communication.test.mjs tests/quadrant.test.mjs tests/verification.test.mjs tests/quest-view.test.mjs tests/backup.test.mjs tests/server.test.mjs
 Assert-Exit
 node build.mjs
 Assert-Exit

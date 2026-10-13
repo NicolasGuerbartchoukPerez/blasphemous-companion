@@ -3,7 +3,7 @@ const FIELDS = { relics: ['ownRellics', 'ownRelics'], bones: ['ownCollectibleIte
 const WEAR = { relics: ['wearRellics', 'wearRelics'], beads: ['wearBeads'], prayers: ['wearPrayers'], hearts: ['wearSwords'] };
 export function decodeSave(input) {
   if (typeof input !== 'string' || input.length > 30 * 1024 * 1024) throw new Error('El archivo está vacío o supera los 30 MB permitidos.');
-  let raw = input.replace(/^\uFEFF/, '').trim();
+  let raw = input.replace(/^﻿/, '').trim();
   if (!raw) throw new Error('El archivo está vacío.');
   if (!raw.startsWith('{')) {
     const b64 = raw.replace(/\s/g, '');
@@ -12,7 +12,7 @@ export function decodeSave(input) {
     catch { throw new Error('No se ha podido decodificar este guardado.'); }
   }
   let data;
-  try { data = JSON.parse(raw.replace(/^\uFEFF/, '')); } catch { throw new Error('El guardado no contiene un JSON válido. Espera a que el juego termine de guardar y vuelve a intentarlo.'); }
+  try { data = JSON.parse(raw.replace(/^﻿/, '')); } catch { throw new Error('El guardado no contiene un JSON válido. Espera a que el juego termine de guardar y vuelve a intentarlo.'); }
   const common = data?.commonElements;
   const inventory = common?.ID_INVENTORY;
   if (!inventory || typeof inventory !== 'object' || !Object.values(FIELDS).flat().some(k => Array.isArray(inventory[k]))) throw new Error('No es un guardado compatible de Blasphemous 1.');
@@ -24,26 +24,48 @@ export function decodeSave(input) {
   if (Object.keys(common).some(k => /randomizer/i.test(k))) throw new Error('Esta versión analiza partidas normales. Un randomizer cambia las ubicaciones y requiere su propio catálogo.');
   return data;
 }
-import {additionalEvidence} from './verification-model.mjs';
+import {additionalEvidence,createEvidenceContext} from './verification-model.mjs';
 import VERIFICATION_DATA from './verification-data.json' with {type:'json'};
-export function analyze(data, catalog,verification=VERIFICATION_DATA) {
+
+// Un evento verdadero con estos nombres implica un objeto de misión concreto:
+//   <zona>_QI13_DELIVERED / _USED / _OWNED   y   ALTASGRACIAS_ALTAR1..3_QI10..12.
+// Se indexan una vez por análisis; antes se recorrían todos los eventos por cada objeto.
+const QUEST_FLAG_PATTERN = /_(QI\d+)_(?:DELIVERED|USED|OWNED)$/;
+const ALTAR_OFFERING_PATTERN = /^ALTASGRACIAS_ALTAR[123]_(QI(?:10|11|12))$/;
+
+export function analyze(data, catalog, verification = VERIFICATION_DATA) {
   const common = data.commonElements, inv = common.ID_INVENTORY, flags = common.ID_EVENT_MANAGER?.flags ?? {}, persistent = common.ID_PERSISTENT_MANAGER ?? {};
   const sets = {}, known = {};
   for (const [group, fields] of Object.entries(FIELDS)) {
     known[group] = fields.some(k => Array.isArray(inv[k]));
     sets[group] = new Set([...fields, ...(WEAR[group] ?? [])].flatMap(k => inv[k] ?? []).filter(Boolean));
   }
+  const flagEntries = Object.entries(flags);
   const isTrue = k => flags[k] === true;
+  const impliedQuestIds = new Set();
+  for (const [key, value] of flagEntries) {
+    if (value !== true) continue;
+    const delivered = QUEST_FLAG_PATTERN.exec(key);
+    if (delivered) impliedQuestIds.add(delivered[1]);
+    const offering = ALTAR_OFFERING_PATTERN.exec(key);
+    if (offering) impliedQuestIds.add(offering[1]);
+  }
+  // Identificadores de misión con un formato inesperado conservan la comprobación original, exhaustiva.
+  const exhaustiveQuestScan = id => flagEntries.some(([k, v]) => v === true && (k.endsWith('_' + id + '_DELIVERED') || k.endsWith('_' + id + '_USED') || k.endsWith('_' + id + '_OWNED') || /^ALTASGRACIAS_ALTAR[123]_QI(10|11|12)$/.test(k) && k.endsWith('_' + id)));
   const evidence = (id, group) => {
     if (sets[group]?.has(id)) return true;
     if ([id + '_OWNED', 'CLAIMED_' + id, id + '_USED', id + '_BOUGHT_AT_CANDELARIA'].some(isTrue)) return true;
-    if (/^QI/.test(id) && Object.entries(flags).some(([k, v]) => v === true && (k.endsWith('_' + id + '_DELIVERED') || k.endsWith('_' + id + '_USED') || k.endsWith('_' + id + '_OWNED') || /^ALTASGRACIAS_ALTAR[123]_QI(10|11|12)$/.test(k) && k.endsWith('_' + id)))) return true;
+    if (/^QI/.test(id)) return /^QI\d+$/.test(id) ? impliedQuestIds.has(id) : exhaustiveQuestScan(id);
     return false;
   };
+  const names = new Map(catalog.map(item => [item.id, item.name]));
+  const evidenceContext = createEvidenceContext(data, verification);
   const rows = catalog.map(item => {
+    const direct = evidence(item.id, item.group);
+    const laterStage = item.laterStages?.find(id => evidence(id, item.group));
     let status;
     if (item.group === 'cherubs') status = flags[item.id] === true ? 'obtained' : flags[item.id] === false ? 'missing' : 'unknown';
-    else if (evidence(item.id, item.group) || item.laterStages?.some(id => evidence(id, item.group))) status = 'obtained';
+    else if (direct || laterStage) status = 'obtained';
     else if (item.ngplus && persistent.IsNewGamePlus === false) status = 'later';
     else if (!known[item.group]) status = 'unknown';
     else if (item.group === 'quest' || item.group === 'upgrades') {
@@ -51,10 +73,11 @@ export function analyze(data, catalog,verification=VERIFICATION_DATA) {
       const explicit = [item.id + '_OWNED', 'CLAIMED_' + item.id, item.id + '_USED'].some(k => flags[k] === false);
       status = explicit ? 'missing' : 'unknown';
     } else status = 'missing';
-    let proof=evidence(item.id,item.group)?{kind:sets[item.group]?.has(item.id)?'inventory':'event',text:sets[item.group]?.has(item.id)?'Figura en tu inventario actual.':'Un evento confirma que lo adquiriste o utilizaste.'}:null;
-    const extra=additionalEvidence(data,item.id,verification);
-    if(extra?.value===true){status='obtained';proof=extra;}
-    else if(extra?.value===false&&status!=='obtained'&&status!=='later'){status='missing';proof=extra;}
+    let proof = direct ? { kind: sets[item.group]?.has(item.id) ? 'inventory' : 'event', text: sets[item.group]?.has(item.id) ? 'Figura en tu inventario actual.' : 'Un evento confirma que lo adquiriste o utilizaste.' } : null;
+    if (!proof && laterStage && status === 'obtained' && item.group !== 'cherubs') proof = { kind: 'later-stage', text: 'Tu partida contiene una etapa posterior de este objeto («' + (names.get(laterStage) ?? laterStage) + '»), así que ya lo conseguiste.' };
+    const extra = additionalEvidence(data, item.id, verification, evidenceContext);
+    if (extra?.value === true) { status = 'obtained'; proof = extra; }
+    else if (extra?.value === false && status !== 'obtained' && status !== 'later') { status = 'missing'; proof = extra; }
     const equipped = (WEAR[item.group] ?? []).some(k => inv[k]?.includes(item.id));
     return { ...item, status, equipped, proof };
   });

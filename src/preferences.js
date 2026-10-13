@@ -1,4 +1,6 @@
 const DEFAULT_PREFS={geometry:'full',specialCells:true,specialOnlyUnexplored:true,art:true,labels:false,services:true,barriers:true,itemBarriers:false,barrierOnlyMissing:true,markerStyle:'game',markerSize:6,unexploredOpacity:55,showList:true,showPriority:true,showQuests:true,showAcquired:false,available:true,blocked:true,unknown:true,showNg:false,equipmentOnly:false,showPersonalPins:true,compact:false,showIDs:false,colors:'standard',categories:['relics','bones','cherubs','beads','prayers','hearts','upgrades','quest'],relicLayers:['RE01','RE03','RE04','RE05','RE07','RE10']};
+// Lo que tocan los preajustes del mapa. «Todo» restablece solo esto y respeta el resto de tus ajustes (compacto, contraste, paneles visibles...).
+const MAP_PRESET_KEYS=['geometry','specialCells','specialOnlyUnexplored','art','labels','services','barriers','itemBarriers','barrierOnlyMissing','markerStyle','available','blocked','unknown','showAcquired','categories'];
 function sanitizePrefs(raw={}){
  const out=structuredClone(DEFAULT_PREFS);
  for(const key of Object.keys(out)){
@@ -24,7 +26,7 @@ document.getElementById('map-preset').addEventListener('change',e=>{
  const p=e.target.value;if(p==='game')Object.assign(prefs,{geometry:'explored',art:true,labels:false,services:true,barriers:false,itemBarriers:false,showAcquired:false,markerStyle:'game'});
  if(p==='search')Object.assign(prefs,{geometry:'full',art:true,labels:true,services:true,barriers:true,itemBarriers:false,available:true,blocked:false,unknown:false,showAcquired:false,markerStyle:'dots'});
  if(p==='relics')Object.assign(prefs,{geometry:'full',barriers:true,itemBarriers:true,barrierOnlyMissing:true,available:true,blocked:true,unknown:true,categories:['relics','quest'],markerStyle:'game'});
- if(p==='all')prefs=sanitizePrefs();
+ if(p==='all')for(const k of MAP_PRESET_KEYS)prefs[k]=structuredClone(DEFAULT_PREFS[k]);
  persistPrefs();applyPrefs();if(current){refreshAccessibility();render();}e.target.value='custom';
 });
 document.getElementById('settings-export').addEventListener('click',()=>downloadSettings(JSON.stringify(prefs,null,2),'cvstodia-configuracion.json'));
