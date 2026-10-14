@@ -42,14 +42,14 @@ function render(){
  if(!current)return;
  visible=current.rows.filter(matches).sort((a,b)=>(a.priority??100)-(b.priority??100)||a.group.localeCompare(b.group)||a.name.localeCompare(b.name,'es',{numeric:true}));
  $('collection-count').textContent=visible.length+' de '+current.rows.length+' objetos · filtros de la lista';$('empty').hidden=visible.length!==0;
- const pending=current.rows.filter(r=>!['obtained','later'].includes(r.status));$('access-summary').textContent=['available','blocked','unknown'].map(s=>pending.filter(r=>accessibility.items.get(r.id)?.state===s).length+' '+(s==='available'?'accesibles':s==='blocked'?'con requisitos pendientes':'por verificar')).join(' · ');
+ const pending=current.rows.filter(r=>!['obtained','later'].includes(r.status));$('access-summary').textContent=['available','blocked','unknown','lost'].map(s=>[s,pending.filter(r=>accessibility.items.get(r.id)?.state===s).length]).filter(([s,n])=>s!=='lost'||n>0).map(([s,n])=>n+' '+(s==='available'?'accesibles':s==='blocked'?'con requisitos pendientes':s==='unknown'?'por verificar':'perdidos en esta partida')).join(' · ');
  const spoilers=$('spoilers').checked,openItems=new Set([...$('item-list').querySelectorAll('details[open]')].map(el=>el.dataset.item));
  $('item-list').innerHTML=visible.map(row=>{
   const guide=guideFor(row);
   const wiki=row.englishName?'https://blasphemous.wiki.gg/wiki/'+encodeURIComponent(row.englishName.replaceAll(' ','_')):'https://blasphemous.wiki.gg/wiki/Children_of_Moonlight';
   return '<article class="item-row"><div><div class="item-header"><span class="category-name">'+esc(GROUPS[row.group])+'</span><span class="item-code">'+esc(row.id)+'</span></div><h3>'+esc(row.name)+'</h3>'+(spoilers?'<p class="item-location">'+locationHTML(row)+'</p>':'')+(row.description?'<p class="item-description">'+esc(row.description)+'</p>':'')+(spoilers?'<details class="item-guide" data-item="'+esc(row.id)+'" '+(openItems.has(row.id)?'open':'')+'><summary>Requisitos y cómo encontrarlo</summary>'+accessHTML(row,true)+(row.proof?'<p class="verification-proof"><strong>Prueba de la partida:</strong> '+esc(row.proof.text)+'</p>':'')+(guide?'<p>'+esc(guide)+'</p>':'<p>Consulta la guía para los detalles del objeto.</p>')+''+questLinksHTML(row.id)+'<a href="'+wiki+'" target="_blank" rel="noopener noreferrer">Consultar objeto ↗</a></details>':'')+'</div><div class="item-side"><span class="state '+row.status+'">'+esc(STATUS_LABEL[row.status])+'</span>'+accessHTML(row)+(row.equipped?'<span class="equipped">Equipado</span>':'')+'<label class="track-label"><input type="checkbox" data-track="'+esc(row.id)+'" aria-label="Seguir '+esc(row.name)+'" '+(tracked.has(row.id)?'checked':'')+'> Seguir</label>'+(spoilers&&MAP_DATA.positions[row.id]?.length?'<button class="text-button locate-item" data-map-item="'+esc(row.id)+'">Ver en mapa</button>':'')+'</div></article>';
  }).join('');
- renderMap();renderQuests();
+ renderMap();renderQuests();renderBosses();
 }
 $('item-list').addEventListener('change',e=>{const id=e.target.dataset.track;if(!id)return;e.target.checked?tracked.add(id):tracked.delete(id);saveTracking();if($('tracked-only').checked)render();else renderMap();});
 $('item-list').addEventListener('click',e=>{const button=e.target.closest('[data-map-item]');if(button)focusMapItem(button.dataset.mapItem);});

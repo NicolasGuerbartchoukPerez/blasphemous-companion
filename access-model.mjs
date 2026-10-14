@@ -1,7 +1,8 @@
+import {analyzeLost} from './lost-model.mjs';
 // Three-valued conditions: absent event/unsupported mechanic stays unknown.
 export const RELIC_VARIABLES={blood:'RE01',linen:'RE05',nail:'RE03',canWaterJump:'RE03',shroud:'RE04',canWalkOnRoot:'RE10',canClimbOnRoot:'RE10',ownsRoots:'RE10',canSurvivePoison1:'RE07',canSurvivePoison2:'RE07',canSurvivePoison3:'RE07'};
-export const ACCESS_LABEL={available:'Accesible',blocked:'Requisito pendiente',unknown:'Por verificar',obtained:'Obtenido',later:'Nueva Partida+'};
-const BOSS_FLAGS={canBeatBrotherhoodBoss:'D17Z01_BOSSDEAD',canBeatMercyBoss:'D01Z06S01_BOSSDEAD',canBeatConventBoss:'D02Z05S01_BOSSDEAD',canBeatGrievanceBoss:'D03Z04S01_BOSSDEAD',canBeatBridgeBoss:'D08Z01S01_BOSSDEAD',canBeatMothersBoss:'D04Z04S01_BOSSDEAD',canBeatCanvasesBoss:'D05Z01S13_BOSSDEAD',canBeatPrisonBoss:'D09Z01S03_BOSSDEAD',canBeatRooftopsBoss:'D06Z01S25_BOSSDEAD',canBeatOssuaryBoss:'D01BZ08S01_BOSSDEAD',canBeatMourningBoss:'D20Z02S08_BOSSDEAD',canBeatGraveyardBoss:'SANTOS_AMANECIDA_AXE_DEFEATED',canBeatJondoBoss:'SANTOS_AMANECIDA_FACCATA_DEFEATED',canBeatPatioBoss:'SANTOS_AMANECIDA_BOW_DEFEATED',canBeatWallBoss:'SANTOS_AMANECIDA_LANCE_DEFEATED',canBeatHallBoss:'SANTOS_LAUDES_DEFEATED'};
+export const ACCESS_LABEL={available:'Accesible',blocked:'Requisito pendiente',unknown:'Por verificar',obtained:'Obtenido',later:'Nueva Partida+',lost:'Perdido en esta partida'};
+export const BOSS_FLAGS={canBeatBrotherhoodBoss:'D17Z01_BOSSDEAD',canBeatMercyBoss:'D01Z06S01_BOSSDEAD',canBeatConventBoss:'D02Z05S01_BOSSDEAD',canBeatGrievanceBoss:'D03Z04S01_BOSSDEAD',canBeatBridgeBoss:'D08Z01S01_BOSSDEAD',canBeatMothersBoss:'D04Z04S01_BOSSDEAD',canBeatCanvasesBoss:'D05Z01S13_BOSSDEAD',canBeatPrisonBoss:'D09Z01S03_BOSSDEAD',canBeatRooftopsBoss:'D06Z01S25_BOSSDEAD',canBeatOssuaryBoss:'D01BZ08S01_BOSSDEAD',canBeatMourningBoss:'D20Z02S08_BOSSDEAD',canBeatGraveyardBoss:'SANTOS_AMANECIDA_AXE_DEFEATED',canBeatJondoBoss:'SANTOS_AMANECIDA_FACCATA_DEFEATED',canBeatPatioBoss:'SANTOS_AMANECIDA_BOW_DEFEATED',canBeatWallBoss:'SANTOS_AMANECIDA_LANCE_DEFEATED',canBeatHallBoss:'SANTOS_LAUDES_DEFEATED'};
 export const KEY_VARIABLES={elderKey:'QI58',bronzeKey:'QI69',silverKey:'QI70',goldKey:'QI71',peaksKey:'QI72',woodKey:'QI204',cloth:'QI66',hand:'QI67',hatchedEgg:'QI14',egg:'QI13',cord:'QI01',scapular:'QI203',trueHeart:'HE201',emptyThimble:'QI59',fullThimble:'QI57',driedFlowers:'QI68',bell:'QI106',wheel:'RB203',guiltBead:'RB41',ruby:'RB105',debla:'PR03',lorquiana:'PR07',zarabanda:'PR08',taranto:'PR09',verdiales:'PR14',cante:'PR12',cantina:'PR201',tiento:'PR11'};
 const logicCache=new Map();
 export function parseCondition(source=''){
@@ -106,7 +107,7 @@ export function accessContext(data,analysis,model,{equipmentOnly=false}={}){
  return {has,name,resolve,gate,reached,reachableRooms,seed,flags,flag,money,donations,worn,own,equipmentOnly,byRoom};
 }
 export function analyzeAccess(data,analysis,model,options={}){
- const ctx=accessContext(data,analysis,model,options),out=new Map();
+ const ctx=accessContext(data,analysis,model,options),out=new Map(),lostItems=analyzeLost(data,analysis).items;
  for(const row of analysis.rows){
   const loc=model.items[row.id]??{}, room=loc.room||row.room;
   let condition=loc.logic??'',local=evaluateCondition(parseCondition(condition),ctx.resolve),notes=[];
@@ -138,7 +139,9 @@ export function analyzeAccess(data,analysis,model,options={}){
   const equip=local.uses.filter(id=>/^RE/.test(id)&&ctx.has(id)&&!ctx.worn.has(id));
   if(equip.length)notes.push('Equipar para esta ruta: '+equip.map(ctx.name).join(', '));
   if(local.value===true&&['relics','quest','upgrades'].includes(row.group)&&state==='available')notes.push('Puedes llegar y cumplir los requisitos detectados; puede quedar un diálogo, entrega o puzzle.');
-  const reasons=state==='obtained'||state==='later'?[]:[...local.reasons,...notes];
+  const lostEntry=state==='obtained'||state==='later'?null:lostItems.get(row.id);
+  if(lostEntry)state='lost';
+  const reasons=state==='obtained'||state==='later'?[]:lostEntry?[lostEntry.reason]:[...local.reasons,...notes];
   out.set(row.id,{state,reasons,uses:local.uses,equip,room,condition,routeKnown:ctx.reachableRooms.has(room)});
  }
  const barriers=model.doors.filter(d=>conditionVariables(parseCondition(d.logic??'')).some(v=>RELIC_VARIABLES[v])).map(d=>({id:d.id,room:d.id.split('[')[0],target:d.originalDoor?.split('[')[0],direction:d.direction,logic:d.logic,relics:[...new Set(conditionVariables(parseCondition(d.logic)).map(v=>RELIC_VARIABLES[v]).filter(Boolean))],...ctx.gate(d),kind:'path'}));

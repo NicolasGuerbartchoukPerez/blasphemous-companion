@@ -1,4 +1,18 @@
-# Validación de la release 3.2.0
+# Validación de la release 3.3.0
+
+Cambios solo en la web y sus modelos (misiones perdidas, panel de jefes, catálogo). El lector de posición y el lanzador de .NET Framework no se han modificado respecto a 3.1.2.
+
+Comprobaciones realizadas el 14 de octubre de 2026 en Linux (no en Windows):
+
+- 98 pruebas automáticas (75 anteriores y 23 nuevas: reglas de pérdida, Final A, jefes y coherencia del catálogo). La coherencia de zonas se contrastó con una mutación del catálogo (falla como debe).
+- Prueba diferencial contra 3.1.2 con 3000 guardados sintéticos: ninguna diferencia en objetos, resumen, misiones ni accesos, salvo lo intencionado (misión Final A y elementos declarados perdidos).
+- Guardado real del autor ejecutado en la web compilada (jsdom y Chromium): estados de misiones y jefes coherentes con los eventos, sin errores JavaScript; 390 px sin desbordamiento horizontal, filtros con teclado y «Ver en el mapa».
+- Las reglas de pérdida se basan en eventos del guardado; la semántica del evento de Tirso se infiere del nombre, la wiki y la confirmación del jugador. Las correcciones de zona se verificaron con la wiki (Candelaria, Cleofás, Isidora); la zona de la Cantiña de la Rosa Azul sigue sin verificar y se muestra como «sin catalogar».
+- No se ha probado esta release con el juego ni con el lector integrado. La compilación de Windows la realiza GitHub Actions.
+
+---
+
+## Validación anterior · release 3.2.0
 
 Esta release cambia únicamente la web, el modelo de misiones y el servidor de desarrollo. El lector de posición y el lanzador de .NET Framework no se han modificado respecto a 3.1.2, cuya validación en Windows se conserva más abajo.
 

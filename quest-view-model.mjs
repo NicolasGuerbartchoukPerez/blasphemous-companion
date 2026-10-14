@@ -10,13 +10,14 @@ export const QUEST_FILTERS=[
  {id:'tracked',label:'Seguidas'},
  {id:'active',label:'En curso'},
  {id:'completed',label:'Completadas'},
+ {id:'lost',label:'Perdidas'},
  {id:'unknown',label:'Sin confirmar'},
  {id:'all',label:'Todas'}
 ];
-export const QUEST_STEP_LABEL={done:'Confirmado',current:'Paso actual',pending:'Pendiente',unknown:'Sin confirmar'};
+export const QUEST_STEP_LABEL={done:'Confirmado',current:'Paso actual',pending:'Pendiente',unknown:'Sin confirmar',lost:'Ya no se puede'};
 export const QUEST_OWNERSHIP_LABEL={obtained:'Lo tienes',missing:'Te falta',unknown:'Sin confirmar',later:'Nueva Partida+'};
 // Orden de aparición: lo que requiere tu atención primero y lo ya terminado al final.
-const QUEST_STATE_RANK={active:0,alternative:1,lost:2,notstarted:3,unknown:4,completed:5};
+const QUEST_STATE_RANK={active:0,alternative:1,notstarted:2,unknown:3,lost:4,completed:5};
 const UNCATALOGUED_AREAS=new Set(['Zona no catalogada','Consultar guía del objeto']);
 
 export function questProgress(quest){
@@ -28,7 +29,7 @@ export function questProgress(quest){
 // que falte en un paso intermedio no oculta el avance posterior. En una lista de comprobación
 // no hay un único paso actual: se muestran todos los pendientes.
 export function questCurrentIndex(quest){
- if(quest.state==='completed'||quest.mode!=='sequence')return -1;
+ if(quest.state==='completed'||quest.state==='lost'||quest.mode!=='sequence')return -1;
  let last=-1;quest.steps.forEach((s,i)=>{if(s.value===true)last=i;});
  return Math.min(last+1,quest.steps.length-1);
 }
@@ -48,13 +49,15 @@ export function questItemView(id,ctx){
   presentation,requirements,
   missingRelics:requirements.filter(r=>!r.owned&&!r.optional),
   guide:(ctx.guideFor?ctx.guideFor(row):row.guide??'').trim(),hasCatalogGuide:Boolean(row.guide),
-  hint:row.hint??'',
+  hint:row.hint??'',hintEs:row.hintEs??'',
+  wikiUrl:row.englishName?'https://blasphemous.wiki.gg/wiki/'+encodeURIComponent(row.englishName.replaceAll(' ','_')):'',
   hasMapPosition:Boolean(ctx.positions?.[id]?.length)
  };
 }
 
-function stepStatus(step,index,current){
+function stepStatus(step,index,current,questLost){
  if(step.value===true)return 'done';
+ if(questLost)return 'lost';
  if(index===current)return 'current';
  return step.value===null?'unknown':'pending';
 }
@@ -62,15 +65,15 @@ function stepStatus(step,index,current){
 export function buildQuestView(quest,ctx){
  const current=questCurrentIndex(quest),progress=questProgress(quest);
  const steps=quest.steps.map((step,index)=>{
-  const status=stepStatus(step,index,current);
+  const status=stepStatus(step,index,current,quest.state==='lost');
   return {index,label:step.label,value:step.value,proof:step.proof,how:step.how,status,statusLabel:QUEST_STEP_LABEL[status],items:step.items.map(id=>questItemView(id,ctx)).filter(Boolean)};
  });
- const focus=current>=0?[steps[current]]:steps.filter(s=>s.status!=='done');
+ const focus=quest.state==='lost'?[]:current>=0?[steps[current]]:steps.filter(s=>s.status!=='done');
  // Qué impide avanzar ahora: objetos de los pasos pendientes que exigen una reliquia obligatoria que aún no tienes.
  const blockers=focus.flatMap(s=>s.items).filter(i=>i.ownership!=='obtained'&&i.missingRelics.length).map(i=>({id:i.id,name:i.name,missing:i.missingRelics.map(r=>r.name),relicIds:i.missingRelics.map(r=>r.id)}));
  return {
   id:quest.id,name:quest.name,state:quest.state,stateLabel:QUEST_LABELS[quest.state],
-  summary:quest.summary,next:quest.next,note:quest.note,url:quest.url,mode:quest.mode,
+  summary:quest.summary,next:quest.next,note:quest.note,lostReason:quest.lostReason??'',url:quest.url,mode:quest.mode,
   progress,currentIndex:current,currentStep:current>=0?steps[current]:null,steps,blockers,
   related:quest.related.map(id=>questItemView(id,ctx)).filter(Boolean)
  };
@@ -85,7 +88,7 @@ export function sortQuestViews(views,tracked=new Set()){
 export function questMatchesFilter(view,filter,tracked=new Set()){
  switch(filter){
   case 'all':return true;
-  case 'pending':return view.state!=='completed';
+  case 'pending':return view.state!=='completed'&&view.state!=='lost';
   case 'tracked':return tracked.has(view.id);
   default:return view.state===filter;
  }

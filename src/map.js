@@ -49,8 +49,8 @@ function gatePosition(gate){
  const chosen=candidates.reduce((a,b)=>score(a)<=score(b)?a:b);
  return {x:chosen.x+.5+dx*.45,y:-chosen.y-.5-dy*.45,cellX:chosen.x,cellY:chosen.y,approximate:exact.length!==1};
 }
-function mapStatus(rows){const states=rows.map(r=>accessibility.items.get(r.id)?.state??'unknown');return states.includes('available')?'available':states.includes('blocked')?'blocked':states.includes('unknown')?'unknown':'obtained';}
-function mapVisible(row){const state=accessibility.items.get(row.id)?.state??'unknown';return prefs.categories.includes(row.group)&&(state==='obtained'?prefs.showAcquired:state==='later'?prefs.showNg:prefs[state]);}
+function mapStatus(rows){const states=rows.map(r=>accessibility.items.get(r.id)?.state??'unknown');return states.includes('available')?'available':states.includes('blocked')?'blocked':states.includes('unknown')?'unknown':states.includes('lost')?'lost':'obtained';}
+function mapVisible(row){const state=accessibility.items.get(row.id)?.state??'unknown';return prefs.categories.includes(row.group)&&(state==='obtained'?prefs.showAcquired:state==='later'?prefs.showNg:state==='lost'?prefs.blocked:prefs[state]);}
 // Las capas de casillas y servicios solo se repintan si su contenido cambia: no tienen estado propio y son lo más caro de dibujar.
 const layerCache=new WeakMap();
 function setLayerHTML(element,html){if(layerCache.get(element)===html)return;layerCache.set(element,html);element.innerHTML=html;}
@@ -145,7 +145,7 @@ function selectMapPoint(key){selectedCellKey=null;const restore=svg.contains(doc
 function focusMapItem(id,adjustFilters=false){selectedCellKey=null;
  const point=MAP_DATA.positions[id]?.[0];if(!point)return;
  if(adjustFilters){$('category').value='all';$('access-filter').value='all';$('status').value='all';$('search').value=current.rows.find(r=>r.id===id).name;$('tracked-only').checked=false;}
- $('map-area').value='all';$('spoilers').checked=true;selectedBarrier=null;prefs.categories=[...new Set([...prefs.categories,current.rows.find(r=>r.id===id).group])];const state=accessibility.items.get(id).state;if(state==='obtained')prefs.showAcquired=true;else if(state==='later')prefs.showNg=true;else prefs[state]=true;prefs.geometry='full';applyPrefs();selectedMapKey=point.x+':'+point.y;render();
+ $('map-area').value='all';$('spoilers').checked=true;selectedBarrier=null;prefs.categories=[...new Set([...prefs.categories,current.rows.find(r=>r.id===id).group])];const state=accessibility.items.get(id).state;if(state==='obtained')prefs.showAcquired=true;else if(state==='later')prefs.showNg=true;else prefs[state==='lost'?'blocked':state]=true;prefs.geometry='full';applyPrefs();selectedMapKey=point.x+':'+point.y;render();
  if(adjustFilters)tell('Mostrando «'+current.rows.find(r=>r.id===id).name+'» en el mapa. Los filtros de la lista se han ajustado para localizarlo; usa «Limpiar filtros» para volver.');
  setMapView({x:point.x-9,y:-point.y-7,width:18,height:14});
  $('map-panel').scrollIntoView({block:'start',behavior:'instant'});

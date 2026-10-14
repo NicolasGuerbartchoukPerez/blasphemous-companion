@@ -44,7 +44,7 @@
     "name": "Perla Hueca",
     "englishName": "Hollow Pearl",
     "group": "beads",
-    "area": "Albero",
+    "area": "Sueños de Misericordia",
     "room": "D01BZ02S01",
     "hint": "Shop item 2",
     "ngplus": false
@@ -84,7 +84,7 @@
     "name": "Musgo Preservado en Cristal",
     "englishName": "Moss Preserved in Glass",
     "group": "beads",
-    "area": "Albero",
+    "area": "Sueños de Misericordia",
     "room": "D01BZ02S01",
     "hint": "Shop item 3",
     "ngplus": false
@@ -97,6 +97,7 @@
     "area": "Donde se Marchitan los Olivos",
     "room": "D02Z01S01",
     "hint": "Gemino's reward",
+    "hintEs": "Recompensa de Gemino",
     "ngplus": false
   },
   {
@@ -167,6 +168,7 @@
     "area": "Yermo de las Iglesias Enterradas",
     "room": "D01Z03S06",
     "hint": "3rd meeting with Redento",
+    "hintEs": "Tercer encuentro con Redento",
     "ngplus": false
   },
   {
@@ -177,6 +179,7 @@
     "area": "Patio de los Pasos Silenciosos",
     "room": "D04Z01S04",
     "hint": "4th meeting with Redento",
+    "hintEs": "Cuarto encuentro con Redento",
     "ngplus": false
   },
   {
@@ -187,6 +190,7 @@
     "area": "Serranía del Ocaso Perpetuo",
     "room": "D03Z01S03",
     "hint": "1st meeting with Redento",
+    "hintEs": "Primer encuentro con Redento",
     "ngplus": false
   },
   {
@@ -287,6 +291,7 @@
     "area": "Cementerio de las Cumbres",
     "room": "D02Z02S06",
     "hint": "Confessor Dungeon room",
+    "hintEs": "Sala de la mazmorra de los Confesores",
     "ngplus": false
   },
   {
@@ -324,7 +329,7 @@
     "name": "Símbolo de Aprecio",
     "englishName": "Token of Appreciation",
     "group": "beads",
-    "area": "Sueños de Misericordia",
+    "area": "Albero",
     "room": "D01BZ04S01",
     "hint": "Donate 5000 Tears",
     "ngplus": false
@@ -334,7 +339,7 @@
     "name": "Rubí Enclaustrado",
     "englishName": "Cloistered Ruby",
     "group": "beads",
-    "area": "Sueños de Misericordia",
+    "area": "Albero",
     "room": "D01BZ04S01",
     "hint": "Donate 50000 Tears",
     "ngplus": false
@@ -397,6 +402,7 @@
     "area": "Biblioteca de las Palabras Negadas",
     "room": "D05Z01S11",
     "hint": "Silence for Diosdado",
+    "hintEs": "Silencio para Diosdado",
     "ngplus": false
   },
   {
@@ -437,6 +443,7 @@
     "area": "Albero",
     "room": "D01Z02S03",
     "hint": "Lvdovico's 3rd reward",
+    "hintEs": "Tercera recompensa de Lvdovico",
     "ngplus": false
   },
   {
@@ -447,6 +454,7 @@
     "area": "Donde se Marchitan los Olivos",
     "room": "D02Z01S08",
     "hint": "Underground tomb",
+    "hintEs": "Tumba subterránea",
     "ngplus": false
   },
   {
@@ -457,6 +465,7 @@
     "area": "Lienzos Durmientes",
     "room": "D05Z02S10",
     "hint": "Jocinero's final reward",
+    "hintEs": "Recompensa final de Jocinero",
     "ngplus": false
   },
   {
@@ -504,9 +513,10 @@
     "name": "Tiento a tus Cabellos Espinados",
     "englishName": "Tiento to your Thorned Hairs",
     "group": "prayers",
-    "area": "Sueños de Misericordia",
+    "area": "Albero",
     "room": "D01BZ04S01",
     "hint": "Final gift for Cleofas",
+    "hintEs": "Último regalo de la misión de Cleofás",
     "ngplus": false
   },
   {
@@ -577,6 +587,7 @@
     "area": "Ecos de Sal",
     "room": "D20Z02S11",
     "hint": "West chest",
+    "hintEs": "Cofre del oeste",
     "ngplus": false
   },
   {
@@ -785,9 +796,10 @@
     "name": "Corazón Apodíctico de Mea Culpa",
     "englishName": "Apodictic Heart of Mea Culpa",
     "group": "hearts",
-    "area": "Zona no catalogada",
+    "area": "Knot of the Three Words",
     "room": "D04Z03S02",
     "hint": "Gift from the Traitor",
+    "hintEs": "Regalo del Traidor",
     "ngplus": false
   },
   {
@@ -1035,7 +1047,7 @@
     "name": "Metatarsus of Rikusyo, the Traveller",
     "englishName": "Metatarsus of Rikusyo, the Traveller",
     "group": "bones",
-    "area": "Zona no catalogada",
+    "area": "Hermandad del Lamento Mudo",
     "room": "D17BZ02S01",
     "hint": "Platforming gauntlet",
     "ngplus": false
@@ -1238,6 +1250,7 @@
     "area": "Albero",
     "room": "D01Z02S03",
     "hint": "First gift for Cleofas",
+    "hintEs": "Primer regalo para Cleofás",
     "ngplus": false
   },
   {
@@ -1248,6 +1261,7 @@
     "area": "Altos de la Archicatedral",
     "room": "D06Z01S03",
     "hint": "First soldier fight",
+    "hintEs": "Combate contra el primer soldado",
     "ngplus": false
   },
   {
@@ -1258,6 +1272,7 @@
     "area": "Altos de la Archicatedral",
     "room": "D06Z01S06",
     "hint": "Second soldier fight",
+    "hintEs": "Combate contra el segundo soldado",
     "ngplus": false
   },
   {
@@ -1268,6 +1283,7 @@
     "area": "Altos de la Archicatedral",
     "room": "D06Z01S21",
     "hint": "Third soldier fight",
+    "hintEs": "Combate contra el tercer soldado",
     "ngplus": false
   },
   {
@@ -1278,6 +1294,7 @@
     "area": "Yermo de las Iglesias Enterradas",
     "room": "D01Z03S05",
     "hint": "Under broken bridge",
+    "hintEs": "Bajo el puente roto",
     "ngplus": false
   },
   {
@@ -1288,6 +1305,7 @@
     "area": "Donde se Marchitan los Olivos",
     "room": "D02Z01S05",
     "hint": "Death run",
+    "hintEs": "Carrera de la muerte",
     "ngplus": false
   },
   {
@@ -1298,6 +1316,7 @@
     "area": "Cementerio de las Cumbres",
     "room": "D02Z02S03",
     "hint": "Upper east shaft",
+    "hintEs": "Pozo alto del este",
     "ngplus": false
   },
   {
@@ -1308,6 +1327,7 @@
     "area": "Asciende el Quejido",
     "room": "D03Z03S08",
     "hint": "End of blood bridge",
+    "hintEs": "Al final del puente de sangre",
     "ngplus": false
   },
   {
@@ -1318,6 +1338,7 @@
     "area": "Cementerio de las Cumbres",
     "room": "D02BZ02S01",
     "hint": "Shop item 1",
+    "hintEs": "Primer objeto de la tienda de Candelaria (Cementerio de las Cumbres)",
     "ngplus": false
   },
   {
@@ -1328,6 +1349,7 @@
     "area": "Aljibe Profanado",
     "room": "D01Z05S08",
     "hint": "Behind gate in miasma room",
+    "hintEs": "Tras una reja en la sala de miasma",
     "ngplus": false
   },
   {
@@ -1338,6 +1360,7 @@
     "area": "Asciende el Quejido",
     "room": "D03Z03S10",
     "hint": "Altasgracias' gift",
+    "hintEs": "Regalo de Altasgracias",
     "ngplus": false
   },
   {
@@ -1348,6 +1371,7 @@
     "area": "Serranía del Ocaso Perpetuo",
     "room": "D03Z01S06",
     "hint": "Egg hatching",
+    "hintEs": "Eclosión del huevo",
     "ngplus": false
   },
   {
@@ -1358,6 +1382,7 @@
     "area": "Jondo",
     "room": "D03Z02S06",
     "hint": "Lower east bell trap",
+    "hintEs": "Trampa de la campana, parte baja del este",
     "ngplus": false
   },
   {
@@ -1368,6 +1393,7 @@
     "area": "Donde se Marchitan los Olivos",
     "room": "D02Z01S04",
     "hint": "Entrance to tomb",
+    "hintEs": "Entrada a la tumba",
     "ngplus": false
   },
   {
@@ -1378,6 +1404,7 @@
     "area": "Patio de los Pasos Silenciosos",
     "room": "D04Z01S03",
     "hint": "Third area lower ledge",
+    "hintEs": "Repisa baja de la tercera zona",
     "ngplus": false
   },
   {
@@ -1418,6 +1445,7 @@
     "area": "Convento de la Faz Denegrida",
     "room": "D02Z03S21",
     "hint": "Fountain of burning oil",
+    "hintEs": "Fuente de aceite ardiente",
     "ngplus": false
   },
   {
@@ -1425,7 +1453,7 @@
     "name": "Llave de la Cámara del Hermano Mayor",
     "englishName": "Key to the Chamber of the Eldest Brother",
     "group": "quest",
-    "area": "Albero",
+    "area": "Sueños de Misericordia",
     "room": "D01BZ02S01",
     "hint": "Shop item 1",
     "ngplus": false
@@ -1438,6 +1466,7 @@
     "area": "Donde se Marchitan los Olivos",
     "room": "D02Z01S01",
     "hint": "Gemino's gift",
+    "hintEs": "Regalo de Gemino",
     "ngplus": false
   },
   {
@@ -1478,6 +1507,7 @@
     "area": "Serranía del Ocaso Perpetuo",
     "room": "D03Z01S04",
     "hint": "Blood platform alcove",
+    "hintEs": "Hueco de la plataforma de sangre",
     "ngplus": false
   },
   {
@@ -1488,6 +1518,7 @@
     "area": "Lienzos Durmientes",
     "room": "D05Z02S02",
     "hint": "Painting ladder ledge",
+    "hintEs": "Repisa de la escalera del cuadro",
     "ngplus": false
   },
   {
@@ -1498,6 +1529,7 @@
     "area": "Albero",
     "room": "D01Z02S07",
     "hint": "Gate of Travel room",
+    "hintEs": "Sala de la Puerta del Viaje",
     "ngplus": false
   },
   {
@@ -1528,6 +1560,7 @@
     "area": "Donde se Marchitan los Olivos",
     "room": "D02Z01S04",
     "hint": "Gift for the tomb",
+    "hintEs": "Ofrenda para la tumba",
     "ngplus": false
   },
   {
@@ -1578,6 +1611,7 @@
     "area": "Aljibe Profanado",
     "room": "D01Z05S23",
     "hint": "Chalice room",
+    "hintEs": "Sala del cáliz",
     "ngplus": false
   },
   {
@@ -1595,9 +1629,10 @@
     "name": "Severed Right Eye of the Traitor",
     "englishName": "Severed Right Eye of the Traitor",
     "group": "quest",
-    "area": "Zona no catalogada",
+    "area": "Albero",
     "room": "D01BZ08S01",
     "hint": "Isidora, Voice of the Dead",
+    "hintEs": "Isidora, Voz de los Muertos",
     "ngplus": false
   },
   {
@@ -1608,6 +1643,7 @@
     "area": "Ecos de Sal",
     "room": "D20Z02S08",
     "hint": "Sierpes' eye",
+    "hintEs": "Ojo de Sierpes",
     "ngplus": false
   },
   {
@@ -1618,6 +1654,7 @@
     "area": "Luto y Estrago",
     "room": "D20Z03S01",
     "hint": "Perpetva's shrine",
+    "hintEs": "Santuario de Perpetva",
     "ngplus": false
   },
   {
@@ -1628,6 +1665,7 @@
     "area": "Hermandad del Lamento Mudo",
     "room": "D17Z01S15",
     "hint": "Esdras' final gift",
+    "hintEs": "Último regalo de Esdras",
     "ngplus": false
   },
   {
@@ -1638,6 +1676,7 @@
     "area": "Hermandad del Lamento Mudo",
     "room": "D17Z01S15",
     "hint": "Crisanta's gift",
+    "hintEs": "Regalo de Crisanta",
     "ngplus": false
   },
   {
@@ -1766,6 +1805,7 @@
     "area": "Madre de Madres",
     "room": "D04BZ02S01",
     "hint": "Final meeting with Redento",
+    "hintEs": "Último encuentro con Redento",
     "laterStages": [],
     "ngplus": false,
     "description": "Entrégalo a Soledad para ampliar las ranuras de rosario."
@@ -1790,6 +1830,7 @@
     "area": "Albero",
     "room": "D01Z02S02",
     "hint": "Tirso's final reward",
+    "hintEs": "Recompensa final de Tirso",
     "laterStages": [],
     "ngplus": false,
     "description": "Entrégalo a Soledad para ampliar las ranuras de rosario."
@@ -1898,6 +1939,7 @@
     "area": "Petrous",
     "room": "D01Z06S01",
     "hint": "Temple entrance",
+    "hintEs": "Entrada del templo",
     "laterStages": [],
     "ngplus": false,
     "description": "Entrégalo a Nacimiento para mejorar la curación de los matraces."
@@ -1910,6 +1952,7 @@
     "area": "Patio de los Pasos Silenciosos",
     "room": "D04Z01S06",
     "hint": "Climb to WotHP",
+    "hintEs": "Subida a la Muralla de las Santas Prohibiciones",
     "laterStages": [],
     "ngplus": false,
     "description": "Entrégalo a Nacimiento para mejorar la curación de los matraces."
@@ -1922,6 +1965,7 @@
     "area": "Jondo",
     "room": "D03Z02S15",
     "hint": "Spike tunnel cave",
+    "hintEs": "Cueva del túnel de pinchos",
     "laterStages": [],
     "ngplus": false,
     "description": "Entrégalo a Nacimiento para mejorar la curación de los matraces."
@@ -1934,6 +1978,7 @@
     "area": "Lienzos Durmientes",
     "room": "D05Z02S15",
     "hint": "Swinging blade tunnel",
+    "hintEs": "Túnel de cuchillas oscilantes",
     "laterStages": [],
     "ngplus": false,
     "description": "Entrégalo a Nacimiento para mejorar la curación de los matraces."
@@ -1946,6 +1991,7 @@
     "area": "Salón de los Albores",
     "room": "D08Z03S01",
     "hint": "Mirror room",
+    "hintEs": "Sala del espejo",
     "laterStages": [],
     "ngplus": false,
     "description": "Entrégalo a Nacimiento para mejorar la curación de los matraces."
@@ -2006,6 +2052,7 @@
     "area": "Cementerio de las Cumbres",
     "room": "D02Z02S06",
     "hint": "Confessor Dungeon room",
+    "hintEs": "Sala de la mazmorra de los Confesores",
     "laterStages": [
       "RB39",
       "RB40",

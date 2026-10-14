@@ -5,7 +5,7 @@ import {analyze} from '../engine.mjs';
 import {analyzeAccess} from '../access-model.mjs';
 import {createCommunication} from '../communication-model.mjs';
 import {analyzeQuests} from '../quest-model.mjs';
-import {QUEST_FILTERS,buildQuestViews,filterQuestViews,questCurrentIndex,questFilterCounts,questMatchesFilter,questNeighbors,questProgress,sanitizeTrackedQuests,sortQuestViews} from '../quest-view-model.mjs';
+import {QUEST_FILTERS,buildQuestViews,questItemView,filterQuestViews,questCurrentIndex,questFilterCounts,questMatchesFilter,questNeighbors,questProgress,sanitizeTrackedQuests,sortQuestViews} from '../quest-view-model.mjs';
 
 const read=f=>JSON.parse(fs.readFileSync(new URL('../'+f,import.meta.url),'utf8'));
 const catalog=read('catalog.json'),model=read('access-data.json'),mapData=read('map-data.json'),comm=createCommunication(catalog,model);
@@ -116,9 +116,8 @@ test('cada objeto de un paso conserva posesión, acceso y posibilidad de verlo e
 });
 
 test('las áreas sin catalogar no se muestran como si fueran una zona',()=>{
- const eventide=byId(build().views,'eventide');
- const eye=eventide.steps.flatMap(s=>s.items).find(i=>i.id==='QI201');
- assert.equal(eye.area,'');
+ const prayer=questItemView('PR201',{rows:new Map(catalog.map(r=>[r.id,{...r,status:'missing'}])),access:{items:new Map(),context:null},communication:comm});
+ assert.equal(prayer.area,'');
 });
 
 test('orden: seguidas primero, luego en curso, y las completadas al final sin alterar el orden relativo',()=>{
@@ -139,7 +138,7 @@ test('filtros y contadores coinciden con las vistas',()=>{
  assert.deepEqual(Object.keys(counts),QUEST_FILTERS.map(f=>f.id));
  assert.equal(counts.all,views.length);
  assert.equal(counts.tracked,2);
- assert.equal(counts.completed+counts.pending,views.length);
+ assert.equal(counts.completed+counts.pending+counts.lost,views.length);
  assert.equal(filterQuestViews(views,'completed',tracked).every(v=>v.state==='completed'),true);
  assert.equal(questMatchesFilter(views[0],'desconocido',tracked),false);
 });

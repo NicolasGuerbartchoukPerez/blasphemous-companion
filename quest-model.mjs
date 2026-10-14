@@ -1,4 +1,5 @@
-export const QUEST_LABELS={active:'En curso',completed:'Completada',notstarted:'Sin iniciar',alternative:'Ruta alternativa',lost:'Objetivo perdido en esta vuelta',unknown:'Estado sin confirmar'};
+import {analyzeLost} from './lost-model.mjs';
+export const QUEST_LABELS={active:'En curso',completed:'Completada',notstarted:'Sin iniciar',alternative:'Ruta alternativa',lost:'Perdida en esta partida',unknown:'Estado sin confirmar'};
 // Cada paso incluye, además de su estado:
 //   items: identificadores del catálogo que intervienen (para mostrar requisitos, zona y acceso),
 //   how:   qué hacer en ese paso, con las indicaciones que ya describían la misión.
@@ -11,11 +12,12 @@ export function analyzeQuests(data,analysis){
  const any=(...values)=>values.some(v=>v===true)?true:values.every(v=>v===false)?false:null;
  const all=(...values)=>values.every(v=>v===true)?true:values.some(v=>v===false)?false:null;
  const step=(label,value,proof,items=[],how='')=>({label,value,items,how,proof:proof??(value===true?'Confirmado por la partida.':value===false?'Este paso todavía no está completado.':'El archivo no conserva evidencia suficiente de este paso.')});
- const quests=[];
+ const lostInfo=analyzeLost(data,analysis),quests=[];
  function add(id,name,steps,next,{done=steps.at(-1)?.value,started=any(...steps.map(s=>s.value)),alternative=false,lost=false,url='',note='',summary='',mode='sequence',related=[]}={}){
   started=any(started,...steps.map(s=>s.value));
-  const state=done===true?'completed':lost?'lost':alternative?'alternative':started===true?'active':started===false?'notstarted':'unknown';
-  quests.push({id,name,state,steps,next:state==='completed'?'Recompensa o final de la misión confirmado.':next,url,note,summary,mode,related});
+  const lostReason=lostInfo.quests.get(id)?.reason??'';
+  const state=done===true?'completed':lost||lostReason?'lost':alternative?'alternative':started===true?'active':started===false?'notstarted':'unknown';
+  quests.push({id,name,state,steps,next:state==='completed'?'Recompensa o final de la misión confirmado.':lostReason?'Ya no se puede completar en esta partida. '+lostReason:next,url,note,summary,mode,related,lostReason});
  }
  const rootsThisCycle=analysis.ngplus?f('ALTASGRACIAS_QI14_CONVERSATION_DONE'):has('RE10');
  add('roots','Altasgracias · las raíces',[
@@ -91,5 +93,21 @@ export function analyzeQuests(data,analysis){
   step('Derrotar un Lionheart para el cáliz',chaliceDone===true?true:f('LIONHEAD_CHALICE_DEAD'),undefined,[],'Derrota a uno de los enemigos marcados sin morir ni teletransportarte.'),
   step('Devolver el cáliz lleno y abrir el altar',chaliceDone,undefined,[],'Vuelve con el cáliz lleno a su pedestal de Aljibe Profanado. No mueras ni uses teletransporte.')
  ],carrying('QI77')?'Vuelve con el cáliz lleno a su pedestal de Aljibe Profanado. No mueras ni uses teletransporte.':'Recoge el cáliz de Aljibe Profanado y derrota a sus tres enemigos marcados sin morir ni teletransportarte. Después vuelve al pedestal.',{done:chaliceDone,started:any(has('QI75'),has('QI76'),has('QI77')),url:'Chalice_of_Inverted_Verses',mode:'checklist',summary:'Recoge el cáliz, llénalo derrotando a tres enemigos marcados sin morir ni teletransportarte y devuélvelo a su pedestal.',related:['QI75'],note:'Las muertes del cáliz indican la carga actual; morir o teletransportarse la vacía. Completar el altar confirma toda la misión.'});
+ // Final A (Senda del Creyente). Requisitos según el wiki de la comunidad y su guía de finales; el único
+ // evento propio del guardado es D07Z01S03_ENDING_A, que se toma como prueba de haberlo conseguido.
+ const confessorsAll=suffix=>all(...[1,2,3,4,5,6,7].map(n=>f('CONFESSOR_'+n+'_'+suffix)));
+ const abnegation=has('QI301');
+ add('ending-a','Final A · Senda del Creyente',[
+  step('Conseguir la Cuenta Inmaculada',any(has('RB38'),has('RB41')),undefined,['RB38'],'La Cuenta Inmaculada está en el Cementerio de las Cumbres, en la misma sala que la estatua de confesor.'),
+  step('Convertirla en el Peso de la Verdadera Culpa',has('RB41'),undefined,['RB41'],'Llévala equipada: absorbe tu culpa al morir y no dejas fragmento. Tras tres muertes se vuelve negra y se transforma. Si no la ves, revisa el inventario.'),
+  step('Destruir las siete estatuas de confesor',confessorsAll('DESTROYED'),undefined,[],'Destruye cada estatua antes de entrar en su mazmorra. Con una sola sin destruir, el juego acaba en el final B.'),
+  step('Completar las siete mazmorras de confesor',confessorsAll('ARENACOMPLETED'),undefined,[],'Completa la arena de cada mazmorra, llevando el Peso de la Verdadera Culpa. Con seis de siete, el juego acaba en el final B.'),
+  step('Derrotar a Su Santidad Escribar',f('D07Z01S02_BOSSDEAD'),undefined,[],'Escribar está en lo más alto del Deambulador de sus Santidades, tras la Archicatedral. Mantén el Peso de la Verdadera Culpa en el inventario.'),
+  step('Escalar la Montaña de Ceniza con Deogracias',f('D07Z01S03_ENDING_A'),'La partida registra el final A.',[],'En la sala siguiente a Escribar, Deogracias habla contigo y se sube a la Montaña de Ceniza hasta el Trono Girado. Si cumples los requisitos, es el final A; si no, el B.')
+ ],abnegation===true?'Ya posees la Herida Santa de la Abnegación: el wiki indica que entonces se desbloquea el final C y que no se puede deshacer. El final A ya no es posible en esta partida.':f('D07Z01S03_ENDING_A')===true?'Final A conseguido.':!has('RB41')?'Consigue la Cuenta Inmaculada y haz que se transforme muriendo con ella equipada.':confessorsAll('ARENACOMPLETED')!==true?'Destruye las estatuas y completa las siete mazmorras de confesor con el Peso de la Verdadera Culpa.':f('D07Z01S02_BOSSDEAD')!==true?'Cumples los requisitos previos. Llega al Deambulador de sus Santidades y derrota a Su Santidad Escribar.':'Sube la Montaña de Ceniza con Deogracias para ver el final.',{
+  lost:abnegation===true,mode:'sequence',related:['RB38','RB41','QI301'],
+  summary:'El final A exige haber preparado el Peso de la Verdadera Culpa, destruir las siete estatuas de confesor, completar las siete mazmorras y no poseer la Herida Santa de la Abnegación (que lleva al final C). Después se termina el juego como siempre. Si falla algo, el juego acaba en el final B, y el wiki indica que el final A se puede conseguir después en la misma partida.',
+  note:'Requisitos según el wiki de la comunidad. Una página del wiki menciona además tener la «Cvstodia of Sin» en el inventario al derrotar a Escribar; no figura en el catálogo, así que no se comprueba aquí. Mantén el Peso de la Verdadera Culpa en el inventario hasta el final.'
+ });
  return quests;
 }

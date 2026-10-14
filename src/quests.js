@@ -2,7 +2,7 @@
 // objeto, misiones seguidas, filtros y navegación. Los datos salen de analyzeQuests (quest-model)
 // y se preparan en quest-view-model; aquí solo se pintan y se gestionan las interacciones.
 const QUEST_FILTER_STORE='cvstodia:quest-filter:v1';
-const QUEST_MARK={done:'✓',current:'▶',pending:'○',unknown:'?'};
+const QUEST_MARK={done:'✓',current:'▶',pending:'○',unknown:'?',lost:'✕'};
 let questFilter=(()=>{try{const stored=localStorage.getItem(QUEST_FILTER_STORE);return QUEST_FILTERS.some(f=>f.id===stored)?stored:'pending';}catch{return 'pending';}})();
 let selectedQuestId=null,trackedQuests=new Set(),questSignature='',questHashApplied=false,questIndexSource=null,itemQuestIndex=new Map();
 // Pasos que el jugador ha abierto o cerrado a mano (por defecto solo se abre el paso actual).
@@ -40,11 +40,11 @@ function questLinksHTML(id){
  return '<p class="item-quests"><strong>Misión:</strong> '+links.map(l=>'<button type="button" class="text-button" data-quest-open="'+esc(l.questId)+'" data-quest-step="'+l.stepIndex+'">'+esc(l.questName)+(l.stepIndex>=0?' · paso '+(l.stepIndex+1):'')+'</button>').join(' ')+'</p>';
 }
 
-const questStateClass=state=>state==='completed'?'obtained':state==='unknown'||state==='notstarted'?'unknown':'missing';
+const questStateClass=state=>state==='lost'?'lost':state==='completed'?'obtained':state==='unknown'||state==='notstarted'?'unknown':'missing';
 const questProgressText=p=>p.done+' de '+p.total+' pasos confirmados'+(p.unknown?' · '+p.unknown+' sin confirmar':'');
 const questProgressBar=p=>'<progress class="quest-progress" max="'+Math.max(1,p.total)+'" value="'+p.done+'" aria-label="'+esc(questProgressText(p))+'">'+p.done+'/'+p.total+'</progress>';
 const questPendingCount=view=>view.steps.filter(s=>s.status!=='done').length;
-const questHeadline=view=>view.currentStep?view.currentStep.label:view.state==='completed'?'Misión terminada':view.mode==='checklist'?questPendingCount(view)+' pasos pendientes':view.next;
+const questHeadline=view=>view.state==='lost'?'Ya no se puede completar en esta partida':view.currentStep?view.currentStep.label:view.state==='completed'?'Misión terminada':view.mode==='checklist'?questPendingCount(view)+' pasos pendientes':view.next;
 
 function questCardHTML(view,selected,followed){
  return '<li><button type="button" class="quest-card'+(selected?' selected':'')+'" data-quest-open="'+esc(view.id)+'" data-fk="nav:'+esc(view.id)+'"'+(selected?' aria-current="true"':'')+'>'
@@ -69,8 +69,9 @@ function questItemHTML(item,scope){
  return '<article class="qitem">'
   +'<header class="qitem-head"><strong>'+esc(item.name)+'</strong><span class="state '+item.ownership+'">'+esc(item.ownershipLabel)+'</span>'+(item.equipped?'<span class="equipped">Equipado</span>':'')+(need?'<span class="access-badge '+item.accessState+'">'+esc(item.accessLabel)+'</span>':'')+'</header>'
   +(item.englishName&&item.englishName!==item.name?'<p class="qitem-en muted">'+esc(item.englishName)+'</p>':'')
-  +(item.area?'<p class="qitem-area"><strong>Zona:</strong> '+esc(item.area)+'</p>':'')
-  +(!item.hasCatalogGuide&&item.hint?'<p class="qitem-guide"><strong>Pista del catálogo (en inglés):</strong> '+esc(item.hint)+'</p>':'')
+  +(item.area?'<p class="qitem-area"><strong>Zona:</strong> '+esc(item.area)+'</p>':!item.hasCatalogGuide?'<p class="qitem-area muted"><strong>Zona:</strong> sin catalogar; consulta la guía del objeto.</p>':'')
+  +(!item.hasCatalogGuide&&(item.hintEs||item.hint)?'<p class="qitem-guide"><strong>Pista:</strong> '+esc(item.hintEs||item.hint)+(item.hintEs?'':' <span class="muted">(catálogo en inglés)</span>')+'</p>':'')
+  +(item.wikiUrl?'<p class="qitem-wiki"><a target="_blank" rel="noopener noreferrer" href="'+esc(item.wikiUrl)+'">Guía del objeto ↗</a></p>':'')
   +(item.guide?'<p class="qitem-guide">'+esc(item.guide)+'</p>':'')
   +(need&&p.next?'<p class="next-action"><strong>Qué hacer ahora</strong><br>'+esc(p.next)+'</p>':'')
   +(need?requirementHTML(item.requirements):'')
@@ -98,14 +99,14 @@ function questBlockersHTML(view){
 
 function questDetailHTML(view,neighbors,followed){
  const p=view.progress,pending=questPendingCount(view);
- const nextTitle=view.state==='completed'?'Misión completada':'Qué hacer ahora';
+ const nextTitle=view.state==='completed'?'Misión completada':view.state==='lost'?'Estado de la misión':'Qué hacer ahora';
  const pager=(q,label,key)=>q?'<button type="button" data-quest-open="'+esc(q.id)+'" data-fk="'+key+'">'+label+'</button>':'<span></span>';
  return '<header class="quest-head"><p class="eyebrow">MISIÓN '+neighbors.position+' DE '+neighbors.total+' · '+(view.mode==='checklist'?'LISTA DE COMPROBACIÓN':'PASO A PASO')+'</p>'
   +'<h3 id="quest-detail-title" tabindex="-1">'+esc(view.name)+'</h3>'
   +'<div class="quest-head-row"><span class="state '+questStateClass(view.state)+'">'+esc(view.stateLabel)+'</span><span class="muted">'+esc(questProgressText(p))+'</span>'
   +'<button type="button" class="quest-track'+(followed?' on':'')+'" data-quest-track="'+esc(view.id)+'" data-fk="track" aria-pressed="'+followed+'">'+(followed?'★ Siguiendo':'☆ Seguir misión')+'</button></div>'
   +questProgressBar(p)+(view.summary?'<p class="quest-summary">'+esc(view.summary)+'</p>':'')+'</header>'
-  +'<section class="quest-next" aria-labelledby="quest-next-title"><h4 id="quest-next-title">'+nextTitle+'</h4><p class="quest-next-text">'+esc(view.next)+'</p>'
+  +'<section class="quest-next'+(view.state==='lost'?' quest-lost':'')+'" aria-labelledby="quest-next-title"><h4 id="quest-next-title">'+nextTitle+'</h4><p class="quest-next-text">'+esc(view.next)+'</p>'
   +(view.currentStep?'<p class="quest-current">Paso actual: <strong>'+esc(view.currentStep.label)+'</strong> <span class="muted">('+(view.currentStep.index+1)+' de '+p.total+')</span></p>':view.state!=='completed'&&view.mode==='checklist'?'<p class="quest-current">Pasos pendientes: <strong>'+pending+'</strong> de '+p.total+'</p>':'')
   +questBlockersHTML(view)+'</section>'
   +'<ol class="qsteps" aria-label="Pasos de la misión">'+view.steps.map(s=>questStepHTML(view,s)).join('')+'</ol>'
